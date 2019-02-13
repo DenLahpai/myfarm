@@ -1,5 +1,7 @@
 :root {
     --background-color: #4CAF50;
+    --menu-color: gold;
+    --font-color2: black;
 }
 
 * {
@@ -9,10 +11,6 @@
 body {
     background: var(--background-color);
     color: white;
-}
-
-.content {
-
 }
 
 .login {
@@ -29,6 +27,199 @@ body {
     padding: 9px 12px;
 }
 
-input {
+.menu-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    background: var(--menu-color);
+    width: 100%;
+}
+
+.logo a img {
+    width: auto;
+    height: 54px;
+}
+
+.menu-search {
+
+}
+
+.menu-search input {
+    padding-top: 6px;
+    border-radius: 60px;
+    text-align: center;
+}
+
+.menu-search button {
+    font-size: 1.2em;
+    padding: 3px 6px;
+}
+
+.menu-icon {
+    font-size: 2em;
+    padding-top: 4px;
+    position: fixed;
+    right: 0;
+    padding-right: 12px;
+    cursor: pointer;
+}
+
+#menu {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.4);
+}
+
+#menu button {
+    display: block;
+    background: silver;
+    padding: 9px 10px;
+    margin: 24px auto;
+    width: 36%;
+    padding: 12px 36px;
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    overflow: auto;
+    /* background: rgba(0,0,0,0.4); */
+    background: silver;
     padding: 12px;
+}
+
+.menu-content ul {
+    padding: 120px auto;
+}
+
+.menu-content ul li {
+    text-align: center;
+    margin: 24px auto;
+    list-style: none;
+}
+
+.menu-content ul li button {
+    padding: 9px 24px;
+    background: var(--menu-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.menu-content h2 {
+    text-align: center;
+    color: var(--font-color2);
+}
+
+.menu-content p {
+    padding: 12px;
+    color: var(--font-color2);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.closeButton {
+    text-align: right;
+    cursor: pointer;
+    display: inline-flex;
+    position: fixed;
+    right: 0;
+    margin-right: 24px;
+}
+
+.content {
+    margin-top: 60px;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    " nav nav nav "
+    " header header header "
+    " section section section "
+    " main main main "
+    " aside aside aside "
+    ;
+}
+
+nav {
+    grid-area: nav;
+    text-align: right;
+}
+.menu-flags img {
+    margin: 3px 6px;
+    width: 36px;
+    height: 24px;
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+}
+
+main {
+    grid-area: main;
+}
+
+.form {
+    padding: 12px;
+}
+
+.form table {
+    margin: 3px auto;
+}
+
+.form table tr td {
+    padding: 6px 12px;
+}
+
+.form table tr th button {
+    padding: 6px 12px;
+}
+
+.grid-div {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 3px;
+}
+
+.grid-item {
+    background: silver;
+    border: 1px solid var(--button-add-color);
+    border-radius: 6px;
+}
+
+.grid-item:nth-of-type() {
+    background: silver;
+}
+
+.grid-item ul li {
+    list-style: none;
+}
+
+footer {
+    padding: 12px;
+    background: silver;
+    text-align: center;
 }

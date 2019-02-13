@@ -1,0 +1,73 @@
+<!-- menu-bar -->
+<div class="menu-bar">
+    <!-- logo -->
+    <div class="logo">
+        <a href="index.php"><img src="../images/logo.png" alt="logo"></a>
+    </div>
+    <!-- logo -->
+    <!-- menu-search-->
+    <div class="menu-search">
+        <form action="#" method="post">
+            <input type="text" name="Search" id="Search" placeholder="Search">
+            <button type="button" class="buttonSearch" name="buttonSearch" id="buttonSearch" onclick="search('test');">search</button>
+        </form>
+    </div>
+    <!-- end of menu-search -->
+    <!-- end of menu-flags -->
+    <!-- menu-icon -->
+    <div class="menu-icon" id="menuSwitch" onclick="openMenu();">
+        &#9776;
+    </div>
+    <!-- end of menu-icon -->
+</div>
+<!-- end of menu-bar -->
+<!-- menu -->
+<div id="menu">
+    <button type="button" name="button" onclick="window.location.href='signup.php'">Signup</button>
+    <button type="button" name="button" onclick="openLogin();">Login</button>
+    <button type="button" name="button" onclick="openAboutUs();">About Us</button>
+    <button type="button" name="button">Login</button>
+    <button type="button" name="button">Login</button>
+    <button type="button" name="button">Login</button>
+    <button type="button" name="button">Login</button>
+</div>
+<!-- menu-items -->
+<div class="menu-items" id="menu-items">
+    <!-- login form -->
+    <div class="menu-content" id="loginForm">
+        <h1 class="closeButton" onclick="closeModal('loginForm');">&times;</h1>
+        <form action="#" method="post">
+            <ul>
+                <li class="bold">
+                    Please login!
+                </li>
+                <li>
+                    Mobile No:
+                    <input type="text" name="Mobile" id="Mobile" placeholder="0943243242">
+                </li>
+                <li>
+                    Password:
+                    <input type="password" name="Password" id="Password" placeholder="******">
+                </li>
+                <li>
+                    <button type="button" name="buttonLogin" id="buttonSubmit" onclick="checkTwoFields('Mobile', 'Password');">Login</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- login form -->
+    <!-- aboutUs -->
+    <div class="menu-content" id="aboutUs">
+        <h1 class="closeButton" onclick="closeModal ('aboutUs');">
+            &times;
+        </h1>
+        <h2>
+            About us
+        </h2>
+        <p>
+            This online network has been created so that we, the farmers and consumers, can meet and share our demands and products.
+        </p>
+    </div>
+    <!-- end of aboutUs -->
+</div>
+<!-- end of menu-items -->
