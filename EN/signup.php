@@ -5,20 +5,20 @@
 <html lang="en" dir="ltr">
     <?php
     $page_title = 'Signup';
-    include "../includes/head.html";
+    include "includes/head.html";
     ?>
     <body>
         <?php
         $header = "Signup";
-        include "../includes/header.html";
-        include "../includes/menu-bar.html";
+        include "includes/header.html";
+        include "includes/menu-bar.html";
         ?>
         <!-- content -->
         <div class="content">
             <main>
                 <!-- signup form -->
                 <div class="form">
-                    <form class="" action="index.html" method="post">
+                    <form class="" action="#" method="post" id="signup">
                         <table>
                             <thead>
                                 <tr>
@@ -43,7 +43,7 @@
                                         Name:
                                     </td>
                                     <td>
-                                        <input type="text" name="Name" id="Fullname" placeholder="Name">
+                                        <input type="text" name="Name" id="Name" placeholder="Name">
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,7 +99,7 @@
                                         Country:
                                     </td>
                                     <td>
-                                        <input type="text" name="Country" id="Country" placeholder="Country">
+                                        <input type="text" name="Country" id="Country" value="Myanmar">
                                     </td>
                                 </tr>
                                 <tr>
@@ -113,7 +113,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="2">
-                                        <button type="button" name="buttonSubmit" id="buttonSignup" onclick="">Signup Now</button>
+                                        <button type="button" name="buttonSubmit" id="buttonSignup" onclick="signup();">Signup Now</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -124,7 +124,7 @@
             </main>
         </div>
         <!-- end of content -->
-        <?php include "../includes/footer.html"; ?>
+        <?php include "includes/footer.html"; ?>
     </body>
     <script type="text/javascript" src="../scripts/scripts.js"></script>
     <script type="text/javascript" src="../scripts/modals.js"></script>

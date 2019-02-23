@@ -53,3 +53,38 @@ function checkPasswords (choosePassword, repeatPassword) {
 function search (search) {
     alert('search');
 }
+
+//function to signup
+function signup () {
+    var signup = document.forms.signup;
+    var Name = signup.Name;
+    var Mobile = signup.Mobile;
+    var Password = signup.Password;
+    var Address = signup.Address;
+    var Town = signup.Town;
+    var State = signup.State;
+    var Country = signup.Country;
+
+    if (Name.value == "" || Name.value == null) {
+        Name.style.background = 'red';
+    }
+    if (Mobile.value == "" || Mobile.value == null) {
+        Mobile.style.background = 'red';
+    }
+    if (Password.value == "" || Password.value == null) {
+        Password.style.background = 'red';
+    }
+    if (Address.value == "" || Address.value == null) {
+        Address.style.background = 'red';
+    }
+    if (Town.value == "" || Town.value == null) {
+        Town.style.background = 'red';
+    }
+    if (State.value == "" || State.value == null) {
+        State.style.background = 'red';
+    }
+    if (Country.value == "" || Country.value == null) {
+        Country.style.background = 'red';
+    }
+
+}

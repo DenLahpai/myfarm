@@ -50,7 +50,7 @@ body {
 }
 
 #buttonSearch {
-    border-radius: 30px;
+    /* border-radius: 30px; */
     padding: 3px;
 }
 
@@ -163,8 +163,9 @@ nav {
     grid-area: nav;
     text-align: right;
 }
+
 .menu-flags img {
-    margin: 3px 6px;
+    margin: 6px;
     width: 36px;
     height: 24px;
 }
