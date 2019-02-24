@@ -1,6 +1,6 @@
 :root {
-    --background-color: #4CAF50;
-    --menu-color: gold;
+    --background-color: rgba(223, 178, 246, 1);
+    --menu-color: rgba(237, 233, 78, 1 );
     --font-color2: black;
 }
 
@@ -9,8 +9,7 @@
     margin: 0;
 }
 body {
-    background: var(--background-color);
-    color: white;
+    background: white;
 }
 
 .login {
@@ -51,7 +50,7 @@ body {
 
 #buttonSearch {
     /* border-radius: 30px; */
-    padding: 3px;
+    padding: 6px;
 }
 
 .menu-icon {
@@ -133,7 +132,7 @@ body {
 .error {
     color: red;
     font-weight: bold;
-    display: none;
+    /* display: none; */
 }
 
 .closeButton {
@@ -147,6 +146,8 @@ body {
 
 .content {
     margin-top: 60px;
+    background: var(--background-color);
+    color: black;
     display: grid;
     grid-gap: 3px;
     grid-template-columns: repeat(3, 1fr);

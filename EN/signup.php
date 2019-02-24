@@ -1,4 +1,16 @@
 <?php
+require_once "../functions.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $rowCount = table_Users('check_before_insert', NULL, NULL);
+    if ($rowCount == 0) {
+        table_Users('insert', NULL, NULL);
+    }
+    else {
+        $error = "You are already registered! Please contact us if you wish to recover your account!";
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -8,17 +20,19 @@
     include "includes/head.html";
     ?>
     <body>
-        <?php
-        $header = "Signup";
-        include "includes/header.html";
-        include "includes/menu-bar.html";
-        ?>
+
         <!-- content -->
         <div class="content">
+            <?php
+            $header = "Signup";
+            include "includes/header.html";
+            include "includes/menu-bar.html";
+            include "includes/nav.html";
+            ?>
             <main>
                 <!-- signup form -->
                 <div class="form">
-                    <form class="" action="#" method="post" id="signup">
+                    <form action="#" method="post" id="signup">
                         <table>
                             <thead>
                                 <tr>
@@ -72,6 +86,14 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        Date of Birth
+                                    </td>
+                                    <td>
+                                        <input type="date" name="DOB" id="DOB">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         Address:
                                     </td>
                                     <td>
@@ -91,7 +113,7 @@
                                         State:
                                     </td>
                                     <td>
-                                        <input type="text" name="State" id="State" placeholder="State / Division">
+                                        <input type="text" name="State" id="State" placeholder="State / Division" onchange="signup();">
                                     </td>
                                 </tr>
                                 <tr>
@@ -113,7 +135,7 @@
                                 </tr>
                                 <tr>
                                     <th colspan="2">
-                                        <button type="button" name="buttonSubmit" id="buttonSignup" onclick="signup();">Signup Now</button>
+                                        <button type="submit" name="buttonSubmit" id="buttonSignup" disabled>Signup Now</button>
                                     </th>
                                 </tr>
                             </tbody>

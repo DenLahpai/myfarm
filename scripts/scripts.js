@@ -43,9 +43,9 @@ function checkPasswords (choosePassword, repeatPassword) {
     var repeatPassword = document.getElementById(repeatPassword);
 
     if (choosePassword.value != repeatPassword.value) {
-        choosePassword.style.display.background = 'red';
-        repeatPassword.style.display.background = 'red';
-        // TODO
+        choosePassword.style.background = 'red';
+        repeatPassword.style.background = 'red';
+        alert('Passwords do NOT match!');
     }
 }
 
@@ -59,7 +59,9 @@ function signup () {
     var signup = document.forms.signup;
     var Name = signup.Name;
     var Mobile = signup.Mobile;
-    var Password = signup.Password;
+    var Password = signup.choosePassword;
+    var repeatPassword = signup.repeatPassword;
+    var DOB = signup.DOB;
     var Address = signup.Address;
     var Town = signup.Town;
     var State = signup.State;
@@ -67,24 +69,52 @@ function signup () {
 
     if (Name.value == "" || Name.value == null) {
         Name.style.background = 'red';
+        var error = true;
     }
     if (Mobile.value == "" || Mobile.value == null) {
         Mobile.style.background = 'red';
+        var error = true;
     }
+    if (isNaN (Mobile.value)) {
+        Mobile.style.background = 'red';
+        var error = true;
+    }
+
     if (Password.value == "" || Password.value == null) {
         Password.style.background = 'red';
+        var error = true;
     }
+    if (Password.value != repeatPassword.value) {
+        Password.style.background = 'red';
+        repeatPassword.style.background = 'red';
+        var error = true;
+    }
+
+    if (DOB.value == "" || DOB.value == null) {
+        DOB.style.background = 'red';
+        var error = true;
+    }
+
     if (Address.value == "" || Address.value == null) {
         Address.style.background = 'red';
+        var error = true;
     }
     if (Town.value == "" || Town.value == null) {
         Town.style.background = 'red';
+        var error = true;
     }
     if (State.value == "" || State.value == null) {
         State.style.background = 'red';
+        var error = true;
     }
     if (Country.value == "" || Country.value == null) {
         Country.style.background = 'red';
+        var error = true;
     }
-
+    if (error == true) {
+        alert("Please fill out or correct all field(s) in red!");
+    }
+    else {
+        document.getElementById('buttonSignup').disabled = false;
+    }
 }
