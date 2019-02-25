@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <?php
-    $page_title = 'Signup';
+    $page_title = 'Jahpan Bang';
     include "includes/head.html";
     ?>
     <body>
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2">Please signup to use our platform.</th>
+                                    <th colspan="2">Chyeju hte anhte a platform lang na matu jahpan bang ya rit.</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Name:
+                                        Amying:
                                     </td>
                                     <td>
                                         <input type="text" name="Name" id="Name" placeholder="Name">
@@ -62,15 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Mobile:
+                                        Phone:
                                     </td>
                                     <td>
-                                        <input type="text" name="Mobile" id="MobileNo" placeholder="Mobile No" onchange="checkNumber('MobileNo', 'EN');">
+                                        <input type="text" name="Mobile" id="MobileNo" placeholder="Mobile No" onchange="checkNumber('MobileNo', 'WP');">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Choose a Password:
+                                        Password (lata la na):
                                     </td>
                                     <td>
                                         <input type="text" name="choosePassword" id="choosePassword" placeholder="Password">
@@ -78,15 +78,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Repeat Password:
+                                        Password (kalang bai bang na):
                                     </td>
                                     <td>
-                                        <input type="text" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" onchange="checkPasswords('choosePassword', 'repeatPassword','EN');">
+                                        <input type="text" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" onchange="checkPasswords('choosePassword', 'repeatPassword', 'WP');">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Date of Birth:
+                                        Shangai nhtoi:
                                     </td>
                                     <td>
                                         <input type="date" name="DOB" id="DOB">
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Address:
+                                        Hkringdat:
                                     </td>
                                     <td>
                                         <input type="text" name="Address" id="Address" placeholder="Address">
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Town:
+                                        Mare:
                                     </td>
                                     <td>
                                         <input type="text" name="Town" id="Town" placeholder="Town">
@@ -110,15 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        State:
+                                        Mungdaw:
                                     </td>
                                     <td>
-                                        <input type="text" name="State" id="State" placeholder="State / Division" onchange="signup('EN');">
+                                        <input type="text" name="State" id="State" placeholder="State / Division" onchange="signup('WP');">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Country:
+                                        Mungdan:
                                     </td>
                                     <td>
                                         <input type="text" name="Country" id="Country" value="Myanmar">
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <th colspan="2">
-                                        <button type="submit" name="buttonSubmit" id="buttonSignup" disabled>Signup Now</button>
+                                        <button type="submit" name="buttonSubmit" id="buttonSignup" disabled>Jahpan Bang Na</button>
                                     </th>
                                 </tr>
                             </tbody>

@@ -28,24 +28,39 @@ function checkError() {
 }
 
 //function to check if an input is a number
-function checkNumber(string) {
+function checkNumber(string, language) {
     var stringToCheck = document.getElementById(string);
     if (isNaN (stringToCheck.value)) {
-        alert('Only Numbers are allowed for Mobile field!');
+        if (language == 'EN') {
+            var error = 'Only Numbers are allowed for Mobile field!';
+        }
+        else if (language == 'WP') {
+            var error = 'Hti hkum sha bang ya rit!';
+        }
+        alert(error);
         stringToCheck.style.background = 'red';
         return false;
     }
 }
 
 //function to check if two password fields match
-function checkPasswords (choosePassword, repeatPassword) {
+function checkPasswords (choosePassword, repeatPassword, language) {
     var choosePassword = document.getElementById(choosePassword);
     var repeatPassword = document.getElementById(repeatPassword);
 
     if (choosePassword.value != repeatPassword.value) {
         choosePassword.style.background = 'red';
         repeatPassword.style.background = 'red';
-        alert('Passwords do NOT match!');
+        switch (language) {
+            case 'EN':
+                var error = 'Passwords do NOT match!';
+                break;
+            case 'WP':
+                var error = 'Password ni nbung taw ai!'
+                break;
+            default:
+        }
+        alert(error);
     }
 }
 
@@ -55,7 +70,7 @@ function search (search) {
 }
 
 //function to signup
-function signup () {
+function signup (language) {
     var signup = document.forms.signup;
     var Name = signup.Name;
     var Mobile = signup.Mobile;
@@ -112,7 +127,16 @@ function signup () {
         var error = true;
     }
     if (error == true) {
-        alert("Please fill out or correct all field(s) in red!");
+        switch (language) {
+            case 'EN':
+                var errorMessage = "Please fill out or correct all field(s) in red!";
+                break;
+            case 'WP':
+                var errorMessage = "Ahkyen hte madun da ai shara ni hpe naw sharai ya rit!";
+                break;
+            default:
+        }
+        alert(errorMessage);
     }
     else {
         document.getElementById('buttonSignup').disabled = false;
