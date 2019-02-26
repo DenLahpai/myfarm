@@ -93,7 +93,7 @@ body {
     height: 50%;
     overflow: auto;
     /* background: rgba(0,0,0,0.4); */
-    background: silver;
+    background: var(--background-color);
     padding: 12px;
 }
 

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- content -->
         <div class="content">
             <?php
-            $header = "Signup";
+            $header = "Jahpan Ningnan";
             include "includes/header.html";
             include "includes/menu-bar.html";
             include "includes/nav.html";
