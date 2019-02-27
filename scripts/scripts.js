@@ -1,5 +1,5 @@
 //function to check 2 empty fields
-function checkTwoFields (field1, field2) {
+function checkTwoFields (field1, field2, language) {
     var field1 = document.getElementById(field1);
     var field2 = document.getElementById(field2);
 
@@ -11,11 +11,18 @@ function checkTwoFields (field1, field2) {
     }
 
     if (field1.value == null || field1.value == 0 || field1.value == " " || field2.value == null || field2.value == 0 || field2.value == " " ) {
-        // document.getElementsByClassName('error')[0].innerHTML = "Please fill out the empty field(s) in red!";
-        alert("Please fill out the empty field(s) in red!");
+        switch (language) {
+            case 'EN':
+                var errorMessage = "Please fill out the empty field(s) in red!";
+                break;
+            case 'WP':
+                var errorMessage = "Ahkyen hte madun da ai shara ni hpe naw sharai ya rit!";
+            default:
+        }
+        document.getElementsByClassName('error')[0].innerHTML = errorMessage;
     }
     else {
-        document.getElementById('buttonSubmit').type = 'submit';
+        document.getElementById('buttonLogin').type = 'submit';
     }
 }
 

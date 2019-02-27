@@ -73,11 +73,25 @@ function table_Users($job, $var1, $var2) {
                 header("location: index.php");
             }
             break;
+        case 'login':
+            // getting data from the form
+            $Mobile = trim($_REQUEST['Mobile']);
+            $Password = trim ($_REQUEST['Password']);
+            $query = "SELECT Id from Users
+                WHERE BINARY Mobile = :Mobile
+                AND BINARY Password = :Password ;";
+            $database->query($query);
+            $database->bind(':Mobile', $Mobile);
+            $database->bind(':Password', $Password);
+            return $rowCount = $database->rowCount();
+            break;
 
         default:
             // code...
             break;
     }
 }
+
+
 
 ?>

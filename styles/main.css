@@ -2,6 +2,7 @@
     --background-color: rgba(223, 178, 246, 1);
     --menu-color: rgba(237, 233, 78, 1 );
     --font-color2: black;
+    --menu-content: silver;
 }
 
 * {
@@ -92,8 +93,7 @@ body {
     width: 100%;
     height: 50%;
     overflow: auto;
-    /* background: rgba(0,0,0,0.4); */
-    background: var(--background-color);
+    background: var(--menu-content);
     padding: 12px;
 }
 
@@ -124,6 +124,19 @@ body {
     padding: 12px;
     color: var(--font-color2);
 }
+
+.form {
+    text-align: center;
+}
+
+main form button {
+    padding: 9px 24px;
+    background: var(--menu-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
 
 .bold {
     font-weight: bold;
