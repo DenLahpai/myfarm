@@ -1,4 +1,5 @@
 <?php
+require_once "../functions.php";
 function error($msg) {
     echo "<script>";
     echo "alert(\"$msg\");";
@@ -8,6 +9,8 @@ function error($msg) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     error('test');
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- content -->
         <div class="content">
             <?php
-            $header = "Latest Updates";
+            $header = "Lastest Updates";
             include "includes/header.html";
             include "includes/nav.html";
             ?>

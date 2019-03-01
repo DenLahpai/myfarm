@@ -1,12 +1,28 @@
 <?php
 require_once "../functions.php";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $rowCount = table_Users('login', NULL, NULL);
-    if ($rowCount < 1) {
-        $error = 'Wrong Mobile No or Password!';
+    $database = new Database();
+    $Mobile = trim($_REQUEST['Mobile']);
+    $Password = trim ($_REQUEST['Password']);
+    $query = "SELECT * from Users
+        WHERE BINARY Mobile = :Mobile
+        AND BINARY Password = :Password ;";
+    $database->query($query);
+    $database->bind(':Mobile', $Mobile);
+    $database->bind(':Password', $Password);
+    $rowCount = $database->rowCount();
+
+    if ($rowCount == 0) {
+        $error = 'Wrong Mobile Number or Password! Please contact us to retrieve your login data!';
     }
     else {
-        header("location:start_session.php");
+        $rows_Users = $database->resultset();
+        foreach ($rows_Users as $row_Users) {
+            $_SESSION['Name'] = $row_Users->Name;
+        }
+        header("location:index.php");
+
     }
 }
 
