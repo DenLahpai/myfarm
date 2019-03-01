@@ -24,21 +24,6 @@ function openMenu () {
     openModal ('menu');
 }
 
-//function to open login form
-function openLogin () {
-    closeModals ();
-    openModal ('loginForm');
-}
-
-function openAboutUs () {
-    closeModals ();
-    openModal ('aboutUs');
-}
-
-function openSignup () {
-    closeModals ();
-    openModal ('signupForm');
-}
 
 window.addEventListener('click', outsideClick);
 

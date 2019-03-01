@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Password (lata la na):
+                                        Ga Makoi (lata la na):
                                     </td>
                                     <td>
                                         <input type="text" name="choosePassword" id="choosePassword" placeholder="Password">
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Password (kalang bai bang na):
+                                        Ga Makoi (kalang bai bang na):
                                     </td>
                                     <td>
                                         <input type="text" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" onchange="checkPasswords('choosePassword', 'repeatPassword', 'WP');">

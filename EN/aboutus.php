@@ -1,40 +1,27 @@
 <?php
 require_once "../functions.php";
-function error($msg) {
-    echo "<script>";
-    echo "alert(\"$msg\");";
-    echo "</script>";
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    error('test');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <?php
-    $page_title = "Welcome";
+    $page_title = "About Us";
     include "includes/head.html";
     ?>
     <body>
-        <?php include "includes/menu-bar.html"; ?>
         <!-- content -->
         <div class="content">
             <?php
-            $header = "Shiga Ningnan";
+            $header = $page_title;
             include "includes/header.html";
+            include "includes/menu-bar.html";
             include "includes/nav.html";
             ?>
             <main>
-                <!-- grid-div -->
-                <div class="grid-div">
-
-                </div>
-                <!-- end of grid-div -->
+                <p> This platform is created in order to help you to trade your farm products.</p>
             </main>
         </div>
-        <!-- end of content -->
         <?php include "includes/footer.html"; ?>
+        <!-- end of content -->
     </body>
     <script type="text/javascript" src="../scripts/scripts.js"></script>
     <script type="text/javascript" src="../scripts/modals.js"></script>

@@ -1,8 +1,24 @@
 <nav>
-    <!-- menu-flags -->
     <div class="menu-flags">
-        <img src="../images/English.png" alt="" onclick="location.href='../EN'">
-        <img src="../images/Jinghpaw.png" alt="" onclick="location.href='../WP'">
+        <ul>
+            <li>
+                <?php
+                if (!empty($_SESSION['Name'])) {
+                    echo "<a href=\"user_account.php?UsersId=1\">".$_SESSION['Name']."</a>" ;
+                }
+                else {
+                    echo "<a href=\"login.php\">Login galaw ga!</a>";
+                }
+                ?>
+            </li>
+            <li>
+                <img src="../images/English.png" alt="" onclick="location.href='../EN'">
+            </li>
+            <li>
+                <img src="../images/Jinghpaw.png" alt="" onclick="location.href='../WP'">
+            </li>
+        </ul>
+
     </div>
     <!-- end of menu-flags -->
 </nav>

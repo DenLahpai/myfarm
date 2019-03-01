@@ -137,6 +137,10 @@ main form button {
     border-radius: 6px;
 }
 
+main p {
+    padding: 12px;
+}
+
 
 .bold {
     font-weight: bold;
@@ -176,10 +180,31 @@ main form button {
 nav {
     grid-area: nav;
     text-align: right;
+    /* display: inline-flex; */
+}
+
+.loggedin {
+    padding-left: 12px;
+    padding-top: 3px;
+    color: white;
+}
+
+.menu-flags {
+    text-align: right;
+}
+
+.menu-flags ul li {
+    list-style: none;
+    display: inline;
+    padding: 6px;
+}
+
+.menu-flags ul li a {
+    color: white;
 }
 
 .menu-flags img {
-    margin: 6px;
+    /* margin: 6px; */
     width: 36px;
     height: 24px;
 }

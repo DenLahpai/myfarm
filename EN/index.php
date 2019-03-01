@@ -9,8 +9,6 @@ function error($msg) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     error('test');
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
