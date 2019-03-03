@@ -15,6 +15,19 @@ if (!isset($_SESSION['Name']) || empty($_SESSION['Name'])) {
     include "includes/head.html";
     ?>
     <body>
-        <p>Teststingsfdsfdsfsd</p>
+        <!-- content -->
+        <div class="content">
+            <main>
+                <!-- new_post -->
+                <div class="new_post">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <input type="file" name="Image" value="">
+                        <input type="submit" name="" value="Upload">
+                    </form>
+                </div>
+                <!-- end of new_post -->
+            </main>
+        </div>
+        <!-- end of content -->
     </body>
 </html>

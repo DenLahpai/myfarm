@@ -59,7 +59,6 @@ class Database {
         $this->execute();
         return $this->stm->rowCount();
     }
-
 }
 
 //Uncomment the two lines below to get error reporting as a dev enviroment.

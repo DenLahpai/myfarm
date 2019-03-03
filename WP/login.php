@@ -22,10 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['Name'] = $row_Users->Name;
         }
         header("location:index.php");
-
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

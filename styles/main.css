@@ -132,7 +132,7 @@ body {
 main form button {
     padding: 9px 24px;
     background: var(--menu-color);
-    color: white;
+    /* color: white; */
     font-weight: bold;
     border-radius: 6px;
 }
