@@ -7,11 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         table_Users('insert', NULL, NULL);
     }
     else {
-        $error = "You are already registered! Please contact us if you wish to recover your account!";
+        $error = "Ndai phone number hte anhte kaw jahpan nga ngut sai! Lama na account hte seng ai data malap kau ai re jang anhte hpang de matut mahkai ya wa rit!";
     }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

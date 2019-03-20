@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <!-- end of grid-div -->
             </main>
+            <?php include "includes/aside.html"; ?>
         </div>
         <!-- end of content -->
         <?php include "includes/footer.html"; ?>

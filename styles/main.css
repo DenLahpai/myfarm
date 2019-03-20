@@ -197,6 +197,16 @@ main form ul li textarea {
     height: 6em;
 }
 
+aside {
+    grid-area: aside;
+    text-align: center;
+}
+
+aside img {
+    /* padding-left: 3px; */
+    width: 100%;
+
+}
 
 
 .loggedin {

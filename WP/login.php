@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rowCount = $database->rowCount();
 
     if ($rowCount == 0) {
-        $error = 'Wrong Mobile Number or Password! Please contact us to retrieve your login data!';
+        $error = 'Phone number shing nre ga makoi shut taw ai! Ga makoi malap kau ai re jang anhte hpe matut mahkai wa rit!';
     }
     else {
         $rows_Users = $database->resultset();
