@@ -1,5 +1,3 @@
-
-
 //function to open a modal
 function openModal (open) {
     var itemToOpen = document.getElementById(open);

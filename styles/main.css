@@ -129,19 +129,6 @@ body {
     text-align: center;
 }
 
-main form button {
-    padding: 9px 24px;
-    background: var(--menu-color);
-    /* color: white; */
-    font-weight: bold;
-    border-radius: 6px;
-}
-
-main p {
-    padding: 12px;
-}
-
-
 .bold {
     font-weight: bold;
 }
@@ -183,6 +170,35 @@ nav {
     /* display: inline-flex; */
 }
 
+main {
+    grid-area: main;
+}
+
+main form button {
+    padding: 9px 24px;
+    background: var(--menu-color);
+    /* color: white; */
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+main p {
+    padding: 12px;
+}
+
+main form ul li {
+    margin: 6px auto;
+    text-align: center;
+}
+
+main form ul li textarea {
+    resize: none;
+    width: 90%;
+    height: 6em;
+}
+
+
+
 .loggedin {
     padding-left: 12px;
     padding-top: 3px;
@@ -212,10 +228,6 @@ nav {
 header {
     grid-area: header;
     text-align: center;
-}
-
-main {
-    grid-area: main;
 }
 
 .form {

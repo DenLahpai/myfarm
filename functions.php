@@ -28,7 +28,7 @@ function table_Users($job, $var1, $var2) {
             $Title = $_REQUEST['Title'];
             $Name = trim($_REQUEST['Name']);
             $Mobile = trim($_REQUEST['Mobile']);
-            $Password = trim($_REQUEST['Mobile']);
+            $Password = trim($_REQUEST['choosePassword']);
             $DOB = $_REQUEST['DOB'];
             $Address = trim($_REQUEST['Address']);
             $Town = trim($_REQUEST['Town']);
@@ -73,7 +73,7 @@ function table_Users($job, $var1, $var2) {
                 header("location: index.php");
             }
             break;
-        
+
         default:
             // code...
             break;
