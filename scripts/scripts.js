@@ -36,8 +36,8 @@ function checkError() {
 
 //function to check if an input is a number
 function checkNumber(string, language) {
-    var stringToCheck = document.getElementById(string);
-    if (isNaN (stringToCheck.value)) {
+    var string = document.getElementById(string);
+    if (isNaN (string.value)) {
         if (language == 'EN') {
             var error = 'Only Numbers are allowed for Mobile field!';
         }
@@ -45,18 +45,21 @@ function checkNumber(string, language) {
             var error = 'Hti hkum sha bang ya rit!';
         }
         alert(error);
-        stringToCheck.style.background = 'red';
+        string.style.background = 'red';
         return false;
+    }
+    else {
+        string.style.background = 'white';
     }
 }
 
 //function to check if two password fields match
-function checkPasswords (choosePassword, repeatPassword, language) {
-    var choosePassword = document.getElementById(choosePassword);
+function checkPasswords (Password, repeatPassword, language) {
+    var Password = document.getElementById(Password);
     var repeatPassword = document.getElementById(repeatPassword);
 
-    if (choosePassword.value != repeatPassword.value) {
-        choosePassword.style.background = 'red';
+    if (Password.value != repeatPassword.value) {
+        Password.style.background = 'red';
         repeatPassword.style.background = 'red';
         switch (language) {
             case 'EN':
@@ -79,9 +82,9 @@ function search (search) {
 //function to signup
 function signup (language) {
     var signup = document.forms.signup;
-    var Name = signup.Name;
+    var First_name = signup.First_name;
     var Mobile = signup.Mobile;
-    var Password = signup.choosePassword;
+    var Password = signup.Password;
     var repeatPassword = signup.repeatPassword;
     var DOB = signup.DOB;
     var Address = signup.Address;
@@ -89,8 +92,8 @@ function signup (language) {
     var State = signup.State;
     var Country = signup.Country;
 
-    if (Name.value == "" || Name.value == null) {
-        Name.style.background = 'red';
+    if (First_name.value == "" || First_name.value == null) {
+        First_name.style.background = 'red';
         var error = true;
     }
     if (Mobile.value == "" || Mobile.value == null) {
@@ -146,6 +149,6 @@ function signup (language) {
         alert(errorMessage);
     }
     else {
-        document.getElementById('buttonSignup').disabled = false;
+        document.getElementById('buttonSignup').type = 'submit';
     }
 }

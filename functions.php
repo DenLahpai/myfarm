@@ -8,61 +8,46 @@ function table_Users($job, $var1, $var2) {
     switch ($job) {
         case 'check_before_insert':
             // getting data from the form
-            $Title = $_REQUEST['Title'];
-            $Name = trim($_REQUEST['Name']);
             $Mobile = trim($_REQUEST['Mobile']);
             $query = "SELECT Id FROM Users
-                WHERE Title = :Title
-                AND Name = :Name
-                AND Mobile = :Mobile
+                WHERE Mobile = :Mobile
             ;";
             $database->query($query);
-            $database->bind(':Title', $Title);
-            $database->bind(':Name', $Name);
             $database->bind(':Mobile', $Mobile);
             return $rowCount = $database->rowCount();
             break;
 
         case 'insert':
             //getting data from the form
-            $Title = $_REQUEST['Title'];
-            $Name = trim($_REQUEST['Name']);
             $Mobile = trim($_REQUEST['Mobile']);
-            $Password = trim($_REQUEST['choosePassword']);
+            $Password = trim($_REQUEST['Password']);
+            $Title = $_REQUEST['Title'];
+            $First_name = trim($_REQUEST['First_name']);
+            $Last_name = trim($_REQUEST['Last_name']);
             $DOB = $_REQUEST['DOB'];
             $Address = trim($_REQUEST['Address']);
             $Town = trim($_REQUEST['Town']);
             $State = trim($_REQUEST['State']);
             $Country = trim($_REQUEST['Country']);
-            $query = "INSERT INTO Users (
-                Title,
-                Name,
-                Mobile,
-                Password,
-                DOB,
-                Address,
-                Town,
-                State,
-                Country,
-                Status
-                ) VALUES (
-                :Title,
-                :Name,
-                :Mobile,
-                :Password,
-                :DOB,
-                :Address,
-                :Town,
-                :State,
-                :Country,
-                :Status
-                )
+            $query = "INSERT INTO Users SET
+                Mobile = :Mobile,
+                Password = :Password,
+                Title = :Title,
+                First_name = :First_name,
+                Last_name = :Last_name,
+                DOB = :DOB,
+                Address = :Address,
+                Town = :Town,
+                State = :State,
+                Country = :Country,
+                Status = :Status
             ;";
             $database->query($query);
-            $database->bind(':Title', $Title);
-            $database->bind(':Name', $Name);
             $database->bind(':Mobile', $Mobile);
             $database->bind(':Password', $Password);
+            $database->bind(':Title', $Title);
+            $database->bind(':First_name', $First_name);
+            $database->bind(':Last_name', $Last_name);
             $database->bind(':DOB', $DOB);
             $database->bind(':Address', $Address);
             $database->bind(':Town', $Town);

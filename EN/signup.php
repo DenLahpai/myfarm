@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <main>
                 <!-- signup form -->
                 <div class="form">
-                    <form action="#" method="post" id="signup" enctype="multipart/form-data">
+                    <form action="#" method="post" id="signup" autocomplete="off">
                         <table>
                             <thead>
                                 <tr>
@@ -38,14 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Upload your photo:
-                                    </td>
-                                    <td>
-                                        <input type="file" name="Profile">
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>
                                         Title:
@@ -60,10 +52,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <td>
-                                        Name:
+                                        First Name:
                                     </td>
                                     <td>
-                                        <input type="text" name="Name" id="Name" placeholder="Name">
+                                        <input type="text" name="First_name" id="First_name" placeholder="First Name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Last Name:
+                                    </td>
+                                    <td>
+                                        <input type="text" name="Last_name" id="Last_name" placeholder="Last Name">
                                     </td>
                                 </tr>
                                 <tr>
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Mobile:
                                     </td>
                                     <td>
-                                        <input type="text" name="Mobile" id="MobileNo" placeholder="Mobile No" onchange="checkNumber('MobileNo', 'EN');">
+                                        <input type="text" name="Mobile" id="Mobile" placeholder="Mobile No" onchange="checkNumber('Mobile', 'EN');">
                                     </td>
                                 </tr>
                                 <tr>
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Choose a Password:
                                     </td>
                                     <td>
-                                        <input type="text" name="choosePassword" id="choosePassword" placeholder="Password">
+                                        <input type="password" name="Password" id="Password" placeholder="Password">
                                     </td>
                                 </tr>
                                 <tr>
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Repeat Password:
                                     </td>
                                     <td>
-                                        <input type="text" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" onchange="checkPasswords('choosePassword', 'repeatPassword','EN');">
+                                        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password" onchange="checkPasswords('Password', 'repeatPassword','EN');">
                                     </td>
                                 </tr>
                                 <tr>
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         State:
                                     </td>
                                     <td>
-                                        <input type="text" name="State" id="State" placeholder="State / Division" onchange="signup('EN');">
+                                        <input type="text" name="State" id="State" placeholder="State / Division">
                                     </td>
                                 </tr>
                                 <tr>
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                                 <tr>
                                     <th colspan="2">
-                                        <button type="submit" name="buttonSubmit" id="buttonSignup" disabled>Signup Now</button>
+                                        <button type="button" name="buttonSubmit" id="buttonSignup" onclick="signup('EN');">Signup Now</button>
                                     </th>
                                 </tr>
                             </tbody>
