@@ -1,4 +1,4 @@
-
+<?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Image = file_get_contents($_FILES['Image']['tmp_name']);
     $database = new Database();
@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $database->bind(':Image', $Image);
     $database->execute();
 }
+?>
 
 <div class="imgs">
     <?php

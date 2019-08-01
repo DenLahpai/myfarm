@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include "includes/head.html";
     ?>
     <body>
-
         <!-- content -->
         <div class="content">
             <?php
@@ -31,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <main>
                 <!-- signup form -->
                 <div class="form">
-                    <form action="#" method="post" id="signup">
+                    <form action="#" method="post" id="signup" enctype="multipart/form-data">
                         <table>
                             <thead>
                                 <tr>
@@ -39,6 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>
+                                        Upload your photo:
+                                    </td>
+                                    <td>
+                                        <input type="file" name="Profile">
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         Title:
