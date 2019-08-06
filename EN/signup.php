@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Mobile:
                                     </td>
                                     <td>
-                                        <input type="text" name="Mobile" id="Mobile" placeholder="Mobile No" onchange="checkNumber('Mobile', 'EN');">
+                                        <input type="text" name="Mobile" id="Mobile" placeholder="Mobile No">
                                     </td>
                                 </tr>
                                 <tr>
