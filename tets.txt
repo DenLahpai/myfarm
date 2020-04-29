@@ -1,0 +1,46 @@
+<!-- lead-banner -->
+<div class="lead-banner">
+    <!-- <img src="images/banner.jpg" alt="sampel banner"> -->
+    <!-- banner-overlay -->
+    <div class="banner-overlay">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <!-- banner-title -->
+            <div class="banner-title">
+                Project Myfarm
+            </div>
+            <!-- end of banner-title -->
+            <p>
+                <!-- The purpose of this project is to link the farmers & buyers in Myanmar. -->
+            </p>
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of banner-overlay -->
+</div>
+<!-- end of lead-banner -->
+<!-- content -->
+<div class="content">
+    <!-- wrapper -->
+    <div class="wrapper">
+        <section id="lang-options">
+            <h4>Choose your language</h4>
+            <select class="title" name="selectLanguage" id="selectLang">
+                <option value="">Choose One</option>
+                <option value="1">Jinghpaw</option>
+                <option value="2">English</option>
+            </select>
+            <p>
+                OR
+                <br>
+                <span class="link">Login</span>
+                <br>
+            </p>
+            <p>
+                (With your default language.)
+            </p>
+        </section>
+    </div>
+    <!-- end of wrapper -->
+</div>
+<!-- end of content -->

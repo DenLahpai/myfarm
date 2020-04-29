@@ -1,3 +1,20 @@
+//function to open menu
+function openMenu () {
+    $(".drop-menu").toggle(1000);
+}
+
+//function to open login-form
+function openLoginForm () {
+    $(".login-form").slideToggle(500);
+}
+
+//
+// //function to login
+// function login() {
+//     var Phone =
+// }
+//
+
 //function to check 2 empty fields
 function checkTwoFields (field1, field2, language) {
     var field1 = document.getElementById(field1);

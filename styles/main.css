@@ -1,9 +1,8 @@
 :root {
     --background-color: rgba(255, 255, 255, 1);
-    --menu-color: rgba(237, 233, 78, 1 );
     --honey-color: rgba(235, 150, 5, 1);
     --wood-color: rgba(160, 82, 45, 1);
-    --leaf-color: rgba(48, 110, 42, 1);
+    --leaf-color: rgba(52, 168, 83, 1);
     --font-color2: black;
     --menu-content: silver;
 }
@@ -13,275 +12,134 @@
     margin: 0;
 }
 body {
-    background: white;
+    /* background: url('../images/logo.png') no-repeat; */
 }
 
-.login {
-    margin: 60px 6px;
-    text-align: center;
-}
-
-.login ul li {
-    list-style: none;
-    margin: 18px;
-}
-
-.login button {
-    padding: 9px 12px;
-}
-
-.menu-bar {
+/* Home page */
+header > .wrapper {
     display: flex;
-    align-items: center;
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    background: var(--honey-color);
-    width: 100%;
 }
 
-.logo a img {
-    width: auto;
-    height: 54px;
+.logo {
+    width: 30%;
+    height: auto;
 }
 
-.menu-search input {
-    border-radius: 60px;
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.home-nav {
+    margin-top: 12px;
+    margin-left: 30px;
+}
+
+.home-nav a {
+    margin-left: 12px;
+    color: var(--leaf-color);
+}
+
+.lead-banner {
     text-align: center;
-    width: 150px;
-    padding: 6px;
 }
 
-#buttonSearch {
-    /* border-radius: 30px; */
-    padding: 6px;
+.lead-banner img {
+    width: 99%;
 }
 
-.menu-icon {
-    font-size: 2em;
-    position: fixed;
-    right: 0;
-    padding-right: 12px;
-    cursor: pointer;
+.main-content .wrapper h2 {
+    text-align: center;
+    color: var(--leaf-color);    
 }
 
-#menu {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background: rgba(0,0,0,0.4);
-}
+/* End of home page style */
 
-#menu button {
-    display: block;
+header{
     color: white;
-    font-weight: bold;
-    background: var(--honey-color);
-    padding: 9px 10px;
-    margin: 24px auto;
-    width: 36%;
-    padding: 12px 36px;
-    cursor: pointer;
-}
-
-.menu-content {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 50%;
-    overflow: auto;
-    background: var(--menu-content);
-    padding: 12px;
-}
-
-.menu-content ul {
-    padding: 120px auto;
-}
-
-.menu-content ul li {
-    text-align: center;
-    margin: 24px auto;
-    list-style: none;
-}
-
-.menu-content ul li button {
-    padding: 9px 24px;
-    background: var(--menu-color);
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
-}
-
-.menu-content h2 {
-    text-align: center;
-    color: var(--font-color2);
-}
-
-.menu-content p {
-    padding: 12px;
-    color: var(--font-color2);
-}
-
-.form {
-    text-align: center;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.error {
-    color: red;
-    font-weight: bold;
-    /* display: none; */
-}
-
-.closeButton {
-    text-align: right;
-    cursor: pointer;
-    display: inline-flex;
-    position: fixed;
-    right: 0;
-    margin-right: 24px;
-}
-
-.content {
-    margin-top: 60px;
-    background: var(--background-color);
-    color: black;
-    display: grid;
-    grid-gap: 3px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-    " nav nav nav "
-    " header header header "
-    " section section section "
-    " main main main "
-    " aside aside aside "
-    ;
 }
 
 nav {
-    grid-area: nav;
-    text-align: right;
-    /* display: inline-flex; */
-}
-
-main {
-    grid-area: main;
-}
-
-main form button {
-    padding: 9px 24px;
-    background: var(--menu-color);
-    /* color: white; */
-    font-weight: bold;
-    border-radius: 6px;
-}
-
-main p {
-    padding: 12px;
-}
-
-main form ul li {
-    margin: 6px auto;
-    text-align: center;
-}
-
-main form ul li textarea {
-    resize: none;
-    width: 90%;
-    height: 6em;
-}
-
-aside {
-    grid-area: aside;
-    text-align: center;
-}
-
-aside img {
-    /* padding-left: 3px; */
-    width: 100%;
-
-}
-
-.loggedin {
-    padding-left: 12px;
-    padding-top: 3px;
-    color: white;
-}
-
-.menu-flags {
-    text-align: right;
-}
-
-.menu-flags ul li {
-    list-style: none;
-    display: inline;
+    display: flex;
     padding: 6px;
+    background: var(--leaf-color);
+    justify-content: space-between;
+    align-items: center;
 }
 
-.menu-flags ul li a {
-    color: white;
+.nav-left {
+
 }
 
-.menu-flags img {
-    /* margin: 6px; */
-    width: 36px;
-    height: 24px;
+.hamburger-layer {
+    width: 42px;
+    height: 9px;
+    background: white;
+    margin: 6px 0px;
 }
 
-header {
-    grid-area: header;
-    text-align: center;
+.hamburger-menu:active > .hamburger-layer {
+    background: red;
 }
 
-.form {
+.nav-mid{
+
+}
+
+.nav-right {
+
+}
+
+.drop-menu {
+    display: none;
     padding: 12px;
+    background: rgba(52, 168, 83, 0.6);
 }
 
-.form table {
-    margin: 3px auto;
-}
-
-.form table tr td {
-    padding: 6px 12px;
-}
-
-.form table tr th button {
-    padding: 6px 12px;
-}
-
-.grid-div {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 3px;
-}
-
-.grid-item {
-    background: silver;
-    border: 1px solid var(--button-add-color);
-    border-radius: 6px;
-}
-
-.grid-item:nth-of-type() {
-    background: silver;
-}
-
-.grid-item ul li {
+.drop-menu ul li {
+    text-align: center;
     list-style: none;
 }
 
-footer {
+.drop-menu ul li button {
+    /* background: var(--honey-color); */
+    font-weight: bold;
+    /* color: white; */
     padding: 12px;
-    background: silver;
+    width: 90%;
+    margin: 12px;
+}
+
+.login-form {
     text-align: center;
+    display: none;
+}
+
+.login-form ul li {
+    margin: 21px;
+}
+
+.login-form ul li input {
+    width: 90%;
+    border: 0px;
+    border-bottom: 2px solid var(--wood-color);
+    outline: 0px;
+    padding: 12px 3px;
+    padding-bottom: 0px;
+}
+
+.login-form ul li button {
+    width: 90%;
+    padding: 12px;
+    margin: 12px;
+    font-weight: bold;
+}
+
+
+
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
 }

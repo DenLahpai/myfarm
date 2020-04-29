@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <div class="meta"></div>
+    <title>Welcome</title>
+</head>
+<body>
+    <header></header>
+</body>
+<script type="text/javascript" src="scripts/jQuery.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".meta").load("includes/head.html");
+        $("header").load("includes/header.html");
+        document.title = 'Welcome';
+    });
+</script>
+</html>
