@@ -15,8 +15,8 @@
             </div>
             <!-- home-nav -->
             <div class="home-nav">
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
+                <a href="#">About</a>
+                <a href="#">Register</a>
             </div>
             <!-- end of home-nav -->
         </div>
@@ -31,15 +31,62 @@
     <div class="main-content">
         <!-- wrapper -->
         <div class="wrapper">
+            <!-- title -->
             <div class="title">
-                <h2>Welcome</h2>
+                <h4>Welcome</h4>
             </div>
+            <!-- end of title -->
+            <section id="home-page">
+                <div class="desc">
+                    <p>
+                        The purpose of this project is to link farmers of Myanmar with the buyer. This is a free to use platform for farmers and buyers.
+                    </p>
+                </div>
+                <!-- choose-lang -->
+                <div class="choose-lang">
+                    <!-- title -->
+                    <div class="title" style="margin-bottom: 12px;">
+                        <h4>Access</h4>
+                    </div>
+                    <!-- end of title -->
+                    <p>
+                        <select name="lang" id="lang" onchange="chooseLanguage();">
+                            <option value="">Please select a language</option>
+                            <option value="WP">Jing Hpaw</option>
+                            <option value="EN">English</option>
+                        </select>
+                        <br>
+                        OR <br>
+                        <span class="link" onclick="window.location.href='login.html';">Login</span> to your account.
+                    </p>
+                    <p>
+                        Please <span class="link">register</span> to join our community.
+                    </p>
+                </div>
+                <!-- end of choose-lang -->
+            </section>
+            <section id="suggest">
+
+            </section>
+            <section id="ads">
+                <div class="ads-banner">
+                    <a href="#">
+                        <img src="images/ads-banner.jpeg" alt="">
+                    </a>
+                </div>
+            </section>
         </div>
         <!-- end of wrapper -->
     </div>
     <!-- end of main content -->
 </body>
-
-
+<script type="text/javascript" src="scripts/jQuery.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.get("footer.php", function (data) {
+            $("body").append(data);
+        });
+    });
 </script>
 </html>

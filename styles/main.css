@@ -30,7 +30,6 @@ header > .wrapper {
     height: auto;
 }
 
-
 .home-nav {
     margin-top: 12px;
     margin-left: 30px;
@@ -49,9 +48,61 @@ header > .wrapper {
     width: 99%;
 }
 
-.main-content .wrapper h2 {
+.title {
     text-align: center;
-    color: var(--leaf-color);    
+}
+
+.title h4 {
+    margin: 3px auto;
+    display: inline-block;
+    text-align: center;
+    padding: 6px 42px;
+    background-color: var(--leaf-color);
+    color: white;
+    border-radius: 6px;
+}
+
+.wrapper {
+    padding: 6px;
+}
+
+section {
+    margin-top: 18px;
+}
+
+section .desc > p {
+    color: var(--wood-color);
+}
+
+.choose-lang {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.choose-lang select {
+    padding: 12px;
+}
+
+#ads {
+    margin-top: 24px;
+}
+
+.ads-banner {
+    text-align: center;
+}
+
+.ads-banner a img {
+    max-width: 99%;
+}
+
+footer {
+  /* position: absolute; */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
 
 /* End of home page style */
@@ -135,7 +186,6 @@ nav {
     margin: 12px;
     font-weight: bold;
 }
-
 
 
 .link {
