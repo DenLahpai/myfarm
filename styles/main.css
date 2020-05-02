@@ -40,6 +40,12 @@ header > .wrapper {
     color: var(--leaf-color);
 }
 
+.home-nav select {
+    background: none;
+    border: none;
+    outline: 0px;
+}
+
 .lead-banner {
     text-align: center;
 }
@@ -72,15 +78,6 @@ section {
 
 section .desc > p {
     color: var(--wood-color);
-}
-
-.choose-lang {
-    margin-top: 24px;
-    text-align: center;
-}
-
-.choose-lang select {
-    padding: 12px;
 }
 
 #ads {
@@ -169,6 +166,7 @@ nav {
 
 .login-form ul li {
     margin: 21px;
+    list-style: none;
 }
 
 .login-form ul li input {

@@ -1,6 +1,6 @@
 function chooseLanguage (){
-    var lang = $("#lang").val();
-    window.location.href = lang;
+    var language = $("#language").val();
+    window.location.href = '../' + language;
 }
 
 function displayLoginForm () {
