@@ -15,36 +15,102 @@ body {
     /* background: url('../images/logo.png') no-repeat; */
 }
 
-/* Home page */
-header > .wrapper {
+
+/* navigation bar */
+
+header{
+    color: white;
+}
+
+nav {
     display: flex;
+    padding: 6px;
+    background: var(--wood-color);
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo {
-    width: 30%;
-    height: auto;
+.nav-left {
+
 }
 
-.logo img {
-    max-width: 100%;
-    height: auto;
+.hamburger-layer {
+    width: 42px;
+    height: 9px;
+    background: white;
+    margin: 6px 0px;
 }
 
-.home-nav {
-    margin-top: 12px;
-    margin-left: 30px;
+.hamburger-menu:active > .hamburger-layer {
+    background: red;
 }
 
-.home-nav a {
-    margin-left: 12px;
-    color: var(--leaf-color);
+.nav-mid {
+
 }
 
-.home-nav select {
-    background: none;
+.nav-mid .language select {
     border: none;
-    outline: 0px;
+    padding: 6px 12px;
+    width: 100%;
 }
+
+.nav-right {
+    color: white;
+}
+
+.nav-right h4 {
+    cursor: pointer;
+}
+
+.drop-menu {
+    display: none;
+    padding: 12px;
+    background: rgba(52, 168, 83, 0.6);
+}
+
+.drop-menu ul li {
+    text-align: center;
+    list-style: none;
+}
+
+.drop-menu ul li button {
+    /* background: var(--honey-color); */
+    font-weight: bold;
+    /* color: white; */
+    padding: 12px;
+    width: 90%;
+    margin: 12px;
+}
+
+.login-form {
+    text-align: center;
+    display: none;
+}
+
+.login-form ul li {
+    margin: 21px;
+    list-style: none;
+}
+
+.login-form ul li input {
+    width: 90%;
+    border: 0px;
+    border-bottom: 2px solid var(--wood-color);
+    outline: 0px;
+    padding: 12px 3px;
+    padding-bottom: 0px;
+}
+
+.login-form ul li button {
+    width: 90%;
+    padding: 12px;
+    margin: 12px;
+    font-weight: bold;
+}
+
+/* end of navigation bar */
+
 
 .lead-banner {
     text-align: center;
@@ -104,90 +170,17 @@ footer {
 
 /* End of home page style */
 
-header{
-    color: white;
-}
-
-nav {
-    display: flex;
-    padding: 6px;
-    background: var(--leaf-color);
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-left {
-
-}
-
-.hamburger-layer {
-    width: 42px;
-    height: 9px;
-    background: white;
-    margin: 6px 0px;
-}
-
-.hamburger-menu:active > .hamburger-layer {
-    background: red;
-}
-
-.nav-mid{
-
-}
-
-.nav-right {
-
-}
-
-.drop-menu {
-    display: none;
-    padding: 12px;
-    background: rgba(52, 168, 83, 0.6);
-}
-
-.drop-menu ul li {
-    text-align: center;
-    list-style: none;
-}
-
-.drop-menu ul li button {
-    /* background: var(--honey-color); */
-    font-weight: bold;
-    /* color: white; */
-    padding: 12px;
-    width: 90%;
-    margin: 12px;
-}
-
-.login-form {
-    text-align: center;
-    display: none;
-}
-
-.login-form ul li {
-    margin: 21px;
-    list-style: none;
-}
-
-.login-form ul li input {
-    width: 90%;
-    border: 0px;
-    border-bottom: 2px solid var(--wood-color);
-    outline: 0px;
-    padding: 12px 3px;
-    padding-bottom: 0px;
-}
-
-.login-form ul li button {
-    width: 90%;
-    padding: 12px;
-    margin: 12px;
-    font-weight: bold;
-}
-
-
-.link {
+.link { enter your phone number
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.input-error {
+    background: red;
 }

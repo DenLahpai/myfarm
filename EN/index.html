@@ -1,31 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
+<head></head>
 <body>
     <header>
-        <!-- wrapper -->
-        <div class="wrapper">
-            <div class="logo" id="logo">
-                <img src="../images/logo.png" alt="">
-            </div>
-            <!-- home-nav -->
-            <div class="home-nav">
-                <a href="#">About</a>
-                <a href="#" onclick="displayLoginForm ();">Login</a>
-                <select name="language" id="language" onchange="chooseLanguage ();">
-                    <option value="">Language</option>
-                    <option value="WP">Jing Hpaw</option>
-                    <option value="EN">English</option>
-                </select>
-            </div>
-            <!-- end of home-nav -->
-        </div>
-        <!-- end of wrapper -->
+
     </header>
     <!-- lead-banner -->
     <div class="lead-banner">
@@ -47,26 +25,6 @@
                         The purpose of this project is to link farmers of Myanmar with buyers. This is a free to use platform for everyone.
                     </p>
                 </div>
-                <!-- login-form -->
-                <div class="login-form">
-                    <form action="#" method="post">
-                        <ul>
-                            <li>
-                                <input type="number" name="" placeholder="Phone Number: e.g 0902XXXXX" required>
-                            </li>
-                            <li>
-                                <input type="password" name="Password" placeholder="Password" required>
-                            </li>
-                            <li>
-                                <button type="button" id="button-login" onclick="login();">Login</button>
-                            </li>
-                            <li>
-                                <a href="register.html">Registration</a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
-                <!-- end of login-form -->
             </section>
             <section id="suggest">
                 Please <span class="link" onclick="window.location.href='register.html';">register</span> to start using our platform.
@@ -82,14 +40,16 @@
         <!-- end of wrapper -->
     </div>
     <!-- end of main content -->
+    <footer></footer>
 </body>
-<script type="text/javascript" src="scripts/jQuery.js"></script>
-<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.get("footer.php", function (data) {
-            $("body").append(data);
-        });
+        $("head").load("includes/head.html");
+        $("header").load("includes/header.html");
+        $("footer").load("footer.php");
+
     });
 </script>
 </html>

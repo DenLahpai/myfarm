@@ -1,6 +1,10 @@
 <?php
 require_once "conn.php";
 
+function login () {
+    header('location: register.html');
+}
+
 //function to use data from the table Users
 function table_Users($job, $var1, $var2) {
     $database = new Database();
