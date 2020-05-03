@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head></head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <title></title>
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main-content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("head").load("includes/head.html");
+        $("header").load("includes/header.html");
+        $("footer").load("footer.php");
+        checkSession();
+        setInterval(function() {
+            checkSession();
+        }, 60000);
+    });
+</script>
+</html>
