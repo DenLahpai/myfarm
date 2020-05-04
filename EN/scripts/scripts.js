@@ -43,13 +43,13 @@ function login() {
             data: $("#login-form").serialize(),
             success: function(data) {
                 var response = data;
-                if (response == 0) {
-                    var errorMsg = "Wrong Phone Number or Password!";
-                    $(".error").html(errorMsg);
-                }
-                else {
+                if (response == 1) {
                     var errorMsg = "";
                     window.location.href = 'home.html';
+                }
+                else {
+                    var errorMsg = "Wrong Phone Number or Password!";
+                    $(".error").html(errorMsg);
                 }
             }
         });

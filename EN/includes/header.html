@@ -13,9 +13,10 @@
                 <input type="text" id="UsersName" value="">
             </div>
             <div class="language">
-                <select name="language" id="language">
+                <select name="language" id="languages" onchange="changeLanguage();">
                     <option value="EN">English</option>
                     <option value="WP">Jing Hpaw</option>
+                    <option value="FR">French</option>
                 </select>
             </div>
         </div>
@@ -48,8 +49,8 @@
     <!-- login-form -->
     <div class="drop-menu">
         <ul>
-            <li><button type="button" name="button">Home</button></li>
-            <li><button type="button" name="button">About Us</button></li>
+            <li><button type="button" name="button" onclick="window.location.href='home.html';">Home</button></li>
+            <li><button type="button" name="button" onclick="window.location.href='aboutus.html';">About Us</button></li>
         </ul>
     </div>
 </div>
