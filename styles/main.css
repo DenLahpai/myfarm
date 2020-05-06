@@ -150,6 +150,33 @@ section .desc > p {
     color: var(--wood-color);
 }
 
+.contact-form {
+    padding: 12px;
+    text-align: center;
+}
+
+.contact-form ul li {
+    list-style: none;
+    margin-bottom: 6px;
+}
+
+.contact-form ul li input {
+    width: 90%;
+    padding-top: 12px;
+}
+
+.contact-form ul li textarea {
+    width: 90%;
+    resize: none;
+}
+
+.contact-form ul li button {
+    text-align: center;
+    width: 90%;
+    padding: 6px;
+    font-weight: bold;
+}
+
 #ads {
     margin-top: 24px;
 }

@@ -64,7 +64,7 @@ function checkSession (){
         success: function(data) {
             if (data == 0) {
                 // alert("Session Expired!");
-                window.location.href="EN";
+                window.location.href="index.html";
             }
             else {
                 var UsersName = data;
@@ -79,4 +79,57 @@ function checkSession (){
 //function to logout
 function logout () {
     window.location.href="logout.php";
+}
+
+//function to send contact page data
+function sendContactPageData() {
+
+    var Name = $("#Name");
+    var Email = $("#Email");
+    var Message = $("#Message");
+    var inputError = false;
+    var errorMsg = "";
+    Name.removeClass('input-error');
+    Email.removeClass('input-error');
+    Message.removeClass('input-error');
+
+    if (Name.val() == "" || Name.val() == null) {
+        Name.addClass('input-error');
+        var inputError = true;
+        var errorMsg = "Please enter your name! ";
+    }
+    if (Email.val() == "" || Email.val() == null) {
+        Email.addClass('input-error');
+        var inputError = true;
+
+        if (errorMsg) {
+            errorMsg += "Please enter your email! ";
+        }
+        else {
+            errorMsg = "Please enter your email! ";
+        }
+    }
+    if (Message.val() == "" || Message.val() == null) {
+        Message.addClass('input-error');
+        var inputError = true;
+
+        if (errorMsg) {
+            errorMsg += "Your message cannot be blank!";
+        }
+        else {
+            errorMsg = "Your message cannot be blank!";
+        }
+    }
+
+    if (inputError == false) {
+        $.ajax({
+            type: "POST",
+            url: "contactus.php",
+            data: $("#contact-form").serialize(),
+            success: function(data) {
+                alert(data);
+            }
+        });
+    }
+    $(".error").html(errorMsg);
 }
