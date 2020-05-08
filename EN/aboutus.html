@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<head>
+    <title>About</title>
+</head>
 <body>
     <header></header>
     <!-- lead-banner -->
@@ -20,8 +23,8 @@
                 <!-- desc -->
                 <div class="desc">
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        Quis quisquam dolor, cumque modi hic accusamus cupiditate mollitia reprehenderit 
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Quis quisquam dolor, cumque modi hic accusamus cupiditate mollitia reprehenderit
                         velit sint quidem sequi quo. Voluptates illum aspernatur rerum pariatur aperiam ipsa.
                     </p>
                 </div>
@@ -39,10 +42,12 @@
 <script src="scripts/scripts.js" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("head").load("includes/head.html");
+        $.get("includes/head.html", function (data) {
+            $("head").prepend(data);
+        });
         $("header").load("includes/header.html");
         $("#ads").load("includes/ads.html");
-        $("footer").load("footer.php");
+        $("footer").load("includes/footer.php");
     });
 </script>
 </html>

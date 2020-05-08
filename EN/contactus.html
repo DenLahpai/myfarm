@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head></head>
+<head>
+    <title>Contact Us</title>
+</head>
 <body>
     <header></header>
     <!-- lead-banner -->
@@ -19,12 +21,12 @@
             <!-- end of title -->
             <section id="contactus">
                 <div class="desc">
-                   
+
                     <div class="contact-form">
                         <form id="contact-form" action="contactus.php" method="post">
                             <ul>
                                 <li>
-                                    Please let us know your experiences. We love to hear your feedback. 
+                                    Please let us know your experiences. We love to hear your feedback.
                                 </li>
                                 <li>
                                     <input type="text" name="Name" id="Name" placeholder="Your Name">
@@ -56,10 +58,12 @@
 <script src="../scripts/main.js" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('head').load('includes/head.html');
+        $.get("includes/head.html", function (data) {
+            $('head').prepend(data);
+        });
         $('header').load('includes/header.html');
         $('#ads').load('includes/ads.html');
-        $('footer').load('footer.php');
+        $('footer').load('includes/footer.php');
     });
 </script>
 </html>

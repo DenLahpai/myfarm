@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head></head>
+<head>
+<title>Welcome</title>
+</head>
+
 <body>
-    <header></header>
+    <header>
+    </header>
     <!-- lead-banner -->
     <div class="lead-banner">
         <img src="../images/lead-banner.png" alt="">
@@ -39,10 +43,12 @@
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("head").load("includes/head.html");
+        $.get("includes/head.html", function (data){
+            $("head").prepend(data);
+        } );
         $("header").load("includes/header.html");
         $("#ads").load("includes/ads.html");
-        $("footer").load("footer.php");
+        $("footer").load("includes/footer.php");
     });
 </script>
 </html>

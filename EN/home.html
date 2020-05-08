@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head></head>
+<head>
+    <title>Home Page</title>
+</head>
 <body>
     <header></header>
     <!-- main-content -->
@@ -19,9 +21,11 @@
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("head").load("includes/head.html");
+        $.get("includes/head.html", function (data) {
+            $('head').prepend(data);
+        })
         $("header").load("includes/header.html");
-        $("footer").load("footer.php");
+        $("footer").load("includes/footer.php");
         checkSession();
         setInterval(function() {
             checkSession();

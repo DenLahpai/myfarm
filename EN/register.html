@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Regiser</title>
 </head>
 <body>
+    <header>
 
+    </header>
 </body>
+<script src="../scripts/jQuery.js" charset="utf-8"></script>
+<script src="../scripts/main.js" charset="utf-8"></script>
+<script src="scripts/scripts.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $('document').ready(function () {
+        $.get("includes/head.html", function (data) {
+            $("head").prepend(data);
+        })
+        $("header").load("includes/header.html");
+        $('#ads').load('includes/ads.html');
+        $('footer').load('includes/footer.php');
+    });
+</script>
 </html>
