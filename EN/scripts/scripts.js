@@ -10,17 +10,17 @@ function openLoginForm () {
 
 //function to login
 function login() {
-    var Mobile = $("#Mobile");
+    var Username = $("#Username");
     var Password = $("#Password");
     var inputError = false;
     var errorMsg = "";
-    Mobile.removeClass('input-error');
+    Username.removeClass('input-error');
     Password.removeClass('input-error');
 
-    if (Mobile.val() == "") {
-        Mobile.addClass('input-error');
+    if (Username.val() == "") {
+        Username.addClass('input-error');
         var inputError = true;
-        var errorMsg = 'Please enter your phone number! ';
+        var errorMsg = 'Please enter your username! ';
         $(".error").html(errorMsg);
     }
 
@@ -67,10 +67,9 @@ function checkSession (){
                 window.location.href="index.html";
             }
             else {
-                var UsersName = data;
-                var logout =  "<h4 onclick=\"logout();\">Logout</h4>";
-                $("#UsersName").val(UsersName);
-                $(".nav-right").html(logout);
+                // var UsersName = data;                
+                // $("#UsersName").html(UsersName);
+                $(".nav-right").load('includes/nav-right.php');
             }
         }
     });
@@ -132,4 +131,426 @@ function sendContactPageData() {
         });
     }
     $(".error").html(errorMsg);
+}
+
+//function to validate email 
+// Note function copied from Stackoverflow.com
+function validateEmail(sEmail) {
+  var reEmail = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+  if(!sEmail.match(reEmail)) {
+    alert("Invalid email address!");
+    return false;
+  }
+  return true;
+}
+
+
+
+//                                          ********************** Functions for registrations ***************************
+
+//function to check for username duplication
+function checkUsername () {
+    var Username = $("#Username1");
+    var l = Username.val().trim().length;
+    
+    if (l > 12) {
+        //if username is longer than 12 characters
+        $("#usernameError").addClass('error');
+        $("#usernameError").html('Username must not be longer than 12 letters!');
+        $("#btn-submit").attr("disabled", "disabled");
+    }
+    else if (l < 4) {
+        $("#usernameError").addClass('error');
+        $("#usernameError").html('Username must be at least 4 letters!');
+        $("#btn-submit").attr("disabled", "disabled");
+    }
+    else {
+        $.post("../check_username.php", {
+            Username: Username.val().trim()
+        } , function (data) {
+            if (data == 0) {
+                //No duplicate entry
+                $("#usernameError").removeClass('error');
+                $("#usernameError").addClass('green');
+                var msg = "Username <span style='font-style: italic'>" + Username.val().trim() + "</span> is available!";
+                $("#usernameError").html(msg);
+                $("#btn-submit").removeAttr("disabled");            
+            }
+            else {
+                //Duplicate entry
+                $("#usernameError").addClass('error');
+                $("#usernameError").html("Username already exists! Please choose another one!");
+                $("#btn-submit").attr("disabled", "disabled");
+            }
+        });
+    }
+}
+
+//function to check passwords
+function checkPasswords () {
+    var Password1 = $('#Password1');
+    var Password2 = $('#Password2');
+    var l = Password1.val().trim().length;
+    if (l < 6) {
+        $("#passwordStatus").addClass('error');
+        $("#passwordStatus").html('Password must be at least 6 letters!');
+        $('#btn-submit').attr("disabled", "disabled");
+    }
+    else {
+        if (Password1.val().trim() != Password2.val().trim()) {
+            $('#passwordStatus').addClass('error');
+            $('#passwordStatus').html('Passwords do not match!');
+            $('#btn-submit').attr("disabled", "disabled");
+        }
+        else {
+            $('#passwordStatus').removeClass('error');
+            $('#passwordStatus').addClass('green');
+            $('#passwordStatus').html('Passwords match!');
+            $("#btn-submit").removeAttr("disabled");
+        }
+    }
+}
+
+    
+
+//function to register
+function register() {
+    var Username = $('#Username1');
+    var Title = $('#Title');
+    var Name = $('#Name');
+    var Mobile = $('#Mobile');
+    var Password1 = $('#Password1');
+    var Password2 = $('#Password2');
+    var DOB = $('#DOB');
+    var Address = $('#Address');
+    var Town = $('#Town');
+    var State = $('#State');
+    var CountryCode = $('#CountryCode');
+
+    Username.removeClass('input-error');
+    Title.removeClass('input-error');
+    Name.removeClass('input-error');
+    Mobile.removeClass('input-error');
+    Password1.removeClass('input-error');
+    Password2.removeClass('input-error');
+    DOB.removeClass('input-error');
+    Town.removeClass('input-error');
+    State.removeClass('input-error');
+    response = $("#response1");
+
+    var inputError = false;
+    var errorMsg = "";
+    response.removeClass('error');
+
+
+    if (Username.val().trim() == "") {
+        var inputError = true;
+        Username.addClass('input-error');
+        errorMsg += 'Please choose a username! ';
+        response.addClass('error');
+        response.html(errorMsg);       
+    }
+    
+    if (Title.val() == "") {
+        var inputError = true;
+        Title.addClass('input-error');
+        errorMsg += 'Please choose a title! ';
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (Name.val().trim() == "") {
+        var inputError = true;
+        Name.addClass('input-error');
+        errorMsg += " Please enter your name! "; 
+        response.addClass('error');
+        response.html(errorMsg);            
+    }
+
+    if (Mobile.val().trim() == "") {
+        var inputError = true;
+        Mobile.addClass('input-error');
+        errorMsg += " Please enter your phone number! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (Password1.val().trim() == "") {
+        var inputError = true;
+        Password1.addClass('input-error');
+        Password2.addClass('input-error');
+        errorMsg += " Please set up a password! ";   
+        response.addClass('error');
+        response.html(errorMsg);      
+    }
+
+    if (DOB.val() == "") {
+        var inputError = true;
+        DOB.addClass('input-error');
+        errorMsg += " Please enter your date of birth! ";  
+        response.addClass('error');
+        response.html(errorMsg);        
+    }
+
+    if (Town.val().trim() == "") {
+        var inputError = true;
+        Town.addClass('input-error');
+        errorMsg += " Please enter your town! ";
+        response.addClass('error');
+        response.html(errorMsg); 
+    }
+
+    if (State.val().trim() == "") {
+        var inputError = true;
+        State.addClass('input-error');
+        errorMsg += " Please enter your state/province! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (CountryCode.val() == "") {
+        var inputError = true;
+        CountryCode.addClass('input-error');
+        errorMsg += " Please choose your country! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }    
+    
+    if (inputError == false) {
+        $.ajax({
+            method: 'POST', 
+            url: "register.php", 
+            data: $("#registration-form").serialize(), 
+            success: function(data){
+                if (data == 'OK') {
+                    //if no error OK is returned
+                    alert('Account created successfully! Please login to start using our platform.');
+                    window.location.href = 'index.html';
+                }
+                else {
+                    response.html(data);
+                }
+            }
+        });        
+    }   
+}
+
+//                      ********************* End of functions for resgistration *********************
+
+
+//                      ********************* Functions for new Post *********************
+
+//function to dispaly preview of an image to be uploaded
+function imagePreview(input) {
+    if (input.files && input.files[0]) {
+        var img = document.getElementById('Image').files[0];
+        var imageName = img.name;
+        var imageExtension = imageName.split('.').pop().toLowerCase();
+        if(jQuery.inArray(imageExtension, ['png', 'jpg', 'jpeg']) == -1) {
+            alert("Invalid Image Type");
+            $("#btn-submit").attr('disabled', 'disabled');
+        }
+        var imageSize = img.size;
+        if (imageSize > 12000000) {
+            alert("Image is too large!");
+            $("#btn-submit").attr('disabled', 'disabled');      
+        }
+        else {
+            $("#btn-submit").removeAttr('disabled');
+            var imagePv = new FileReader();
+            imagePv.onload = function (e) {
+                $("#image_preview").attr('src', e.target.result);
+            };
+            imagePv.readAsDataURL(input.files[0]);    
+        }
+  
+    }
+
+}
+
+function preview() {
+    $("#images").on('change', function(e) {
+        var files = e.target.files;
+
+        $.each(files, function(i, file){
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                var template = '<img scr="'+e.target.result+'">';
+                $(".image_preview").append(template);
+            };
+        }); 
+    });
+
+}
+
+//function to get tags 
+function getTags (selectedId) {
+    $.post("includes/select_tags.php", {
+        selectedId: selectedId
+        }, function(data) {
+            $("#TagsId").append(data);
+    });
+}
+
+//function to insert new post
+function insertNewPost() {
+    var fdata = new FormData();
+    var files = $("#Image")[0].files[0];
+    fdata.append('Image', files);
+
+    var Title = $("#Title");
+    var Description = $("#Description");
+    var TagsId = $("#TagsId");
+
+    if (Title.val() == "") {
+        $("#btn-submit").attr('disabled', 'disabled');
+        Title.addClass("input-error");
+        alert('Please put a title!');
+    }
+
+    else {
+        Title.removeClass("input-error");
+
+        var url = "includes/insert_post.php?Title=" + Title.val().trim() + "&Description=" + Description.val().trim() + "&TagsId=" + TagsId.val();
+        
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: fdata,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data === "OK") {
+                    Toggle('new-post');
+                    reloadPosts();
+                    alert('Your post has been uploaded successfully!');
+                }
+                else {
+                    alert(data);
+                    reloadPosts();
+                }
+            }
+        });
+    }
+}
+
+function reloadPosts (page, source) {
+    var sorting = $("#sorting").val();
+    var search = $("#search").val().trim();
+    $.post ('includes/' + source, {
+        page: page,
+        sorting: sorting,
+        search: search
+        }, function(data) {
+            $("#posts-data").html(data);
+        }
+    );
+}
+
+function reloadPosts2 () {
+    var soritng = $("#sorting").val();
+    var search = $("#search").val().trim();
+    var page = $("#page").val();
+    $.post ('includes/my_posts.php', {}, function (data) {
+        $("posts-data").html(data);
+    });
+}
+
+
+//                      ********************* End of functions for new Post *********************
+
+
+//function to update user data
+function updateUserData() {
+    var Title = $('#Title');
+    var Name = $('#Name');
+    var Mobile = $('#Mobile');
+    var DOB = $('#DOB');
+    var Address = $('#Address');
+    var Town = $('#Town');
+    var State = $('#State');
+    var CountryCode = $('#CountryCode');
+
+    Title.removeClass('input-error');
+    Name.removeClass('input-error');
+    Mobile.removeClass('input-error');
+    DOB.removeClass('input-error');
+    Town.removeClass('input-error');
+    State.removeClass('input-error');
+    response = $("#response");
+
+    var inputError = false;
+    var errorMsg = "";
+    response.removeClass('error');
+
+
+    
+    if (Title.val() == "") {
+        var inputError = true;
+        Title.addClass('input-error');
+        errorMsg += 'Please choose a title! ';
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (Name.val().trim() == "") {
+        var inputError = true;
+        Name.addClass('input-error');
+        errorMsg += " Please enter your name! "; 
+        response.addClass('error');
+        response.html(errorMsg);            
+    }
+
+    if (Mobile.val().trim() == "") {
+        var inputError = true;
+        Mobile.addClass('input-error');
+        errorMsg += " Please enter your phone number! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (DOB.val() == "") {
+        var inputError = true;
+        DOB.addClass('input-error');
+        errorMsg += " Please enter your date of birth! ";  
+        response.addClass('error');
+        response.html(errorMsg);        
+    }
+
+    if (Town.val().trim() == "") {
+        var inputError = true;
+        Town.addClass('input-error');
+        errorMsg += " Please enter your town! ";
+        response.addClass('error');
+        response.html(errorMsg); 
+    }
+
+    if (State.val().trim() == "") {
+        var inputError = true;
+        State.addClass('input-error');
+        errorMsg += " Please enter your state/province! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (CountryCode.val() == "") {
+        var inputError = true;
+        CountryCode.addClass('input-error');
+        errorMsg += " Please choose your country! ";
+        response.addClass('error');
+        response.html(errorMsg);  
+    }
+
+    if (inputError == false) {
+        $.ajax({
+            url: 'includes/update_user.php',
+            type: 'POST',
+            data: $("#update-user-form").serialize(),
+            success: function(data) {
+                response.html(data);
+            },
+        });
+    }   
 }

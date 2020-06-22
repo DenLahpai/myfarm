@@ -7,15 +7,15 @@
 <body>
     <header>
     </header>
-    <!-- lead-banner -->
-    <div class="lead-banner">
-        <img src="../images/lead-banner.png" alt="">
-    </div>
-    <!-- end of lead-banner -->
     <!-- main-content -->
     <div class="main-content">
         <!-- wrapper -->
         <div class="wrapper">
+            <!-- lead-banner -->
+            <div class="lead-banner">
+                <img src="../images/lead-banner.png" alt="">
+            </div>
+            <!-- end of lead-banner -->
             <!-- title -->
             <div class="title">
                 <h4>Welcome</h4>
@@ -46,9 +46,13 @@
         $.get("includes/head.html", function (data){
             $("head").prepend(data);
         } );
+
         $("header").load("includes/header.html");
+
         $("#ads").load("includes/ads.html");
+
         $("footer").load("includes/footer.php");
+        
     });
 </script>
 </html>

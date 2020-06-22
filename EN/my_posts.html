@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<title>My posts</title>
+</head>
+<body>
+	<header></header>
+	<!-- main-content -->
+	<div class="main-content">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<div class="title">
+				<h4>My Posts</h4>
+			</div>
+			<!-- sub-menu -->
+            <div class="sub-menu">
+                <!-- sub-menu-items -->
+                <div class="sub-menu-items">
+                    <div class="sub-menu-item" onclick="Toggle('new-post');">
+                        New Post
+                    </div>
+                    <div>
+                        <select name="sorting" id="sorting" onchange="reloadPosts (1, 'my_posts.php');">
+                            <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
+                            <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
+                            <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
+                            <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
+                        </select>
+                    </div>                   
+                </div>
+                <!-- end of sub-menu-items -->
+            </div>
+            <!-- end of sub-menu -->
+             <section id="search-bar">
+                <!-- search-bar -->
+                <div class="search-bar">
+                    <!-- search-bar-items -->
+                    <div class="search-bar-items">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts(1, 'my_posts.php');">Search</button>
+                    </div>
+                    <!-- end of search-bar-items -->
+                </div>
+                <!-- end of search-bar -->
+             </section>    
+			<section id="posts-data"></section>
+		</div>
+		<!-- end of wrapper  -->
+	</div>
+	<!-- end of main-conten -->
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.get("includes/head.html", function (data) {
+            $('head').prepend(data);
+        });
+
+        $("header").load("includes/header.html");
+
+        $.get("includes/setting-menu.html", function(data) {
+            $('.main-content').before(data);
+        });
+
+        $.get("includes/my_posts.php", function(data) {
+        	$("#posts-data").html(data);
+        });
+
+        $("footer").load("includes/footer.php");
+
+        getTags(0);
+
+        checkSession();
+
+        setInterval(function() {
+            checkSession();
+        }, 1800000);
+    });
+</script>
+</html>	

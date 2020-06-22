@@ -4,12 +4,12 @@ require_once "../functions.php";
 $database = new Database();
 
 $query = "SELECT * FROM Users
-    WHERE Mobile = :Mobile
+    WHERE Username = :Username
     AND BINARY Password = :Password
 ;";
 $database->query($query);
-$database->bind(":Mobile", $_POST['Mobile']);
-$database->bind(":Password", $_POST['Password']);
+$database->bind(":Username", $_POST['Username']);
+$database->bind(":Password", md5($_POST['Password']));
 $rowCount = $database->rowCount();
 if ($rowCount == 0) {
     echo $rowCount;
@@ -18,7 +18,7 @@ else {
     $rows = $database->resultset();
     foreach ($rows as $row) {
         $_SESSION['UsersId'] = $row->Id;
-        $_SESSION['UsersName'] = $row->Name;
+        $_SESSION['Username'] = $row->Username;
         echo $rowCount;        
     }
 }

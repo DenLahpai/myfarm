@@ -10,7 +10,7 @@ if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
     $database->query($query);
     $database->bind(":Name", trim($_POST['Name']));
     $database->bind(":Email", trim($_POST['Email']));
-    $database->bind(":Message", trIm($_POST['Message']));
+    $database->bind(":Message", trim($_POST['Message']));
     if ($database->execute()) {
         $subject = "Message from myfarm.com";
         $message = trim($_POST['Message']);
