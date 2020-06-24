@@ -59,9 +59,7 @@ if (isset($_SESSION['UsersId'])) {
 			</div>
 			<div class="update-user-form-item" style="text-align: left;">
 				Address:<br>
-				<textarea name="Address" id="Address">
-					<?php echo $row_Users->Address; ?>
-				</textarea>
+				<textarea name="Address" id="Address"><?php echo $row_Users->Address; ?></textarea>
 			</div>
 			<div class="update-user-form-item">
 				Town:	

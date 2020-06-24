@@ -212,7 +212,7 @@ function checkPasswords () {
     }
 }
 
-    
+
 
 //function to register
 function register() {
@@ -323,13 +323,15 @@ function register() {
             url: "register.php", 
             data: $("#registration-form").serialize(), 
             success: function(data){
-                if (data == 'OK') {
+                if (data == 0) {
                     //if no error OK is returned
                     alert('Account created successfully! Please login to start using our platform.');
                     window.location.href = 'index.html';
-                }
-                else {
-                    response.html(data);
+                } 
+                if (data == 1) {
+                    //1 is returned as connection error!
+                    var error = "<span class='error'>There was a connection error! Please try again!</span>";
+                    response.html(error);
                 }
             }
         });        
@@ -436,28 +438,51 @@ function insertNewPost() {
     }
 }
 
-function reloadPosts (page, source) {
+function reloadPosts (source) {
     var sorting = $("#sorting").val();
     var search = $("#search").val().trim();
+    var limit = $("#limit").val();
+    
+    checkForRemainingData ();
+
     $.post ('includes/' + source, {
-        page: page,
         sorting: sorting,
-        search: search
+        search: search,
+        limit: limit
         }, function(data) {
             $("#posts-data").html(data);
         }
     );
 }
 
-function reloadPosts2 () {
-    var soritng = $("#sorting").val();
-    var search = $("#search").val().trim();
-    var page = $("#page").val();
-    $.post ('includes/my_posts.php', {}, function (data) {
-        $("posts-data").html(data);
-    });
+function deletePost(id) {
+    var r = confirm("Are you sure to delete this post! Once deleted it cannot be recovered!");
+    if (r == true) {
+        $.post ('includes/delete_post.php', {
+            Id: id
+            }, function (data){
+                if (data == 0) {
+                    reloadPosts('my_posts.php');
+                }
+                else {
+                    alert('There was a connection error! Please try again!');
+                }                
+            }
+        );
+    }
 }
 
+function checkForRemainingData () {
+    var i = $("#remaining-data").html();
+    if (i <= 0) {
+        $("#btn-load-more").attr('disabled', 'disabled');
+        $("#btn-load-more").html('No More Posts!');
+    }
+    else {
+        $("#btn-load-more").removeAttr('disabled', 'disabled');
+        $("#btn-load-more").html('Load More');
+    }
+}
 
 //                      ********************* End of functions for new Post *********************
 
@@ -484,9 +509,7 @@ function updateUserData() {
     var inputError = false;
     var errorMsg = "";
     response.removeClass('error');
-
-
-    
+   
     if (Title.val() == "") {
         var inputError = true;
         Title.addClass('input-error');
@@ -554,3 +577,4 @@ function updateUserData() {
         });
     }   
 }
+

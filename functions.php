@@ -65,10 +65,11 @@ function table_Users($job, $var1, $var2) {
             $database->bind(':Status', 1);
             if ($database->execute()) {
                 // if no error zero is returned
-                echo 'OK';
+                echo 0;
             }
             else {
-                echo "There was a connection error! Please try again!";
+                // 1 is returned for connection error!
+                echo 1;
             }
             break;
 
@@ -92,10 +93,12 @@ function table_Users($job, $var1, $var2) {
             $database->bind(':Password', md5($_POST['Password1']));
             $database->bind(':UsersId', $_SESSION['UsersId']);
             if ($database->execute()) {
-                echo "<span class=\"green\">Your password has been updated successfully!</span>";
+                // Zero is returned for no error!
+                echo 0;
             }
             else {
-                echo "<span class=\"error\">There was a connection error! Please try again!</span>";
+                // 1 is returned for connection error!
+                echo 1;
             }
             break;
 
@@ -146,8 +149,8 @@ function table_Users($job, $var1, $var2) {
             $database->query($query);
             $database->bind(':UsersLink', $var1);
             return $r = $database->resultset();
-            break;              
-
+            break;            
+              
         default:
             // code...
             break;
@@ -303,7 +306,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
 
         case 'select_one_user_posts':
             # $var1 = UsersId
-            $query = "SELECT * FROM Posts WHERE UsersId = :UsersId $sorting LIMIT $limit ;";
+            $query = "SELECT * FROM Posts WHERE UsersId = :UsersId AND Posts.Status != 0 $sorting LIMIT $limit ;";
             $database->query($query);
             $database->bind(':UsersId', $var1);
             return $r = $database->resultset();
@@ -384,7 +387,21 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
             $database->bind(':UsersId', $var1);
             $database->bind(':search', $search);
             return $r = $database->rowCount();
-            break;                   
+            break;      
+            
+            case 'delete_post':
+                # $var1 = PostsId
+                $query =  "UPDATE Posts SET Status = 0 WHERE Id = :Id ;";
+                $database->query($query);
+                $database->bind(':Id', $var1);
+                if ($database->execute()) {
+                    // 0 is returned as 0 error!
+                    echo 0;
+                }
+                else {
+                    echo 1;
+                }
+                break;
                 
         default:
             # code...

@@ -20,18 +20,21 @@
                         New Post
                     </div>
                     <div>
-                        <select name="sorting" id="sorting" onchange="reloadPosts(1, 'select_posts.php');">
+                        <select name="sorting" id="sorting" onchange="reloadPosts('select_posts.php');">
                             <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
                             <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
                             <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
                             <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
                         </select>
+                    </div>
+                    <div>
+                        <input type="hidden" id="limit" value="6">
                     </div>                   
                 </div>
                 <!-- end of sub-menu-items -->
             </div>
             <!-- end of sub-menu -->
-             <section id="new-post">
+            <section id="new-post">
                 <div class="post-form">
                     <form id="post-form" method="post" action="includes/insert_post.php" enctype="multipart/form-data">
                         <div>
@@ -62,14 +65,19 @@
                     <!-- search-bar-items -->
                     <div class="search-bar-items">
                         <input type="text" name="search" id="search" placeholder="Search">
-                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts(1, 'select_posts.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts('select_posts.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear" onclick="clearSearch(); reloadPosts('select_posts.php');">Clear</button>
                     </div>
                     <!-- end of search-bar-items -->
                 </div>
-                <!-- end of search-bar -->                
+                <!-- end of search-bar -->               
             </section>    
             <section id="posts-data"></section>
-            <section id='pagination-nav'></section>            
+            <section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="increaseLimit(); reloadPosts('select_posts.php');">Load More</button>
+                </div>
+            </section>            
         </div>
         <!-- end of wrapper -->
     </div>
@@ -80,30 +88,28 @@
 <script type="text/javascript" src="../scripts/main.js"></script>
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $.get("includes/head.html", function (data) {
-            $('head').prepend(data);
-        });
-
-        $("header").load("includes/header.html");
-
-        $.get("includes/setting-menu.html", function(data) {
-            $('.main-content').before(data);
-        });       
-
-        $.post("includes/select_posts.php", function(data) {
-            $("#posts-data").html(data);
-        });
-
-        $("footer").load("includes/footer.php");
-
-        getTags(0);
-
-        checkSession();
-
-        setInterval(function() {
-            checkSession();
-        }, 1800000);
+$(document).ready(function () {
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
     });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });       
+
+    reloadPosts('select_posts.php');
+
+    $("footer").load("includes/footer.php");
+
+    getTags(0);
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
 </script>
 </html>

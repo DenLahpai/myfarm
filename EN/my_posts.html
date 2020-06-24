@@ -20,30 +20,64 @@
                         New Post
                     </div>
                     <div>
-                        <select name="sorting" id="sorting" onchange="reloadPosts (1, 'my_posts.php');">
+                        <select name="sorting" id="sorting" onchange="reloadPosts ('my_posts.php');">
                             <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
                             <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
                             <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
                             <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
                         </select>
+                    </div>
+                    <div>
+                        <input type="hidden" id="limit" value="6">
                     </div>                   
                 </div>
                 <!-- end of sub-menu-items -->
             </div>
             <!-- end of sub-menu -->
+            <section id="new-post">
+                <div class="post-form">
+                    <form id="post-form" method="post" action="includes/insert_post.php" enctype="multipart/form-data">
+                        <div>
+                            <input type="text" name="Title" id="Title" placeholder="Title" required style="width: 90%;" onchange="checkOneField('Title');">
+                        </div>
+                        <div class="image_preview">
+                            <img id="image_preview"/>
+                        </div>
+                        <div>
+                            <textarea name="Description" id="Description" placeholder="Description..."></textarea>
+                        </div>
+                        <div class="post-form-commands">
+                            <select name="TagsId" id="TagsId">
+                                <option value="0">Tags</option>
+                            </select>
+                            <label for="Image">Upload Image</label>
+                            <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                        </div>
+                        <div>
+                           <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
+                        </div>
+                    </form>
+                </div> 
+            </section>
              <section id="search-bar">
                 <!-- search-bar -->
                 <div class="search-bar">
                     <!-- search-bar-items -->
                     <div class="search-bar-items">
                         <input type="text" name="search" id="search" placeholder="Search">
-                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts(1, 'my_posts.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts('my_posts.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear" onclick="clearSearch(); reloadPosts('select_posts.php');">Clear</button>
                     </div>
                     <!-- end of search-bar-items -->
                 </div>
                 <!-- end of search-bar -->
              </section>    
 			<section id="posts-data"></section>
+            <section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="increaseLimit(); reloadPosts('my_posts.php');">Load More</button>
+                </div>
+            </section>
 		</div>
 		<!-- end of wrapper  -->
 	</div>
@@ -64,9 +98,7 @@
             $('.main-content').before(data);
         });
 
-        $.get("includes/my_posts.php", function(data) {
-        	$("#posts-data").html(data);
-        });
+        reloadPosts('my_posts.php');
 
         $("footer").load("includes/footer.php");
 

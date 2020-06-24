@@ -29,6 +29,17 @@ function markAsSoldOut (Id) {
         Id: Id
     }, function (data) {
         alert(data);
-        reloadPosts('1',);
+        reloadPosts('my_posts.php'); 
     });
+}
+
+function increaseLimit () {
+	var limit = $("#limit").val();
+	var newLimit = parseInt(limit) + parseInt(6);
+	$("#limit").val(newLimit);
+}
+
+function clearSearch () {
+	$("#search").val("");
+	location.reload();
 }

@@ -311,7 +311,6 @@ section .desc > p {
 }
 
 .search-bar > div input {
-    font-size: 1.2em;
     border: 0px;
     outline: 0px;
     border-bottom: 1px solid gold;
@@ -319,7 +318,7 @@ section .desc > p {
 }
 
 .btn-search {
-    padding: 12px 3px;
+    padding: 6px 3px;
 } 
 
 .image_preview img {
@@ -379,6 +378,7 @@ section .desc > p {
     border: 1px solid gold; 
 }
 
+
 .post-created {
     text-align: right;
     font-style: italic;
@@ -410,29 +410,9 @@ section .desc > p {
     cursor: pointer;    
 }
 
-.pagination-nav {
-   margin: 6px;
-}
-
-.page-numbers {
-    display: flex;
-    justify-content: center;
-}
-
-.page-number {
+.post-user-menu-items div:active {
     background: var(--leaf-color);
     color: white;
-    border: 2px solid white;
-    padding: 12px;
-    cursor: pointer;
-}
-
-.current-page-number {
-    background: red;
-    color: white;
-    border: 2px solid white;
-    padding: 12px;
-    cursor: pointer;
 }
 
 .password-form {
@@ -523,6 +503,14 @@ textarea {
 
 .input-error {
     background:var(--error-color);
+}
+
+#btn-load-more {
+    font-weight: bolder;
+    padding: 12px;
+    width: 90%;
+    display: block;
+    margin: 6px auto;
 }
 
 .btn-delete {

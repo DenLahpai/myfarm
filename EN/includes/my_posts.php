@@ -1,6 +1,5 @@
 <?php
 require_once "../../functions.php";
-
 if (empty($_POST['sorting'])) {
 	$sorting = 'ORDER BY Created DESC';
 }
@@ -12,21 +11,14 @@ if (empty($_POST['search'])) {
 	$job = "select_one_user_posts";
 }
 else {
-	$job = 'search_one_user_posts';
-}
-
-if (!isset($_POST['page'])) {
-	$page = 1;
-}
-
-else {
-	$page = $_POST['page'];
+	$job = 'search';
 }
 
 if (empty($_POST['limit'])) {
-	$rows_per_page = 6;
-	$start_point = ($page - 1) * $rows_per_page;
-	$limit = $start_point. ", ". $rows_per_page;
+	$limit = 6;
+}
+else {
+	$limit = $_POST['limit'];
 }
 
 if ($job == 'search_one_user_posts') {
@@ -68,6 +60,9 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 					<div class="post-menu-item">						
 						<div onclick="markAsSoldOut(<? echo $row_Posts->Id; ?>);">
 							Mark as Sold Out
+						</div>
+						<div onclick="deletePost(<? echo $row_Posts->Id; ?>)">
+							Delete Post <span class="symbols" style="color: red;">&#10007;</span>
 						</div>
 					</div>
 				</div>				
@@ -113,57 +108,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 				<?php endif ?>
 			</div>
 		</div>
-	<?php endforeach ?>	
+	<?php endforeach ?>
+	<div id="remaining-data" style="display:none;"><?php echo $rowCount - $limit; ?></div>
 </div>
 <!-- end of grid-container -->
-<!-- pagination-nav -->
-<div class="pagination-nav">
-    <div class="page-numbers">
-    	<?php 
-	    $total_pages = ceil ($rowCount / $rows_per_page);
-	    $page_limit = $page + 4;
-	    
-	    if ($page == 1) {
-	    	$prev_page = $page;
-	    } 	
-	    else {
-	    	$prev_page = $page - 1;
-	    }
-	    
-	    if ($page == $total_pages) {
-	    	$next_page = $page;
-	    }
-	    else {
-	    	$next_page = $page + 1;
-	    }
-
-	    $current_page =  $page;
-
-	    echo "<input type=\"number\" id=\"current_page\" value=\"$page\">";
-
-	    echo "<div class=\"page-number\" onclick=\"reloadPosts('".$prev_page."', 'my_posts.php')\"><<<</div>";
-	   	
-	    while ($page <= $total_pages) {
-
-	        if ($page == $current_page)  {
-	    		echo "<div class='current-page-number' onclick=\"reloadPosts('".$page."', 'my_posts.php')\">".$page."</div>";
-	    	}
-	    	else {
-	    		echo "<div class='page-number' onclick=\"reloadPosts('".$page."', 'my_posts.php')\">".$page."</div>";
-	    	}
-
-	    	if ($page == $page_limit) {
-	        	break;
-	        }
-
-	        $page++;	       
-	    }
-
-	    echo "<div class=\"page-number\" onclick=\"reloadPosts('".$next_page."')\">>>></div>";
-	    	  
-		?>
-
-    </div>
-</div>
-<!-- end of pagination-nav -->
-

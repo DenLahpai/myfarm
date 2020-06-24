@@ -15,18 +15,11 @@ else {
 	$job = 'search';
 }
 
-if (!isset($_POST['page'])) {
-	$page = 1;
-}
-
-else {
-	$page = $_POST['page'];
-}
-
 if (empty($_POST['limit'])) {
-	$rows_per_page = 6;
-	$start_point = ($page - 1) * $rows_per_page;
-	$limit = $start_point. ", ". $rows_per_page;
+	$limit = 6;
+}
+else {
+	$limit = $_POST['limit'];
 }
 
 if ($job == 'search') {
@@ -57,16 +50,10 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 							<div id="<? echo 'post-user-menu'.$row_Posts->Id; ?>" class="post-user-menu">
 								<div class="post-user-menu-items">
 									<div>
-										Send <span class="symbols">&#9993;</span>
-									</div>
-									<div onclick="gotoPage('view_user', 'UsersLink', '<? echo $row_Users->UsersLink; ?>');">
-										View Info
+										Contact <span class="symbols">&#9993;</span>
 									</div>
 									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->UsersLink; ?>'">
 										View User's Info						
-									</div>
-									<div onclick="view_user_posts('<? echo $row_Users->UsersLink;?>');">
-										View User's Posts
 									</div>
 								</div>								
 							</div>							
@@ -75,7 +62,10 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 					</div>										
 				</div>
 				<div id="<? echo 'post-menu-items'.$row_Posts->Id; ?>" class="post-menu-items">
-					<div class="post-menu-item">						
+					<div class="post-menu-item">
+						<div>
+							Favorite <span class="symbols">&#10025;</span>
+						</div>						
 						<div>
 							Report<span class="symbols">&#10071;</span>
 						</div>
@@ -125,54 +115,8 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 			</div>
 		</div>
 	<?php endforeach ?>	
+	<div id="remaining-data" style="display:none;"><?php echo $rowCount - $limit; ?></div>
 </div>
 <!-- end of grid-container -->
-<!-- pagination-nav -->
-<div class="pagination-nav">
-    <div class="page-numbers">
-    	<?php 
-	    $total_pages = ceil ($rowCount / $rows_per_page);
-	    $page_limit = $page + 4;
-	    
-	    if ($page == 1) {
-	    	$prev_page = $page;
-	    } 	
-	    else {
-	    	$prev_page = $page - 1;
-	    }
-	    
-	    if ($page == $total_pages) {
-	    	$next_page = $page;
-	    }
-	    else {
-	    	$next_page = $page + 1;
-	    }
 
-	    $current_page =  $page;
-
-	    echo "<div class=\"page-number\" onclick=\"reloadPosts('".$prev_page."', 'select_posts.php')\"><<<</div>";
-	   	
-
-	    while ($page <= $total_pages) {
-
-	        if ($page == $current_page)  {
-	    		echo "<div class='current-page-number' onclick=\"reloadPosts('".$page."', 'select_posts.php')\">".$page."</div>";
-	    	}
-	    	else {
-	    		echo "<div class='page-number' onclick=\"reloadPosts('".$page."', 'select_posts.php')\">".$page."</div>";
-	    	}
-
-	    	if ($page == $page_limit) {
-	        	break;
-	        }
-
-	        $page++;	       
-	    }
-
-	    echo "<div class=\"page-number\" onclick=\"reloadPosts('".$next_page."', 'select_posts.php')\">>>></div>";
-	    	  
-		?>
-    </div>
-</div>
-<!-- end of pagination-nav -->
 
