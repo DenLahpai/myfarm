@@ -33,7 +33,7 @@ function table_Users($job, $var1, $var2) {
             $CountryCode = trim($_REQUEST['CountryCode']);
             $LanguagesId = trim($_REQUEST['LanguagesId']);
             $query = "INSERT INTO Users SET
-                Username = :Username, 
+                Username = :Username,
                 UsersLink = :UsersLink,               
                 Password = :Password,
                 Title = :Title,
@@ -136,10 +136,12 @@ function table_Users($job, $var1, $var2) {
             $database->bind(':CountryCode', trim($_POST['CountryCode']));
             $database->bind(':UsersId', $var1);
             if ($database->execute()) {
-                echo "<span class='green'>Your details have been updated successfully!</span>";
+                // zero is returned for no error!
+                echo 0;
             }
             else {
-                echo "<span class='error'>There was a connection error! Please try again!</span>";
+                // 1 is returned for connection error!
+                echo 1;                
             }
             break;
 
@@ -199,7 +201,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 return $link;
             }
             else {
-                echo "Error!";
+                echo 1;
                 die();
             }
 
@@ -234,7 +236,10 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 Tags.Burmese
                 FROM Posts LEFT OUTER JOIN Tags 
                 ON Posts.TagsId = Tags.Id
+                LEFT OUTER JOIN Users
+                ON Posts.UsersId = Users.Id
                 WHERE CONCAT(
+                Users.Username,    
                 Posts.Title,
                 Posts.Description,
                 Tags.English,
@@ -264,9 +269,12 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 Tags.Jinghpaw,
                 Tags.English,
                 Tags.Burmese
-                FROM Posts LEFT OUTER JOIN Tags 
+                FROM Posts LEFT OUTER JOIN Tags
                 ON Posts.TagsId = Tags.Id
+                LEFT OUTER JOIN Users
+                ON Posts.UsersId = Users.Id
                 WHERE CONCAT(
+                Users.Username,    
                 Posts.Title,
                 Posts.Description,
                 Tags.English,
@@ -297,10 +305,12 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
             $database->query($query);
             $database->bind(':PostsId', $var1);
             if ($database->execute()) {
-                echo "Post updated successfully!";
+                // zero is returned as there is no error!
+                echo 0;
             } 
             else {
-                echo "There was a connection error! Please try again!";
+                // 1 is returned as there is a connection error!
+                echo 1;
             }
             break;    
 
@@ -310,6 +320,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
             $database->query($query);
             $database->bind(':UsersId', $var1);
             return $r = $database->resultset();
+            // echo $query;
             break; 
 
         case 'search_one_user_posts':
@@ -339,8 +350,8 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 ) LIKE :search
                 AND Posts.Status != 0
                 AND UsersId = :UsersId
-                $sorting LIMIT $limit 
-            ;";
+                $sorting LIMIT $limit
+             ;";
             $database->query($query);
             $database->bind(':UsersId', $var1);
             $database->bind(':search', $search);
@@ -381,7 +392,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 Tags.Burmese
                 ) LIKE :search
                 AND Posts.Status != 0
-                AND UsersId = :UsersId                
+                AND UsersId = :UsersId                              
             ;";
             $database->query($query);
             $database->bind(':UsersId', $var1);
@@ -389,26 +400,170 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
             return $r = $database->rowCount();
             break;      
             
-            case 'delete_post':
-                # $var1 = PostsId
-                $query =  "UPDATE Posts SET Status = 0 WHERE Id = :Id ;";
-                $database->query($query);
-                $database->bind(':Id', $var1);
-                if ($database->execute()) {
-                    // 0 is returned as 0 error!
-                    echo 0;
-                }
-                else {
-                    echo 1;
-                }
-                break;
-                
+        case 'delete_post':
+            # $var1 = PostsId
+            $query =  "UPDATE Posts SET Status = 0 WHERE Id = :Id ;";
+            $database->query($query);
+            $database->bind(':Id', $var1);
+            if ($database->execute()) {
+                // 0 is returned as 0 error!
+                echo 0;
+            }
+            else {
+                // 1 is returned for connection error
+                echo 1;
+            }
+            break;
+
+        case 'select_bookmarks':
+            #var1 = UsersLink
+            $query = "SELECT  
+                Bookmarks.Id AS BookmarksId,
+                Bookmarks.PostsLink,
+                Bookmarks.UsersLink,
+                Bookmarks.Status AS BookmarksStatus,
+                Bookmarks.Created AS BookmarksCreated,
+                Bookmarks.Updated AS BookmarksUpdated,
+                Posts.Id AS PostsId, 
+                Posts.Title,
+                Posts.Description, 
+                Posts.TagsId, 
+                Posts.Status AS PostsStatus,
+                Posts.UsersId,
+                Posts.Created AS PostsCreated,
+                Posts.Updated AS PostsUpdated
+                FROM Bookmarks 
+                INNER JOIN Posts 
+                ON Bookmarks.PostsLink = Posts.Link
+                LEFT OUTER JOIN Tags
+                ON Posts.TagsId = Tags.Id
+                WHERE Bookmarks.UsersLink = :UsersLink
+                AND Bookmarks.Status != 0
+                AND Posts.Status != 0
+                $sorting LIMIT $limit
+            ;";
+            $database->query($query);
+            $database->bind(':UsersLink', $var1);
+            return $r = $database->resultset();
+            break;
+        
+        case 'rowCount_bookmarks':
+            #var1 = UsersLink
+            $query = "SELECT  
+                Bookmarks.Id AS BookmarksId,
+                Bookmarks.PostsLink,
+                Bookmarks.UsersLink,
+                Bookmarks.Status AS BookmarksStatus,
+                Bookmarks.Created AS BookmarksCreated,
+                Bookmarks.Updated AS BookmarksUpdated,
+                Posts.Id AS PostsId, 
+                Posts.Title,
+                Posts.Description, 
+                Posts.TagsId, 
+                Posts.Status AS PostsStatus,
+                Posts.UsersId,
+                Posts.Created AS PostsCreated,
+                Posts.Updated AS PostsUpdated
+                FROM Bookmarks 
+                INNER JOIN Posts 
+                ON Bookmarks.PostsLink = Posts.Link
+                LEFT OUTER JOIN Tags
+                ON Posts.TagsId = Tags.Id
+                WHERE Bookmarks.UsersLink = :UsersLink
+                AND Bookmarks.Status != 0
+                AND Posts.Status != 0               
+            ;";
+            $database->query($query);
+            $database->bind(':UsersLink', $var1);
+            return $r = $database->rowCount();
+            break;
+
+        case 'search_bookmarks':
+            #var1 = UsersLink
+            $search = '%'.$_POST['search'].'%';
+            $query = "SELECT  
+                Bookmarks.Id AS BookmarksId,
+                Bookmarks.PostsLink,
+                Bookmarks.UsersLink,
+                Bookmarks.Status AS BookmarksStatus,
+                Bookmarks.Created AS BookmarksCreated,
+                Bookmarks.Updated AS BookmarksUpdated,
+                Posts.Id AS PostsId, 
+                Posts.Title,
+                Posts.Description, 
+                Posts.TagsId, 
+                Posts.Status AS PostsStatus,
+                Posts.UsersId,
+                Posts.Created AS PostsCreated,
+                Posts.Updated AS PostsUpdated
+                FROM Bookmarks 
+                INNER JOIN Posts 
+                ON Bookmarks.PostsLink = Posts.Link
+                LEFT OUTER JOIN Tags
+                ON Posts.TagsId = Tags.Id
+                WHERE CONCAT(
+                    Posts.TItle, 
+                    Posts.Description, 
+                    Posts.TagsId, 
+                    Tags.English, 
+                    Tags.Jinghpaw, 
+                    Tags.Burmese
+                ) LIKE :search
+                AND Bookmarks.UsersLink = :UsersLink
+                AND Bookmarks.Status != 0
+                AND Posts.Status != 0    
+                $sorting LIMIT $limit           
+            ;";
+            $database->query($query);        
+            $database->bind(':search', $search);
+            $database->bind(':UsersLink', $var1);
+            return $r = $database->resultset();
+
+        case 'search_bookmark_rowCount':
+            #var1 = UsersLink
+            $search = '%'.$_POST['search'].'%';
+            $query = "SELECT  
+                Bookmarks.Id AS BookmarksId,
+                Bookmarks.PostsLink,
+                Bookmarks.UsersLink,
+                Bookmarks.Status AS BookmarksStatus,
+                Bookmarks.Created AS BookmarksCreated,
+                Bookmarks.Updated AS BookmarksUpdated,
+                Posts.Id AS PostsId, 
+                Posts.Title,
+                Posts.Description, 
+                Posts.TagsId, 
+                Posts.Status AS PostsStatus,
+                Posts.UsersId,
+                Posts.Created AS PostsCreated,
+                Posts.Updated AS PostsUpdated
+                FROM Bookmarks 
+                INNER JOIN Posts 
+                ON Bookmarks.PostsLink = Posts.Link
+                LEFT OUTER JOIN Tags
+                ON Posts.TagsId = Tags.Id
+                WHERE CONCAT(
+                    Posts.TItle, 
+                    Posts.Description, 
+                    Posts.TagsId, 
+                    Tags.English, 
+                    Tags.Jinghpaw, 
+                    Tags.Burmese
+                ) LIKE :search
+                AND Bookmarks.UsersLink = :UsersLink
+                AND Bookmarks.Status != 0
+                AND Posts.Status != 0                
+            ;";
+            $database->query($query);        
+            $database->bind(':search', $search);
+            $database->bind(':UsersLink', $var1);
+            return $r = $database->rowCount();            
+
         default:
             # code...
             break;
     }
 }
-
 
 //function to resize image.
 function imageResize($imageResourceId,$width,$height) {
@@ -437,10 +592,12 @@ function table_Images ($job, $var1, $var2, $sorting, $limit) {
             $database->bind(':Name', $var2);
             $database->bind(':Link', $var1);
             if ($database->execute()) {
-                echo "OK";
+                // zero is returned if there is no error!
+                echo 0;
             }
             else {
-                echo "<span class='error'>There was a connection error! Please try again!</span>";
+                // 1 is returned if there is a connection error 
+                echo 1;
             }
             break;
 
@@ -478,6 +635,54 @@ function table_Countries ($job, $var1, $var2) {
             return $r = $database->resultset();
             break;
         
+        default:
+            # code...
+            break;
+    }
+}
+
+//function to use data from the table Favorites
+function table_Bookmarks ($job, $var1, $var2) {
+    $database = new Database();
+
+    switch ($job) {
+
+        case 'insert':
+            # var1 = UsersLink
+            $query = "INSERT INTO Bookmarks SET 
+                PostsLink = :PostsLink,
+                UsersLink = :UsersLink
+            ;";
+            $database->query($query);
+            $database->bind(':PostsLink', $_POST['PostsLink']);
+            $database->bind(':UsersLink', $var1);
+            if ($database->execute()) {
+                // Zero is returned if there is no error
+                echo 0;
+            }
+            else {
+                // One is returned for connection error
+                echo 1;
+            }
+            break;
+
+        case 'remove_bookmark':
+            # var1 = BookmarksId
+            $query = "UPDATE Bookmarks SET 
+                Status = 0
+                WHERE Id = :BookmarksId 
+            ;";    
+            $database->query($query);
+            $database->bind(':BookmarksId', $var1);
+            if ($database->execute()) {
+                // Zero is returned if there is no error!
+                echo 0;
+            }
+            else {
+                // One is returned for connection error!
+                echo 1;
+            }
+
         default:
             # code...
             break;

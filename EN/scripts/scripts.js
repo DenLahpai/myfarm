@@ -340,152 +340,7 @@ function register() {
 
 //                      ********************* End of functions for resgistration *********************
 
-
-//                      ********************* Functions for new Post *********************
-
-//function to dispaly preview of an image to be uploaded
-function imagePreview(input) {
-    if (input.files && input.files[0]) {
-        var img = document.getElementById('Image').files[0];
-        var imageName = img.name;
-        var imageExtension = imageName.split('.').pop().toLowerCase();
-        if(jQuery.inArray(imageExtension, ['png', 'jpg', 'jpeg']) == -1) {
-            alert("Invalid Image Type");
-            $("#btn-submit").attr('disabled', 'disabled');
-        }
-        var imageSize = img.size;
-        if (imageSize > 12000000) {
-            alert("Image is too large!");
-            $("#btn-submit").attr('disabled', 'disabled');      
-        }
-        else {
-            $("#btn-submit").removeAttr('disabled');
-            var imagePv = new FileReader();
-            imagePv.onload = function (e) {
-                $("#image_preview").attr('src', e.target.result);
-            };
-            imagePv.readAsDataURL(input.files[0]);    
-        }
-  
-    }
-
-}
-
-function preview() {
-    $("#images").on('change', function(e) {
-        var files = e.target.files;
-
-        $.each(files, function(i, file){
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function(e) {
-                var template = '<img scr="'+e.target.result+'">';
-                $(".image_preview").append(template);
-            };
-        }); 
-    });
-
-}
-
-//function to get tags 
-function getTags (selectedId) {
-    $.post("includes/select_tags.php", {
-        selectedId: selectedId
-        }, function(data) {
-            $("#TagsId").append(data);
-    });
-}
-
-//function to insert new post
-function insertNewPost() {
-    var fdata = new FormData();
-    var files = $("#Image")[0].files[0];
-    fdata.append('Image', files);
-
-    var Title = $("#Title");
-    var Description = $("#Description");
-    var TagsId = $("#TagsId");
-
-    if (Title.val() == "") {
-        $("#btn-submit").attr('disabled', 'disabled');
-        Title.addClass("input-error");
-        alert('Please put a title!');
-    }
-
-    else {
-        Title.removeClass("input-error");
-
-        var url = "includes/insert_post.php?Title=" + Title.val().trim() + "&Description=" + Description.val().trim() + "&TagsId=" + TagsId.val();
-        
-        $.ajax({
-            url: url,
-            type: 'post',
-            data: fdata,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                if (data === "OK") {
-                    Toggle('new-post');
-                    reloadPosts();
-                    alert('Your post has been uploaded successfully!');
-                }
-                else {
-                    alert(data);
-                    reloadPosts();
-                }
-            }
-        });
-    }
-}
-
-function reloadPosts (source) {
-    var sorting = $("#sorting").val();
-    var search = $("#search").val().trim();
-    var limit = $("#limit").val();
-    
-    checkForRemainingData ();
-
-    $.post ('includes/' + source, {
-        sorting: sorting,
-        search: search,
-        limit: limit
-        }, function(data) {
-            $("#posts-data").html(data);
-        }
-    );
-}
-
-function deletePost(id) {
-    var r = confirm("Are you sure to delete this post! Once deleted it cannot be recovered!");
-    if (r == true) {
-        $.post ('includes/delete_post.php', {
-            Id: id
-            }, function (data){
-                if (data == 0) {
-                    reloadPosts('my_posts.php');
-                }
-                else {
-                    alert('There was a connection error! Please try again!');
-                }                
-            }
-        );
-    }
-}
-
-function checkForRemainingData () {
-    var i = $("#remaining-data").html();
-    if (i <= 0) {
-        $("#btn-load-more").attr('disabled', 'disabled');
-        $("#btn-load-more").html('No More Posts!');
-    }
-    else {
-        $("#btn-load-more").removeAttr('disabled', 'disabled');
-        $("#btn-load-more").html('Load More');
-    }
-}
-
-//                      ********************* End of functions for new Post *********************
-
+//                      ********************* Funciton to Update Users Data ************************
 
 //function to update user data
 function updateUserData() {
@@ -572,9 +427,210 @@ function updateUserData() {
             type: 'POST',
             data: $("#update-user-form").serialize(),
             success: function(data) {
-                response.html(data);
+                if (data == 0) {
+                    // zero is returned if there is no errror!
+                    var msg = "<span class='green'>Your details have been updated successfully!</span>";
+                    response.html(msg);
+                }
+                if (data == 1) {
+                    // 1 is returned if there is a connection error!
+                    var errorMsg = "<span class='error'>There was a connection error! Please try again!</span>";
+                    response.html(errorMsg);
+                }
             },
         });
     }   
 }
+
+
+//                      ********************* Functions for new Post *********************
+
+//function to dispaly preview of an image to be uploaded
+function imagePreview(input) {
+    if (input.files && input.files[0]) {
+        var img = document.getElementById('Image').files[0];
+        var imageName = img.name;
+        var imageExtension = imageName.split('.').pop().toLowerCase();
+        if(jQuery.inArray(imageExtension, ['png', 'jpg', 'jpeg']) == -1) {
+            alert("Invalid Image Type");
+            $("#btn-submit").attr('disabled', 'disabled');
+        }
+        var imageSize = img.size;
+        if (imageSize > 12000000) {
+            alert("Image is too large!");
+            $("#btn-submit").attr('disabled', 'disabled');      
+        }
+        else {
+            $("#btn-submit").removeAttr('disabled');
+            var imagePv = new FileReader();
+            imagePv.onload = function (e) {
+                $("#image_preview").attr('src', e.target.result);
+            };
+            imagePv.readAsDataURL(input.files[0]);    
+        }
+  
+    }
+
+}
+
+function preview() {
+    $("#images").on('change', function(e) {
+        var files = e.target.files;
+
+        $.each(files, function(i, file){
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                var template = '<img scr="'+e.target.result+'">';
+                $(".image_preview").append(template);
+            };
+        }); 
+    });
+
+}
+
+//function to get tags 
+function getTags (selectedId) {
+    $.post("includes/select_tags.php", {
+        selectedId: selectedId
+        }, function(data) {
+            $("#TagsId").append(data);
+    });
+}
+
+//function to insert new post
+function insertNewPost() {
+    var fdata = new FormData();
+    var files = $("#Image")[0].files[0];
+    fdata.append('Image', files);
+
+    var Title = $("#Title");
+    var Description = $("#Description");
+    var TagsId = $("#TagsId");
+
+    if (Title.val() == "") {
+        $("#btn-submit").attr('disabled', 'disabled');
+        Title.addClass("input-error");
+        alert('Please put a title!');
+    }
+
+    else {
+        Title.removeClass("input-error");
+        var url = "includes/insert_post.php?Title=" + Title.val().trim() + "&Description=" + Description.val().trim() + "&TagsId=" + TagsId.val();
+        
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: fdata,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data === 0) {
+                    // zero is returned if there is no error!
+                    Toggle('new-post');
+                    reloadPosts('select_posts.php');
+                    alert('Your post has been uploaded successfully!');
+                }
+                else {
+                    // 1 us retured if there is an error!
+                    alert ("There was a connection error! Please try again!");
+                    reloadPosts('select_posts.php');
+                }
+            }
+        });
+    }
+}
+
+function reloadPosts (source) {
+    var sorting = $("#sorting").val();
+    var search = $("#search").val().trim();
+    var limit = $("#limit").val();
+    
+    checkForRemainingData ();
+
+    $.post ('includes/' + source, {
+        sorting: sorting,
+        search: search,
+        limit: limit
+        }, function(data) {
+            $("#posts-data").html(data);
+        }
+    );
+}
+
+function deletePost(id) {
+    var r = confirm("Are you sure to delete this post! Once deleted it cannot be recovered!");
+    if (r == true) {
+        $.post ('includes/delete_post.php', {
+            Id: id
+            }, function (data){
+                if (data == 0) {
+                    reloadPosts('my_posts.php');
+                }
+                else {
+                    alert('There was a connection error! Please try again!');
+                }                
+            }
+        );
+    }
+}
+
+function checkForRemainingData () {
+    var i = $("#remaining-data").html();
+    if (i <= 0) {
+        $("#btn-load-more").attr('disabled', 'disabled');
+        $("#btn-load-more").html('No More Posts!');
+    }
+    else {
+        $("#btn-load-more").removeAttr('disabled', 'disabled');
+        $("#btn-load-more").html('Load More');
+    }
+}
+
+//function to bookmark a post
+function bookmarkPost (PostsLink) {
+	
+	$.post("includes/bookmark_post.php", {
+		PostsLink: PostsLink
+		}, function (data) {
+			
+			if (data == 0) {
+				// Zero is returned if there is no error!
+				var msg = "This post has been added to your favorite list!";
+				alert(msg);
+			}
+	
+			if (data == 1) {
+				// One is returned for connection error!
+				var errorMsg = "There was a connection problem!";
+				alert(errorMsg);
+			}
+		}
+	);
+}
+
+// function to remove bookmark
+function removeBookmark (BookmarksId) {
+    $.post('includes/remove_bookmark.php', {
+        BookmarksId: BookmarksId
+    }, function(data){
+        
+        if (data == 0) {
+            var msg = 'This post has been removed from your bookmarks!';
+            alert(msg);
+        }
+
+        if (data == 1) {
+            var errorMsg = 'There was a connection problem! Please try again!';
+            alert(errorMsg);
+        }
+        reloadPosts('my_bookmarks.php');
+    });
+}
+
+
+//                      ********************* End of functions for new Post *********************
+
+
+
 

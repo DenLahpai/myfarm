@@ -4,7 +4,6 @@ require_once "../../functions.php";
 //Inserting data to the table post
 $link = table_Posts ('insert', NULL, NULL, NULL, NULL);
 
-
 if (isset($_FILES['Image'])) {
 	$file = $_FILES['Image'];
 	if ($file['error'] == 0) {
@@ -38,16 +37,19 @@ if (isset($_FILES['Image'])) {
 		table_Images ('insert', $link, $file_name.'.'.$file_ext, NULL, NULL);
 	}
 	else {
-		echo "<span class='error'>There was a connection error! Please try again!</span>";
+		// one is returned if is an error!
+		echo 1;
 	}
 }
 
 else {
 	if ($link != "Error!") {
-		echo "OK";
+		// zero is returned if there is no error!
+		echo 0;
 	}
 	else {
-		echo "<span class='error'>There was a connection error! Please try again!</span>";
+		// 1 is returned if there is a connection error
+		echo 1;
 	}
 }
 

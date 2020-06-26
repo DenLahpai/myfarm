@@ -1,18 +1,17 @@
 <?php
 require_once "../../functions.php";
-
 if (empty($_POST['sorting'])) {
-	$sorting = 'ORDER BY Created DESC';
+	$sorting = 'ORDER BY Posts.Created DESC';
 }
 else {
 	$sorting = $_POST['sorting'];
 }
 
 if (empty($_POST['search'])) {
-	$job = "select_all";
+	$job = "select_bookmarks";
 }
 else {
-	$job = 'search';
+	$job = 'search_bookmarks';
 }
 
 if (empty($_POST['limit'])) {
@@ -22,20 +21,27 @@ else {
 	$limit = $_POST['limit'];
 }
 
-if ($job == 'search') {
-	$rowCount = table_Posts ('search_rowCount', NULL, NULL, NULL, NULL);
+//getting UsersLink
+$rows_Users = table_Users ('select_one', $_SESSION['UsersId'], NULL);
+foreach ($rows_Users as $row_Users) {
+    # code...
+}
+
+if ($job == 'search_bookmarks') {
+	$rowCount = table_Posts ('search_bookmark_rowCount', $row_Users->UsersLink, NULL, NULL, NULL);
 }
 else {
-	$rowCount = table_Posts ('rowCount', NULL, NULL, NULL, NULL);
+	$rowCount = table_Posts ('rowCount_bookmarks', $row_Users->UsersLink, NULL, NULL, NULL);
 }
-$rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 
+$rows_Posts = table_Posts ($job, $row_Users->UsersLink, NULL, $sorting, $limit);
+ 
 ?>
 <!-- grid-container -->
 <div class="grid-container">
 	<?php foreach ($rows_Posts as $row_Posts): ?>
 		<div class="grid-item">
-			<div class="post-items">
+			<div class="post-items" style="border: 2px solid var(--honey-color)">
 				<div class="post-item">
 					<div class="post-menu-bar">
 						<div class='post-user'>
@@ -46,8 +52,8 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 								# code...
 							}
 							?>
-							<span onclick="Toggle('<? echo 'post-user-menu'.$row_Posts->Id; ?>');"><?php echo $row_Users->Username; ?></span>
-							<div id="<? echo 'post-user-menu'.$row_Posts->Id; ?>" class="post-user-menu">
+							<span onclick="Toggle('<? echo 'post-user-menu'.$row_Posts->PostsId; ?>');"><?php echo $row_Users->Username; ?></span>
+							<div id="<? echo 'post-user-menu'.$row_Posts->PostsId; ?>" class="post-user-menu">
 								<div class="post-user-menu-items">
 									<div>
 										Contact <span class="symbols">&#9993;</span>
@@ -58,14 +64,14 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 								</div>								
 							</div>							
 						</div>
-						<div class="btn-post-menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->Id; ?>')">&#9776;</div>
+						<div class="btn-post-menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->PostsId; ?>')">&#9776;</div>
 					</div>										
 				</div>
-				<div id="<? echo 'post-menu-items'.$row_Posts->Id; ?>" class="post-menu-items">
+				<div id="<? echo 'post-menu-items'.$row_Posts->PostsId; ?>" class="post-menu-items">
 					<div class="post-menu-item">
-						<div onclick="bookmarkPost('<? echo $row_Posts->Link; ?>');">
-							Bookmark <span class="symbols">&#9873;</span>
-						</div>						
+						<div onclick="removeBookmark('<? echo $row_Posts->BookmarksId; ?>');">
+							Remove Bookmark 
+						</div>			
 						<div>
 							Report <span class="symbols">&#10071;</span>
 						</div>
@@ -73,7 +79,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 				</div>				
 				<div class="post-item">
 					<div class="post-created">
-						<?php echo date("d-M-Y H:i", strtotime($row_Posts->Created)) ?>
+						<?php echo date("d-M-Y H:i", strtotime($row_Posts->PostsCreated)) ?>
 					</div>
 				</div>
 				<div class="post-item">
@@ -84,7 +90,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 				<div class="post-item">
 					<?php  
 					//getting data from the table Image
-					$rows_Images = table_Images ('select_for_one_post', $row_Posts->Link, NULL, NULL, NULL);
+					$rows_Images = table_Images ('select_for_one_post', $row_Posts->PostsLink, NULL, NULL, NULL);
 					foreach ($rows_Images as $row_Images) {
 						# code...
 					}
@@ -103,19 +109,17 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 				<div class="post-item">
 					<div class="post-updated">
 						Last update:
-						<?php echo date("d-m-Y H:i", strtotime($row_Posts->Updated)); ?>						
+						<?php echo date("d-m-Y H:i", strtotime($row_Posts->PostsUpdated)); ?>						
 					</div>
 				</div>
-				<?php if ($row_Posts->Status == 3): ?>
+				<?php if ($row_Posts->PostsStatus == 3): ?>
 					<div class="post-item" id="soldout">
 						SOLD OUT!!!
 					</div>
 				<?php endif ?>
 			</div>
 		</div>
-	<?php endforeach ?>	
-	<div id="remaining-data" style="display:none;"><?php echo $rowCount - $limit; ?></div>
+	<?php endforeach ?>
+	<div id="remaining-data" style="display: none;" ><?php echo $rowCount - $limit; ?></div>
 </div>
 <!-- end of grid-container -->
-
-

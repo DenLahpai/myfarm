@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookmarks</title>
+</head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="title">
+                <h4>My Bookmarks</h4>
+            </div>
+            <!-- sub-menu -->
+            <div class="sub-menu">
+                <!-- sub-menu-items -->
+                <div class="sub-menu-items">
+                    <div>
+                        <select name="sorting" id="sorting" onchange="reloadPosts('my_bookmarks.php');">
+                            <option value="ORDER BY Posts.Created DESC">Newest to Oldest Post</option>
+                            <option value="ORDER BY Posts.Created ASC">Oldest to Newest Post</option>
+                            <option value="ORDER BY Posts.Updated DESC">Newest to Oldest Update</option>
+                            <option value="ORDER BY Posts.Updated ASC">Oldest to Newest Update</option>
+                            <option value="ORDER BY Bookmarks.Created DESC">Newest to Oldest Bookmarks</option>
+                            <option value="ORDER BY Bookmarks.Created ASC">Oldest to Newest Bookmarks</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="hidden" id="limit" value="6">
+                    </div>                   
+                </div>
+                <!-- end of sub-menu-items -->
+            </div>
+            <!-- end of sub-menu -->
+            <section id="search-bar">
+                <!-- search-bar -->
+                <div class="search-bar">
+                    <!-- search-bar-items -->
+                    <div class="search-bar-items">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts('my_bookmarks.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear" onclick="clearSearch(); reloadPosts('my_bookmarks.php');">Clear</button>
+                    </div>
+                    <!-- end of search-bar-items -->
+                </div>
+                <!-- end of search-bar -->               
+            </section>
+            <section id="posts-data"></section>
+            <section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="increaseLimit(); reloadPosts('my_bookmarks.php');">Show More</button>
+                </div>
+            </section>        
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main-content  -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });       
+
+    reloadPosts('my_bookmarks.php');
+
+    $("footer").load("includes/footer.php");
+
+    getTags(0);
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>    
+</html>

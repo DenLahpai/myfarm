@@ -378,6 +378,11 @@ section .desc > p {
     border: 1px solid gold; 
 }
 
+.post-menu-item > div:active {
+    background-color: var(--leaf-color);
+    color: white;
+}
+
 
 .post-created {
     text-align: right;

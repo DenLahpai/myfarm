@@ -28,8 +28,18 @@ function markAsSoldOut (Id) {
     $.post ("includes/mark_as_sold_out.php", {
         Id: Id
     }, function (data) {
-        alert(data);
-        reloadPosts('my_posts.php'); 
+
+		if (data == 0) {
+			var msg = "Post updated successfully!";
+			alert(msg);
+			reloadPosts('my_posts.php'); 
+		}
+
+		if (data == 1) {
+			var errorMsg = "There was a connection error! Please try again!";
+			alert(errorMsg);
+			reloadPosts('my_posts.php');
+		}        
     });
 }
 

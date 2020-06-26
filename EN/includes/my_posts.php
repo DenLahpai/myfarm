@@ -11,7 +11,7 @@ if (empty($_POST['search'])) {
 	$job = "select_one_user_posts";
 }
 else {
-	$job = 'search';
+	$job = 'search_one_user_posts';
 }
 
 if (empty($_POST['limit'])) {
@@ -35,7 +35,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 <div class="grid-container">
 	<?php foreach ($rows_Posts as $row_Posts): ?>
 		<div class="grid-item">
-			<div class="post-items">
+			<div class="post-items" style="border: 2px solid var(--leaf-color);">
 				<div class="post-item">
 					<div class="post-menu-bar">
 						<div class='post-user'>
@@ -109,6 +109,6 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 			</div>
 		</div>
 	<?php endforeach ?>
-	<div id="remaining-data" style="display:none;"><?php echo $rowCount - $limit; ?></div>
+	<div id="remaining-data" style="display: none;" ><?php echo $rowCount - $limit; ?></div>
 </div>
 <!-- end of grid-container -->

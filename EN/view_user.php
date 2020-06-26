@@ -1,4 +1,4 @@
-<?php  
+<?php
 require_once "../functions.php";
 if (!isset($_GET['UsersLink']) || empty($_GET['UsersLink']) || $_GET['UsersLink'] == "") {
 	echo "Please go back and try agian!";
@@ -13,7 +13,7 @@ foreach ($rows_Users as $row_Users) {
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-	<title><?php echo $row_Users->Username; ?></title>	
+	<title><?php echo $row_Users->Username; ?></title>
 </head>
 <body>
 	<header></header>
@@ -22,18 +22,18 @@ foreach ($rows_Users as $row_Users) {
 		<!-- wrapper -->
 		<div class="wrapper">
 			<div class="title">
-				<h4>Users: <? echo $row_Users->Username; ?></h4>
+				<h4>User: <? echo $row_Users->Username; ?></h4>
 			</div>
 			<!-- sub-menu -->
 			<div class="sub-menu">
 				<!-- sub-menu-items -->
 				<div class="sub-menu-items">
 					<div class="sub-menu-item">
-						<a href="<? echo 'view_user_posts.php?UsersLink='.$row_Users->UsersLink; ?>">Posts</a>
+						<a href="<? echo 'user_posts.html?UsersLink='.$row_Users->UsersLink; ?>">Posts</a>
 					</div>
 				</div>
 				<!-- end of sub-menu-items -->
-			</div>	
+			</div>
 			<!-- end of sub-menu -->
 			<section id="view-user">
 				<!-- view-user -->
@@ -48,15 +48,15 @@ foreach ($rows_Users as $row_Users) {
 							<?php echo $row_Users->Mobile; ?>
 						</div>
 						<div class="view-user-item">
-							Email: 
-							<?php 
+							Email:
+							<?php
 							if (isset($row_Users->Email)) {
 								echo "<a href=\"mailto: $row_Users->Email\">".$row_Users->Email."</a>";
 							}
 							?>
 						</div>
 						<div class="view-user-item">
-							Address: 
+							Address:
 							<?php echo $row_Users->Address; ?>
 						</div>
 						<div class="view-user-item">
@@ -72,7 +72,7 @@ foreach ($rows_Users as $row_Users) {
 				</div>
 				<!-- end of view-user -->
 			</section>
-		</div>		
+		</div>
 		<!-- end of wrapper -->
 	</div>
 	<!-- end of main-content -->
@@ -93,7 +93,7 @@ foreach ($rows_Users as $row_Users) {
             $('.main-content').before(data);
         });
 
-              
+
         $("footer").load("includes/footer.php");
 
         getTags(0);
