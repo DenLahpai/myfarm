@@ -7,8 +7,7 @@ if (isset($_POST['PostsLink']) || !empty($_POST['PostsLink']) || $_POST['PostsLi
         foreach ($rows_Users as $row_Users) {
             #code...
         }
-        // echo $row_Users->UsersLink;
-        table_Bookmarks ('insert', $row_Users->UsersLink, NULL);
+        table_Bookmarks ('insert', $row_Users->Link, NULL);
     }
 }
 ?>

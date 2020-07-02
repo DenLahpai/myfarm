@@ -29,7 +29,7 @@ foreach ($rows_Users as $row_Users) {
 				<!-- sub-menu-items -->
 				<div class="sub-menu-items">
 					<div class="sub-menu-item">
-						<a href="<? echo 'user_posts.html?UsersLink='.$row_Users->UsersLink; ?>">Posts</a>
+						<a href="<? echo 'user_posts.html?UsersLink='.$row_Users->Link; ?>">Posts</a>
 					</div>
 				</div>
 				<!-- end of sub-menu-items -->

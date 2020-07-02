@@ -61,7 +61,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
                                 <div>
                                     Send <span class="symbols">&#9993;</span>
                                 </div>
-                                <div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->UsersLink; ?>'">
+                                <div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
                                     View User Info																				
                                 </div>
                             </div>								

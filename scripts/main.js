@@ -53,3 +53,8 @@ function clearSearch () {
 	$("#search").val("");
 	location.reload();
 }
+
+function checkComment (Id) {
+	var comment = $("#Comment" + Id).html();
+	$("#btn-comment" + Id).css("display", "block");	
+}

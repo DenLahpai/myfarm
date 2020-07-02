@@ -31,7 +31,7 @@ nav {
     display: flex;
     padding: 6px;
     justify-content: space-between;
-    align-items: center;    
+    align-items: center;
 }
 
 .hamburger-layer {
@@ -251,7 +251,7 @@ section .desc > p {
 .post-form {
     background: #F8EC9D;
     text-align: center;
-    padding: 12px;        
+    padding: 12px;
 }
 
 .post-form div {
@@ -319,7 +319,7 @@ section .desc > p {
 
 .btn-search {
     padding: 6px 3px;
-} 
+}
 
 .image_preview img {
     max-width: 90%;
@@ -335,6 +335,10 @@ section .desc > p {
 
 .post-items img {
     max-width: 87%;
+}
+
+.post-item {
+    margin: 6px;
 }
 
 .post-menu-bar {
@@ -368,14 +372,14 @@ section .desc > p {
     position: absolute;
     right: 0;
     color: var(--leaf-color);
-    background: white;       
+    background: white;
 }
 
 .post-menu-item > div {
     padding: 12px 6px;
     border: 1px solid white;
     cursor: pointer;
-    border: 1px solid gold; 
+    border: 1px solid gold;
 }
 
 .post-menu-item > div:active {
@@ -383,11 +387,10 @@ section .desc > p {
     color: white;
 }
 
-
 .post-created {
     text-align: right;
     font-style: italic;
-    font-size: 0.6em;   
+    font-size: 0.6em;
 }
 
 .post-description {
@@ -406,18 +409,105 @@ section .desc > p {
     position: absolute;
     display: none;
     background: white;
-    color: var(--leaf-color);   
+    color: var(--leaf-color);
 }
 
 .post-user-menu-items div {
     padding: 12px 6px;
     border: 1px solid gold;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 .post-user-menu-items div:active {
     background: var(--leaf-color);
     color: white;
+}
+
+.post-command-bar {
+    background: #FAFAFA;
+    border-top: 3px solid gold;
+    border-bottom: 1px solid gold;
+}
+
+.comments {
+    text-align: left;
+}
+
+.post-command-items {
+	display: inline-flex;
+}
+
+.post-command-items > div {
+    display: inline-block;
+    padding: 12px;
+    width: 100%;
+}
+
+.view-comments {
+    text-align: left;
+    color: blue;
+    cursor: pointer;
+}
+
+.view-comments > span {
+    text-decoration: underline;
+}
+
+.comment-input-item {
+    display: flex;
+    margin-bottom: 12px;
+    width: 100%;   
+    text-align: left; 
+}
+
+.comments {
+    /*display: none;*/
+}
+
+.comments-items {
+    border: 1px solid silver;
+    border-radius: 12px;
+    padding: 6px;
+    margin: 3px;
+}
+
+.comments-item-username {
+    color: blue;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.textarea {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 1px 6px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: vertical;
+    min-height: 40px;
+    line-height: 20px;   
+}
+
+.comment-commands {
+    display: flex;
+}
+
+.comment-commands > div {
+    color: var(--wood-color);
+    margin-top: 24px;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.replies {
+    width: 100%;
+}
+
+.replies > div {
+    padding: 12px;
 }
 
 .password-form {
@@ -426,7 +516,7 @@ section .desc > p {
 
 .password-form-items {
     display: inline-block;
-    text-align: right;    
+    text-align: right;
 }
 
 .password-form-items div {
@@ -522,8 +612,14 @@ textarea {
     color: red;
 }
 
-.btn-symbol {
-
+.btn-comment {
+    display: none;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--leaf-color);
+    color: white;
+    font-weight: bolder;
+    border: 1px solid var(--honey-color);
 }
 
 .superscript {

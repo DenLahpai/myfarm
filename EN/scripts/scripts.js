@@ -525,7 +525,7 @@ function insertNewPost() {
             contentType: false,
             processData: false,
             success: function(data) {
-                if (data === 0) {
+                if (data == 0) {
                     // zero is returned if there is no error!
                     Toggle('new-post');
                     reloadPosts('select_posts.php');
@@ -633,4 +633,41 @@ function removeBookmark (BookmarksId) {
 
 
 
+//                      ********************* Function for comments *********************
 
+function postComment (Id, source) {
+    var Comment = $("#Comment" + Id).html().trim();
+    if (Comment == "") {
+        alert("There is nothing to post!");
+    }
+    else {
+        $.post("includes/insert_comment.php", {
+            Comment: Comment,
+            PostsId: Id
+            }, function (data) {
+                
+                if(data == 0) {
+                    reloadPosts (source);
+                }
+                if (data == 1) {
+                    alert('There was a connection erro! Please try again!');
+                    reloadPosts (source);
+                }
+            }
+        
+        );
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//                      ********************* End of fucntions for comments *********************

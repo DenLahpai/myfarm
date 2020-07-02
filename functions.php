@@ -20,7 +20,7 @@ function table_Users($job, $var1, $var2) {
         case 'insert':
             //getting data from the form
             $Username = trim($_REQUEST['Username']);
-            $UsersLink = md5($Username);
+            $Link = md5($Username);
             $Mobile = trim($_REQUEST['Mobile']);
             $Email = trim($_REQUEST['Email']);
             $Password = trim($_REQUEST['Password1']);
@@ -34,7 +34,7 @@ function table_Users($job, $var1, $var2) {
             $LanguagesId = trim($_REQUEST['LanguagesId']);
             $query = "INSERT INTO Users SET
                 Username = :Username,
-                UsersLink = :UsersLink,               
+                Link = :Link,               
                 Password = :Password,
                 Title = :Title,
                 Name = :Name,
@@ -50,7 +50,7 @@ function table_Users($job, $var1, $var2) {
             ;";
             $database->query($query);
             $database->bind(':Username', $Username);
-            $database->bind(':UsersLink', $UsersLink);
+            $database->bind(':Link', $Link);
             $database->bind(':Password', md5($Password));
             $database->bind(':Mobile', $Mobile);
             $database->bind(':Email', $Email);
@@ -146,10 +146,10 @@ function table_Users($job, $var1, $var2) {
             break;
 
         case 'select_one_by_link':
-            # $var1 = $UsersLink
-            $query = "SELECT * FROM Users WHERE UsersLink = :UsersLink ;";
+            # $var1 = $Link
+            $query = "SELECT * FROM Users WHERE Link = :Link ;";
             $database->query($query);
-            $database->bind(':UsersLink', $var1);
+            $database->bind(':Link', $var1);
             return $r = $database->resultset();
             break;            
               
@@ -183,22 +183,22 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
     switch ($job) {
         case 'insert':
             # creating link
-            $link = uniqid('post_link', true);
+            $Link = uniqid('post_link', true);
             $query = "INSERT INTO Posts SET 
-                link = :link,
+                Link = :Link,
                 Title = :Title,
                 Description = :Description,
                 TagsId = :TagsId,
                 UsersId = :UsersId
             ;";
             $database->query($query);
-            $database->bind(':link', $link);
+            $database->bind(':Link', $Link);
             $database->bind(':Title', trim($_GET['Title']));
             $database->bind(':Description', trim($_GET['Description']));
             $database->bind(':TagsId', $_GET['TagsId']);
             $database->bind(':UsersId', $_SESSION['UsersId']);
             if ($database->execute()) {
-                return $link;
+                return $Link;
             }
             else {
                 echo 1;
@@ -222,7 +222,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
         case 'search':
             $search = '%'.$_POST['search'].'%';
             $query = "SELECT 
-                Posts.Id, 
+                Posts.Id, 'No post!'
                 Posts.Link,
                 Posts.Title, 
                 Posts.Description,
@@ -416,7 +416,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
             break;
 
         case 'select_bookmarks':
-            #var1 = UsersLink
+            #var1 = Link
             $query = "SELECT  
                 Bookmarks.Id AS BookmarksId,
                 Bookmarks.PostsLink,
@@ -688,5 +688,59 @@ function table_Bookmarks ($job, $var1, $var2) {
             break;
     }
 }
+
+//function to use data from the table Comments 
+function table_Comments ($job, $var1, $var2, $sorting, $limit) {
+    $database = new Database();
+
+    switch ($job) {
+        case 'insert':
+            # var1 = PostsLink
+            # var2 = UsersLink
+            //creating CommentsLink
+            $Link = uniqid('comment_link', true);
+            $query = "INSERT INTO Comments SET 
+                Link = :Link,
+                PostsLink = :PostsLink,
+                UsersLink = :UsersLink,
+                Comment = :Comment
+            ;";
+            $database->query($query);
+            $database->bind(':Link', $Link);
+            $database->bind(':PostsLink', $var1);
+            $database->bind(':UsersLink', $var2);
+            $database->bind(':Comment', $_POST['Comment']);
+            if ($database->execute()) {
+                // zero is returned if no error
+                echo 0;
+            }
+            else {
+                // one is returned for connection error
+                echo 1;
+            }
+            break;
+
+        case 'rowCount_Comments_for_one_post':
+            #var1 = PostsLink
+            $query = "SELECT * FROM Comments WHERE PostsLink = :PostsLink ORDER BY Updated;";
+            $database->query($query);
+            $database->bind(':PostsLink', $var1);
+            return $r = $database->rowCount();
+            break;    
+
+        case 'select_for_one_post':
+            # var1 = PostsLink
+            $query = "SELECT * FROM Comments WHERE PostsLink = :PostsLink ORDER BY Updated;";
+            $database->query($query);
+            $database->bind(':PostsLink', $var1);
+            return $r = $database->resultset();
+            break;    
+
+        default:
+            # code...
+            break; 
+    }
+}
+
 
 ?>

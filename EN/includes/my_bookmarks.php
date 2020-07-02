@@ -28,13 +28,13 @@ foreach ($rows_Users as $row_Users) {
 }
 
 if ($job == 'search_bookmarks') {
-	$rowCount = table_Posts ('search_bookmark_rowCount', $row_Users->UsersLink, NULL, NULL, NULL);
+	$rowCount = table_Posts ('search_bookmark_rowCount', $row_Users->Link, NULL, NULL, NULL);
 }
 else {
-	$rowCount = table_Posts ('rowCount_bookmarks', $row_Users->UsersLink, NULL, NULL, NULL);
+	$rowCount = table_Posts ('rowCount_bookmarks', $row_Users->Link, NULL, NULL, NULL);
 }
 
-$rows_Posts = table_Posts ($job, $row_Users->UsersLink, NULL, $sorting, $limit);
+$rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
  
 ?>
 <!-- grid-container -->
@@ -58,7 +58,7 @@ $rows_Posts = table_Posts ($job, $row_Users->UsersLink, NULL, $sorting, $limit);
 									<div>
 										Contact <span class="symbols">&#9993;</span>
 									</div>
-									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->UsersLink; ?>'">
+									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
 										View User's Info						
 									</div>
 								</div>								
