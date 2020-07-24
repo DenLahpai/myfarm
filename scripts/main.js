@@ -24,25 +24,6 @@ function checkOneField(field) {
 	}
 }
 
-function markAsSoldOut (Id) {
-    $.post ("includes/mark_as_sold_out.php", {
-        Id: Id
-    }, function (data) {
-
-		if (data == 0) {
-			var msg = "Post updated successfully!";
-			alert(msg);
-			reloadPosts('my_posts.php'); 
-		}
-
-		if (data == 1) {
-			var errorMsg = "There was a connection error! Please try again!";
-			alert(errorMsg);
-			reloadPosts('my_posts.php');
-		}        
-    });
-}
-
 function increaseLimit () {
 	var limit = $("#limit").val();
 	var newLimit = parseInt(limit) + parseInt(6);
@@ -57,4 +38,22 @@ function clearSearch () {
 function checkComment (Id) {
 	var comment = $("#Comment" + Id).html();
 	$("#btn-comment" + Id).css("display", "block");	
+}
+
+function checkReply (Id) {
+	var reply = $("#Reply" + Id).html();
+	$("#btn-reply" + Id).css("display", "block");
+}
+
+function markMailAsRead (Link) {
+	$.post("includes/mark_mail_as_read.php", {
+		MessagesLink: Link
+		}, function (data) {
+			if (data == 0) {
+				window.location.href= 'read_message.html?MessagesLink=' + Link;
+			}
+			if (data == 1) {
+				alert("There was a connection error! Please try again!");
+			}
+	});
 }

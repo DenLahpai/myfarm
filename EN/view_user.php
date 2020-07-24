@@ -83,6 +83,7 @@ foreach ($rows_Users as $row_Users) {
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
         $.get("includes/head.html", function (data) {
             $('head').prepend(data);
         });

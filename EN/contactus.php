@@ -1,8 +1,8 @@
 <?php
-require_once "../functions.php";
+require_once "../../functions.php";
 if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
     $database = new Database();
-    $query = "INSERT INTO Messages SET
+    $query = "INSERT INTO Messages2Admin SET
         Name = :Name,
         Email = :Email,
         Message = :Message

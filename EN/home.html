@@ -12,28 +12,30 @@
             <div class="title">
                 <h4>Posts</h4>
             </div>
-            <!-- sub-menu -->
-            <div class="sub-menu">
-                <!-- sub-menu-items -->
-                <div class="sub-menu-items">
-                    <div class="sub-menu-item" onclick="Toggle('new-post');">
-                        New Post
+            <section id="sub-menu">
+                <!-- sub-menu -->
+                <div class="sub-menu">
+                    <!-- sub-menu-items -->
+                    <div class="sub-menu-items">
+                        <div class="sub-menu-item" onclick="Toggle('new-post');">
+                            New Post
+                        </div>
+                        <div>
+                            <select name="sorting" id="sorting" onchange="reloadPosts('select_posts.php');">
+                                <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
+                                <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
+                                <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
+                                <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="hidden" id="limit" value="6">
+                        </div>                   
                     </div>
-                    <div>
-                        <select name="sorting" id="sorting" onchange="reloadPosts('select_posts.php');">
-                            <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
-                            <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
-                            <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
-                            <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="hidden" id="limit" value="6">
-                    </div>                   
+                    <!-- end of sub-menu-items -->
                 </div>
-                <!-- end of sub-menu-items -->
-            </div>
-            <!-- end of sub-menu -->
+                <!-- end of sub-menu -->
+            </section>
             <section id="new-post">
                 <div class="post-form">
                     <form id="post-form" method="post" action="includes/insert_post.php" enctype="multipart/form-data">
@@ -46,16 +48,22 @@
                         <div>
                             <textarea name="Description" id="Description" placeholder="Description..."></textarea>
                         </div>
+                        <!-- post-form-commands -->
                         <div class="post-form-commands">
-                            <select name="TagsId" id="TagsId">
-                                <option value="0">Tags</option>
-                            </select>
-                            <label for="Image">Upload Image</label>
-                            <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                            <div>
+                                <label for="Image">Upload Image</label>
+                                <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                            </div>
+                            <div>
+                                <select name="TagsId" id="TagsId">
+                                    <option value="0">Tags</option>
+                                </select>
+                            </div>    
+                            <div>
+                               <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
+                            </div>                        
                         </div>
-                        <div>
-                           <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
-                        </div>
+                        <!-- end of post-form-commands -->
                     </form>
                 </div> 
             </section>
@@ -89,6 +97,7 @@
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+
     $.get("includes/head.html", function (data) {
         $('head').prepend(data);
     });

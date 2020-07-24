@@ -19,6 +19,7 @@ else {
     foreach ($rows as $row) {
         $_SESSION['UsersId'] = $row->Id;
         $_SESSION['Username'] = $row->Username;
+        $_SESSION['Link'] = $row->Link;
         echo $rowCount;        
     }
 }

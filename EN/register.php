@@ -1,5 +1,5 @@
 <?php
-require_once "../functions.php";
+require_once "../../functions.php";
 //checking if the email is NULL
 if (!empty($_POST['Email'])) {
 	if (!filter_var($_POST['Email'], FILTER_VALIDATE_EMAIL)){

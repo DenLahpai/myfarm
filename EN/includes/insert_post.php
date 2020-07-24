@@ -14,31 +14,16 @@ elseif ($link != 1) {
 			$ext = explode('.', $file['name']);
 			$file_ext = strtolower(end($ext));
 			$folder_path = "../../uploads/";
-			$file_name = uniqid('', true);
+			$file_name = uniqid('', true).'.'.$file_ext;
+			$path = "../../uploads/".$file_name;
 	
-			$sourceProperties = getimagesize($file['tmp_name']);
-			$imageType = $sourceProperties[2];
-	
-			switch ($imageType) {
-				
-				case IMAGETYPE_PNG:
-					$imageResourceId = imagecreatefrompng($file['tmp_name']);
-					$targetLayer = imageResize($imageResourceId, $sourceProperties[0], $sourceProperties[1]);
-					imagepng($targetLayer, $folder_path."thumb_".  $file_name.'.'. $file_ext);
-					break;
-	
-				case IMAGETYPE_JPEG:
-					$imageResourceId = imagecreatefromjpeg($file['tmp_name']);
-					$targetLayer = imageResize($imageResourceId, $sourceProperties[0], $sourceProperties[1]);
-					imagejpeg($targetLayer, $folder_path."thumb_".  $file_name.'.'. $file_ext);
-					break;	
-				
-				default:
-					# code...
-					break;
-			}
-			move_uploaded_file($file['tmp_name'], $folder_path.$file_name.".".$file_ext);
-			table_Images ('insert', $link, $file_name.'.'.$file_ext, NULL, NULL);
+			move_uploaded_file($file['tmp_name'], $path);
+			table_Images ('insert', $link, $file_name, NULL, NULL);
+			
+			// $thumb_name = uniqid('thumb_', true).'.'.$file_ext;
+			$thumb_path = "../../uploads/thumb_".$file_name;
+			CreateThumbnail($path, $thumb_path, 300, $quatlity = 100);
+			
 		}
 		else {
 			// no image!

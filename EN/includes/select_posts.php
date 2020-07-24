@@ -48,7 +48,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 							<span onclick="Toggle('<? echo 'post-user-menu'.$row_Posts->Id; ?>');"><?php echo $row_Users->Username; ?></span>
 							<div id="<? echo 'post-user-menu'.$row_Posts->Id; ?>" class="post-user-menu">
 								<div class="post-user-menu-items">
-									<div>
+									<div onclick="window.location.href='<? echo "compose_mail.html?UsersLink=$row_Users->Link"; ?> '; ">
 										Contact <span class="symbols">&#9993;</span>
 									</div>
 									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
@@ -100,6 +100,9 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 					</div>
 				</div>
 				<div class="post-item">
+					<div class="post-tag">
+						Tag: <? echo $row_Posts->English; ?>
+					</div>
 					<div class="post-updated">
 						Last update:
 						<?php echo date("d-m-Y H:i", strtotime($row_Posts->Updated)); ?>
@@ -166,23 +169,72 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 										<?php echo $row_Comments->Comment; ?>
 									</div>									
 								</div>
+								<div class="comment-item" style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
+									<?php echo date('d-M-y H:i', strtotime($row_Comments->Created)); ?>
+								</div>
 								<div class="comment-item">
 									<div class="comment-commands">
 										<div onclick="Toggle('<? echo "reply-input".$row_Comments->Id; ?>');">
 											Reply
 										</div>
-										<div>
-											Replies
+										<div onclick="Toggle('<? echo "Replies".$row_Comments->Id; ?>')">
+											<?php  
+											// getting row count for replies 
+											$rowCount_Replies = table_Replies ('rowCount_replies_for_one_comment', $row_Comments->Link, NULL, NULL, NULL);
+											?>
+											<?
+											echo $rowCount_Replies;
+
+											if ($rowCount_Replies <= 1) {
+												echo " Reply";
+											}
+											
+											else {
+												echo " Replies";
+											}
+											?>
 										</div>
 										<div>
 											Report <span class="symbols">&#10071;</span>
 										</div>
 									</div>
-									<div class="replies" id="<? echo "reply-input".$row_Comments->Id;?>">
+									<div class="reply" id="<? echo "reply-input".$row_Comments->Id;?>">
 										<div>
-											<span class="textarea" id="<? echo "reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"><? echo "@". $row_Users->Username; ?></span>
+											<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"><? echo "@". $row_Users->Username." | "; ?></span>
+										</div>
+										<div>
+											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'select_posts.php');">Post Reply!</button>
 										</div>
 									</div>
+									<!-- replies -->
+									<div class="replies" id="<? echo "Replies".$row_Comments->Id; ?>">
+										<?php
+										// getting data from the table replies
+										$rows_Replies = table_Replies ('select_for_one_comment', $row_Comments->Link, NULL, NULL, NULL);										
+										?>
+										<?php foreach ($rows_Replies as $row_Replies): ?>
+											<div class="replies-items">
+												<div class="replies-item">
+													<div>
+														<span class="comments-item-username" onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
+															<?php  
+															//getting data from the table Users
+															$rows_Users = table_Users ('select_one_by_link', $row_Replies->UsersLink, NULL);
+															foreach ($rows_Users as $row_Users) {
+																echo $row_Users->Username;
+															}
+															?>	
+														</span>
+														<?php echo $row_Replies->Message; ?>
+													</div>
+													<div style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
+														<?php echo date("d-M-y H:i", strtotime($row_Replies->Created)); ?>
+													</div>
+												</div>												
+											</div>
+										<?php endforeach ?>
+									</div>
+									<!-- end of replies -->
 								</div>
 							</div>
 						<?php endforeach ?>

@@ -1,4 +1,3 @@
-
     <div class="footer-links">
         <a href="aboutus.html">About Us</a> |
         <a href="contactus.html">Contact Us</a> |

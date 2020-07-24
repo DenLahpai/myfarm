@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Inbox</title>
+</head>
+<body>
+	<header></header>
+	<!-- main-content -->
+	<div class="main-content">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<div class="title">
+				<h4>My Inbox</h4>
+			</div>
+			<section id="sub-menu">
+				<!-- sub-menu -->
+                <div class="sub-menu">
+	                <!-- sub-menu-items -->
+	                <div class="sub-menu-items">
+	                    <div class="sub-menu-item" onclick="window.location.href = 'sent_mails.html';">
+	                        Sent
+	                    </div>
+	                    <div>
+	                        <select name="sorting" id="sorting" onchange="loadMessages('my_inbox.php');">
+	                            <option value="ORDER BY Created DESC">Newest to Oldest</option>
+	                            <option value="ORDER BY Created ASC">Oldest to Newest</option>
+	                            <option value="ORDER BY Users.Username DESC">Username Z to A</option>
+	                            <option value="ORDER BY Updated ASC">Username A to Z</option>
+	                        </select>
+	                    </div>
+	                    <div>
+	                        <input type="hidden" id="limit" value="6">
+	                    </div>                   
+	                </div>
+	                <!-- end of sub-menu-items -->
+	            </div>
+                <!-- end of sub-menu -->    
+			</section>
+			<section id='search-bar'>
+				<!-- search-bar -->
+                <div class="search-bar">
+                    <!-- search-bar-items -->
+                    <div class="search-bar-items">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                        <button type="button" class="btn-search" id="btn-search" onclick="loadMessages('my_inbox.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear" onclick="clearSearch(); loadMessages('my_inbox.php');">Clear</button>
+                    </div>
+                    <!-- end of search-bar-items -->
+                </div>
+                <!-- end of search-bar --> 
+			</section>
+			<section id='Messages-data'></section>
+			<section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="increaseLimit(); loadMessages('my_inbox.php');">Show More</button>
+                </div>
+            </section>
+		</div>
+		<!-- end of wrapper -->
+	</div>
+	<!-- end of main-content -->
+	<footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });       
+
+      
+    $("footer").load("includes/footer.php");    
+
+    loadMessages ('my_inbox.php');
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>
+</html>

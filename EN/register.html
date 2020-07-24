@@ -107,16 +107,21 @@
 <script src="scripts/scripts.js" charset="utf-8"></script>
 <script type="text/javascript">
     $('document').ready(function () {
+
         $.get("includes/head.html", function (data) {
             $("head").prepend(data);
         });
+
         $("header").load("includes/header.html");
+
         $('#ads').load('includes/ads.html');
+        
         $('footer').load('includes/footer.php');
-        $.get("../select_languages.php", {selected: '2'}, function (data) {
+
+        $.get("select_languages.php", {selected: '2'}, function (data) {
             $("#LanguagesId").prepend(data);
         });
-        $.get("../select_countries.php", function (data) {
+        $.get("select_countries.php", function (data) {
             $("#CountryCode").prepend(data);
         });
     });

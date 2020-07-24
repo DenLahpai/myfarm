@@ -146,7 +146,6 @@ function validateEmail(sEmail) {
 }
 
 
-
 //                                          ********************** Functions for registrations ***************************
 
 //function to check for username duplication
@@ -451,24 +450,26 @@ function imagePreview(input) {
         var img = document.getElementById('Image').files[0];
         var imageName = img.name;
         var imageExtension = imageName.split('.').pop().toLowerCase();
-        if(jQuery.inArray(imageExtension, ['png', 'jpg', 'jpeg']) == -1) {
+        if(jQuery.inArray(imageExtension, ['jpg', 'jpeg']) == -1) {
             alert("Invalid Image Type");
             $("#btn-submit").attr('disabled', 'disabled');
         }
+
+        else {
+            $("#btn-submit").removeAttr('disabled');
+            var imagePv = new FileReader();
+            imagePv.onload = function (e) {
+                $("#image_preview").attr('src', e.target.result);                
+            };              
+        }
+
         var imageSize = img.size;
         if (imageSize > 12000000) {
             alert("Image is too large!");
             $("#btn-submit").attr('disabled', 'disabled');      
         }
-        else {
-            $("#btn-submit").removeAttr('disabled');
-            var imagePv = new FileReader();
-            imagePv.onload = function (e) {
-                $("#image_preview").attr('src', e.target.result);
-            };
-            imagePv.readAsDataURL(input.files[0]);    
-        }
-  
+        
+        imagePv.readAsDataURL(input.files[0]);   
     }
 
 }
@@ -528,7 +529,8 @@ function insertNewPost() {
                 if (data == 0) {
                     // zero is returned if there is no error!
                     Toggle('new-post');
-                    reloadPosts('select_posts.php');
+                    // reloadPosts('select_posts.php');
+                    location.reload();
                     alert('Your post has been uploaded successfully!');
                 }
                 else {
@@ -579,7 +581,7 @@ function checkForRemainingData () {
     var i = $("#remaining-data").html();
     if (i <= 0) {
         $("#btn-load-more").attr('disabled', 'disabled');
-        $("#btn-load-more").html('No More Posts!');
+        $("#btn-load-more").html('No More Data!');
     }
     else {
         $("#btn-load-more").removeAttr('disabled', 'disabled');
@@ -628,6 +630,25 @@ function removeBookmark (BookmarksId) {
     });
 }
 
+function markAsSoldOut (Id) {
+    $.post ("includes/mark_as_sold_out.php", {
+        Id: Id
+    }, function (data) {
+
+        if (data == 0) {
+            var msg = "Post updated successfully!";
+            alert(msg);
+            reloadPosts('my_posts.php'); 
+        }
+
+        if (data == 1) {
+            var errorMsg = "There was a connection error! Please try again!";
+            alert(errorMsg);
+            reloadPosts('my_posts.php');
+        }        
+    });
+}   
+
 
 //                      ********************* End of functions for new Post *********************
 
@@ -645,12 +666,12 @@ function postComment (Id, source) {
             Comment: Comment,
             PostsId: Id
             }, function (data) {
-                
+                alert(data);
                 if(data == 0) {
                     reloadPosts (source);
                 }
                 if (data == 1) {
-                    alert('There was a connection erro! Please try again!');
+                    alert('There was a connection error! Please try again!');
                     reloadPosts (source);
                 }
             }
@@ -659,15 +680,70 @@ function postComment (Id, source) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
+function insertReply (Id, source) {
+    var Reply = $("#Reply"+ Id).html().trim();
+    $.post ("includes/insert_reply.php", {
+            Message: Reply,
+            CommentsId: Id
+        }, function (data) {
+                
+            if (data == 0) {
+                reloadPosts (source);
+            }
+            if (data == 1) {
+                alert('There was a connection error! Please try again!');
+                reloadPost (source);
+            }
+        } 
+    );
+}
 
 //                      ********************* End of fucntions for comments *********************
+
+
+function deleteMessage (Link) {
+    var r = confirm("Are you sure you want to delete this message?");
+    if (r == true) {
+       window.location.href = 'includes/delete_message.php?MessagesLink=' + Link;
+    }
+}
+
+function replyMessage (ReceiversLink) {
+    var Subject = $("#Subject").html().trim();
+    var Message = $("#Message").html().trim();
+    var ConversationId = $("#ConversationId").val().trim();
+    
+    $.post("includes/reply_message.php", {
+        Subject: Subject, 
+        Message: Message, 
+        ConversationId: ConversationId,
+        ReceiversLink: ReceiversLink
+        }, function (data) {
+            if (data == 0) {
+                alert('Your message was successfully sent!');
+                window.location.href = 'my_inbox.html';
+            }
+            else {
+                alert('There was a connection error! Please try again!');
+            }
+    });
+}
+
+// function to load messages 
+function loadMessages (source) {
+    var sorting = $("#sorting").val()
+    var search = $("#search").val().trim();
+    var limit = $("#limit").val();
+
+    checkForRemainingData ();
+
+    $.post ("includes/" + source, {
+        sorting: sorting,
+        search: search, 
+        limit: limit
+        }, function (data) {
+            $("#Messages-data").html(data);
+            // alert(data);
+    });
+
+}

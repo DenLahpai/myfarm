@@ -46,16 +46,22 @@
                         <div>
                             <textarea name="Description" id="Description" placeholder="Description..."></textarea>
                         </div>
+                        <!-- post-form-commands -->
                         <div class="post-form-commands">
-                            <select name="TagsId" id="TagsId">
-                                <option value="0">Tags</option>
-                            </select>
-                            <label for="Image">Upload Image</label>
-                            <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                            <div>
+                                <label for="Image">Upload Image</label>
+                                <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                            </div>
+                            <div>
+                                <select name="TagsId" id="TagsId">
+                                    <option value="0">Tags</option>
+                                </select>
+                            </div>    
+                            <div>
+                               <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
+                            </div>                        
                         </div>
-                        <div>
-                           <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
-                        </div>
+                        <!-- end of post-form-commands --> 
                     </form>
                 </div> 
             </section>
@@ -88,6 +94,7 @@
 <script type="text/javascript" src="scripts/scripts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
         $.get("includes/head.html", function (data) {
             $('head').prepend(data);
         });

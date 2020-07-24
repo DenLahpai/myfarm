@@ -42,9 +42,11 @@
 <script src="scripts/scripts.js" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
         $.get("includes/head.html", function (data) {
             $("head").prepend(data);
         });
+
         $("header").load("includes/header.html");
 
         $("#ads").load("includes/ads.html");
