@@ -85,7 +85,8 @@
                 <div>
                     <button type="button" id="btn-load-more" onclick="increaseLimit(); reloadPosts('select_posts.php');">Show More</button>
                 </div>
-            </section>            
+            </section> 
+            <section id="ads"></section>           
         </div>
         <!-- end of wrapper -->
     </div>
@@ -109,6 +110,8 @@ $(document).ready(function () {
     });       
 
     reloadPosts('select_posts.php');
+
+    $("#ads").load("ads.html");
 
     $("footer").load("includes/footer.php");    
 

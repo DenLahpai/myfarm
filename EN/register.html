@@ -55,7 +55,7 @@
                                 <input type="text" name="Mobile" id="Mobile" placeholder="Mobile Number">
                             </li>
                             <li>
-                                <input type="email" name="Email" id="Email" placeholder="Email@email.com" onblur="validateEmail(this.value);">
+                                <input type="email" name="Email" id="Email" placeholder="Email@email.com" onblur="validateEmail(this.value);  checkEmail(this.value);">
                                 <br>
                                 <span id="emailStatus"></span>
                             </li>                         
@@ -73,16 +73,12 @@
                                 <input type="text" name="State" id="State" placeholder="State/Division">
                             </li>
                             <li>
-                                <select name="CountryCode" id="CountryCode">
-                                    
-                                </select>
+                                <select name="CountryCode" id="CountryCode"></select>
                             </li>
                             <li>
                                 Choose your default language
                                 <br>
-                                <select name="LanguagesId" id="LanguagesId">                                    
-                                    
-                                </select>
+                                <select name="LanguagesId" id="LanguagesId"></select>
                             </li>
                             <li id="response1"></li>
                             <li>
@@ -93,9 +89,7 @@
                 </div>
                 <!-- end of registration-form -->
             </section>
-            <section id="ads">
-
-            </section>
+            <section id="ads"></section>
         </div>
         <!-- end of wrapper -->
     </div>
@@ -114,14 +108,15 @@
 
         $("header").load("includes/header.html");
 
-        $('#ads').load('includes/ads.html');
+        $("#ads").load("ads.html");
         
         $('footer').load('includes/footer.php');
 
-        $.get("select_languages.php", {selected: '2'}, function (data) {
+        $.post("includes/select_languages.php", {selected: '2'}, function (data) {
             $("#LanguagesId").prepend(data);
         });
-        $.get("select_countries.php", function (data) {
+
+        $.post("includes/select_countries.php", function (data) {
             $("#CountryCode").prepend(data);
         });
     });

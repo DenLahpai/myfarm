@@ -48,6 +48,7 @@
                 <!-- end of search-bar --> 
 			</section>
 			<section id="Messages-data"></section>
+			<section id="ads"></section>
 		</div>
 		<!-- end of wrapper -->
 	</div>
@@ -73,6 +74,8 @@ $(document).ready(function () {
     $.post("includes/sent_mails.php", function (data) {
     	$("#Messages-data").html(data);
     });
+
+    $("#ads").load("ads.html");
     
     $("footer").load("includes/footer.php");    
 

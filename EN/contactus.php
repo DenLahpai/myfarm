@@ -16,7 +16,7 @@ if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
         $message = trim($_POST['Message']);
         $mail_header = "FROM: <".$_POST['Email'].">\r\n";
         $mail_header .= "Content-type: text/html\r\n";
-        mail ('den.lahpai@icloud.com', $subject, $mail_header);
+        mail ('den.lahpai@icloud.com', $subject, $Message, $mail_header);
         echo "You message was sent successfully! Thank You!";
     }
     else {

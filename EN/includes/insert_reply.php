@@ -20,8 +20,20 @@ if (isset($_SESSION['UsersId'])) {
 		//Updating post update time
 		table_Posts ('update_time', $row_Comments->PostsLink, NULL, NULL, NULL);
 
-		//Sending notifications to the commenter owner
-		table
+		//Inserting notification to Comment onwer
+		$receivers_link = $row_Comments->UsersLink;
+		$post_link = $row_Comments->PostsLink;
+		table_Users_Notifications ('insert_reply_nfc_to_commenter', $row_Comments->UsersLink, $row_Comments->PostsLink, NULL, NULL);
+
+		//getting the post owner
+		$rows_Posts = table_Posts ('select_one_by_link', $row_Comments->PostsLink, NULL, NULL, NULL);
+		foreach ($rows_Posts as $row_Posts) {
+			# code...
+		}
+
+		//Inserting notification to Post Owner
+		table_Users_Notifications ('insert_reply_nfc_to_post_owner', $row_Posts->UsersLink, $row_Posts->Link, NULL, NULL);	
+		
 	}
 }
 ?>

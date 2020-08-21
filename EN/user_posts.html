@@ -47,7 +47,8 @@
                 <div>
                     <button type="button" id="btn-load-more" onclick="">Load More</button>
                 </div>
-            </section>             
+            </section>
+            <section id="ads"></section>         
         </div>
         <!-- end of wrapper -->
     </div>
@@ -104,7 +105,9 @@ $(document).ready(function () {
         }, function(data) {
             $("#posts-data").html(data);
         }
-    );       
+    );   
+
+    $("#ads").load("ads.html");
 
     $("footer").load("includes/footer.php");
 

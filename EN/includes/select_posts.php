@@ -138,10 +138,10 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 					</div>
 				</div>
 				<div class="post-item">
-				<?php 
-				// getting numbers of row count for comments
-				$rowCount_Comments = table_Comments ('rowCount_Comments_for_one_post',$row_Posts->Link, NULL, NULL, NULL);
-				?>	
+					<?php 
+					// getting numbers of row count for comments
+					$rowCount_Comments = table_Comments ('rowCount_Comments_for_one_post',$row_Posts->Link, NULL, NULL, NULL);
+					?>	
 					<div class="view-comments">
 						<div id="<? echo "btn-view-comments".$row_Posts->Id; ?>" onclick="Toggle('<? echo "comments".$row_Posts->Id; ?>');"><? echo $rowCount_Comments; ?> Comments
 						</div>

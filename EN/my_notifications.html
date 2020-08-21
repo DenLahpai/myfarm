@@ -13,6 +13,7 @@
 				<h4>My Notifications</h4>
 			</div>
 			<section id="nfc-data"></section>
+			<section id="ads"></section>
 		</div>
 		<!-- end of wrapper -->
 	</div>
@@ -33,7 +34,13 @@ $(document).ready(function () {
 
     $.get("includes/setting-menu.html", function(data) {
         $('.main-content').before(data);
-    });       
+    });
+
+    $.get("includes/my_notifications.php", function(data) {
+    	$('#nfc-data').html(data);
+    });
+
+    $("#ads").load("ads.html");       
 
     $("footer").load("includes/footer.php");    
 

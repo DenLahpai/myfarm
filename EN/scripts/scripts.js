@@ -186,6 +186,26 @@ function checkUsername () {
     }
 }
 
+//function to check for email duplictions
+function checkEmail (Email) {
+
+    $.post("../check_email.php", {
+        Email: Email.trim()
+        }, function(data) {
+            if (data == 0) {
+                // No duplicate entry
+                $("#emailStatus").removeClass('error');
+                $("#btn-submit").removeAttr("disabled", "disabled");
+            }
+            else {
+                var msg = "There is already an account with the email address you are trying to register!";
+                $("#emailStatus").html(msg);
+                $("#emailStatus").addClass('error');
+                $("#btn-submit").attr("disabled", "disabled");
+            }
+    });
+}
+
 //function to check passwords
 function checkPasswords () {
     var Password1 = $('#Password1');
@@ -666,7 +686,7 @@ function postComment (Id, source) {
             Comment: Comment,
             PostsId: Id
             }, function (data) {
-                alert(data);
+                
                 if(data == 0) {
                     reloadPosts (source);
                 }
@@ -746,4 +766,54 @@ function loadMessages (source) {
             // alert(data);
     });
 
+}
+
+
+function postCommentOnePost(PostsId) {
+    var Comment = $("#Comment" + PostsId).html().trim();
+    
+    $.post("includes/insert_comment.php", {
+        Comment: Comment,
+        PostsId: PostsId
+        }, function (data) {
+            if (data == 0) {
+                location.reload(true);
+            }
+            if (data == 1) {
+                alert('There was a connection error! Please try again!');
+                location.reload(true);
+            }
+    });
+}
+
+function insertReplyOnePost (CommentsId) {
+    var Reply = $("#Reply" + CommentsId).html().trim();
+    
+    $.post('includes/insert_reply.php', {
+        Message: Reply, 
+        CommentsId: CommentsId
+        }, function (data) {
+            if (data == 0) {
+                location.reload(true);
+            }
+
+            if (data == 1) {
+                alert('There was a connection error! Please try again!');
+                location.reload(true);
+            }
+    });
+}
+
+function deleteNotification (Link) {
+    $.post('includes/delete_notification.php', {
+        Link: Link
+        }, function (data) {
+            if (data == 0) {
+                location.reload(true);
+            }
+            else {
+                alert('There was a connection error! Please try again!');
+                location.reload(true);
+            }
+    });
 }

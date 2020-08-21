@@ -55,6 +55,7 @@
                     <button type="button" id="btn-load-more" onclick="increaseLimit(); loadMessages('my_inbox.php');">Show More</button>
                 </div>
             </section>
+            <section id="ads"></section>
 		</div>
 		<!-- end of wrapper -->
 	</div>
@@ -77,6 +78,7 @@ $(document).ready(function () {
         $('.main-content').before(data);
     });       
 
+    $("#ads").load("ads.html");
       
     $("footer").load("includes/footer.php");    
 

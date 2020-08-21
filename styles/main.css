@@ -19,7 +19,7 @@ body {
 /* navigation bar */
 
 header{
-    background: var(--wood-color);
+    background: var(--leaf-color);
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -147,7 +147,7 @@ nav {
     display: inline-block;
     text-align: center;
     padding: 6px 42px;
-    background-color: var(--leaf-color);
+    background-color: var(--honey-color);
     color: white;
     border-radius: 6px;
 }
@@ -478,7 +478,7 @@ section .desc > p {
 }
 
 .comments {
-    /*display: none;*/
+    display: none;
 }
 
 .comments-items {
@@ -648,6 +648,56 @@ section .desc > p {
     margin-bottom: 12px;
 }
 
+.notifications-items {
+    border: 1px solid var(--leaf-color);
+    border-radius: 6px;
+    margin: 12px;    
+}
+
+.notifications-command {
+    text-align: right;
+}
+
+.notifications-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.notifications-item a {
+    text-decoration: none;
+}
+
+.notifications-text-unread {
+    padding: 6px;
+}
+
+.notifications-text-read {
+    padding: 6px;
+}
+
+.notifications-text-unread a {
+    font-weight: bold;
+    color: blue;
+}
+
+.notifications-text-read a {
+    color: black;    
+}
+
+.notifications-item-time {
+    font-size: 0.6em;
+    color: var(--leaf-color);
+}
+
+.notifications-command {
+    border-left: 1px solid silver;   
+    text-align: center;
+    cursor: pointer;
+}
+
+.notifications-command span {
+    font-size: 3em;
+}
 
 .update-user-form {
     text-align: center;
@@ -670,6 +720,14 @@ section .desc > p {
 
 .view-user-items {
     padding: 12px;
+}
+
+.password-form-items {
+    text-align: center;
+}
+
+.password-form-item {
+    text-align: left;
 }
 
 #ads {

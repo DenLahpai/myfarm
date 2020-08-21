@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-	<title>Read Message</title>
+	<title>View Post</title>
 </head>
 <body>
 	<header></header>
@@ -9,14 +9,18 @@
 	<div class="main-content">
 		<!-- wrapper -->
 		<div class="wrapper">
-			<section id="message-command"></section>
-			<section id="read-message"></section>
+            <section id="search-bar">
+                <input type="hidden" id="search" name="">
+                <input type="hidden" id="sorting" name="">
+                <input type="hidden" id="limit" name="">
+            </section>
+			<section id="posts-data"></section>
             <section id="ads"></section>
 		</div>
 		<!-- end of wrapper -->
 	</div>
 	<!-- end of main-content -->
-	<footer></footer>
+    <footer></footer>
 </body>
 <script type="text/javascript" src="../scripts/jQuery.js"></script>
 <script type="text/javascript" src="../scripts/main.js"></script>
@@ -32,19 +36,31 @@ $(document).ready(function () {
 
     $.get("includes/setting-menu.html", function(data) {
         $('.main-content').before(data);
-    });       
+    });
+
+    $.get("includes/my_notifications.php", function(data) {
+    	$('#nfc-data').html(data);
+    });
 
     $("#ads").load("ads.html");
 
-    $("footer").load("includes/footer.php"); 
+    $("footer").load("includes/footer.php");    
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const MessagesLink = urlParams.get('MessagesLink');   
+    const PostsLink = urlParams.get('PostsLink');
 
-    $.post ('includes/read_message.php?MessagesLink=' + MessagesLink, {}, function(data) {
-    	$("#message-command").html(data);
-    })
+    $.post ('includes/view_post.php', {
+        PostsLink: PostsLink
+        }, function (data){
+            $('#posts-data').html(data);
+    });
+
+    $("#btn-comment").on('click', function () {
+        alert('click');
+    });
+
+     
 
     checkSession();
 

@@ -27,17 +27,16 @@ if(isset($_POST['Comment'])) {
         }
 
         //getting all the commenters of the post
-        $rows_Commenters = table_Comments ('select_for_commenters', $row_Posts->Link, NULL, NULL, NULL);
+        $rows_Commenters = table_Comments ('select_for_commenters', $row_Posts->Link, $row_posts_owner->Link, NULL, NULL);
         
         foreach ($rows_Commenters as $row_Commenters) {
             //inserting data to notify all the commenters
-            table_Users_Notifications ('insert_nfc_to_all_commenters', $row_Commenters->UsersLink, $Comments_LogsLink, NULL, NULL);
+            table_Users_Notifications ('insert_nfc_to_all_commenters', $row_Commenters->UsersLink, $row_Posts->Link, NULL, NULL);
         }
 
         //inserting data to the table Users_Notifications
         // Notification for the post owner
         table_Users_Notifications ('insert_nfc_to_post_owner', $row_posts_owner->Link, $row_Posts->Link, NULL, NULL);
-
     }   
 }
 ?>

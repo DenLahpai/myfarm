@@ -13,6 +13,7 @@
 				<h4>Update My Info</h4>
 			</div>
 			<section id="update-user"></section>
+            <section id="ads"></section>
 		</div>
 		<!-- end of wrapper -->
 	</div>
@@ -36,6 +37,8 @@
         $.get("includes/update_user_form.php", function(data) {
         	$("#update-user").html(data);
         });
+
+        $("#ads").load("ads.html");
 
         $("footer").load("includes/footer.php");
 

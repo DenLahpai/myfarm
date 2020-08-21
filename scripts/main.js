@@ -57,3 +57,13 @@ function markMailAsRead (Link) {
 			}
 	});
 }
+
+function markNotificationAsRead(Link) {
+	$.post('includes/mark_notification_as_read.php', {
+		Link : Link
+	}, function (data) {
+		if (data == 1) {
+			alert('There was a connection error! Please try again!');
+		}
+	});
+}
