@@ -20,7 +20,7 @@ function login() {
     if (Username.val() == "") {
         Username.addClass('input-error');
         var inputError = true;
-        var errorMsg = 'Please enter your username! ';
+        var errorMsg = 'Username naw bang ya rit! ';
         $(".error").html(errorMsg);
     }
 
@@ -28,10 +28,10 @@ function login() {
         Password.addClass('input-error');
         var inputError = true;
         if (errorMsg) {
-            errorMsg += "Please enter your password!";
+            errorMsg += "Password naw bang ya rit!";
         }
         else {
-            var errorMsg = "Please enter your password!";
+            var errorMsg = "Password naw bang ya rit!";
         }
         $(".error").html(errorMsg);
     }
@@ -48,7 +48,7 @@ function login() {
                     window.location.href = 'home.html';
                 }
                 else {
-                    var errorMsg = "Wrong Username or Password!";
+                    var errorMsg = "Username shing nre Password shut taw ai!";
                     $(".error").html(errorMsg);
                 }
             }
@@ -139,7 +139,7 @@ function validateEmail(sEmail) {
   var reEmail = /^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
 
   if(!sEmail.match(reEmail)) {
-    alert("Invalid email address!");
+    alert("Email address n jaw ai!");
     return false;
   }
   return true;
@@ -156,12 +156,12 @@ function checkUsername () {
     if (l > 12) {
         //if username is longer than 12 characters
         $("#usernameError").addClass('error');
-        $("#usernameError").html('Username must not be longer than 12 letters!');
+        $("#usernameError").html('Username gasi 12 hta nmai jan ai!');
         $("#btn-submit").attr("disabled", "disabled");
     }
     else if (l < 4) {
         $("#usernameError").addClass('error');
-        $("#usernameError").html('Username must be at least 4 letters!');
+        $("#usernameError").html('Username gasi nlaw dik htum 4 re ra ai!');
         $("#btn-submit").attr("disabled", "disabled");
     }
     else {
@@ -172,14 +172,14 @@ function checkUsername () {
                 //No duplicate entry
                 $("#usernameError").removeClass('error');
                 $("#usernameError").addClass('green');
-                var msg = "Username <span style='font-style: italic'>" + Username.val().trim() + "</span> is available!";
+                var msg = "Username <span style='font-style: italic'>" + Username.val().trim() + "</span> mai lang ai!";
                 $("#usernameError").html(msg);
                 $("#btn-submit").removeAttr("disabled");            
             }
             else {
                 //Duplicate entry
                 $("#usernameError").addClass('error');
-                $("#usernameError").html("Username already exists! Please choose another one!");
+                $("#usernameError").html("Username masha ni la da ai! Kaga Username lata ya rit!");
                 $("#btn-submit").attr("disabled", "disabled");
             }
         });
@@ -198,7 +198,7 @@ function checkEmail (Email) {
                 $("#btn-submit").removeAttr("disabled", "disabled");
             }
             else {
-                var msg = "There is already an account with the email address you are trying to register!";
+                var msg = "Nang jaw ai email hte account nga ngut sai! ";
                 $("#emailStatus").html(msg);
                 $("#emailStatus").addClass('error');
                 $("#btn-submit").attr("disabled", "disabled");
@@ -213,25 +213,23 @@ function checkPasswords () {
     var l = Password1.val().trim().length;
     if (l < 6) {
         $("#passwordStatus").addClass('error');
-        $("#passwordStatus").html('Password must be at least 6 letters!');
+        $("#passwordStatus").html('Password gaw nlaw dik htum gasi 6 lawm ra ai!');
         $('#btn-submit').attr("disabled", "disabled");
     }
     else {
         if (Password1.val().trim() != Password2.val().trim()) {
             $('#passwordStatus').addClass('error');
-            $('#passwordStatus').html('Passwords do not match!');
+            $('#passwordStatus').html('Lahta na bang ai password hte ya bang ai password nbung ai!');
             $('#btn-submit').attr("disabled", "disabled");
         }
         else {
             $('#passwordStatus').removeClass('error');
             $('#passwordStatus').addClass('green');
-            $('#passwordStatus').html('Passwords match!');
+            $('#passwordStatus').html('Password ni bung sai!');
             $("#btn-submit").removeAttr("disabled");
         }
     }
 }
-
-
 
 //function to register
 function register() {
@@ -266,7 +264,7 @@ function register() {
     if (Username.val().trim() == "") {
         var inputError = true;
         Username.addClass('input-error');
-        errorMsg += 'Please choose a username! ';
+        errorMsg += 'Username bang ya rit! ';
         response.addClass('error');
         response.html(errorMsg);       
     }
@@ -274,7 +272,7 @@ function register() {
     if (Title.val() == "") {
         var inputError = true;
         Title.addClass('input-error');
-        errorMsg += 'Please choose a title! ';
+        errorMsg += "Shayi / Shadang lata ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -282,7 +280,7 @@ function register() {
     if (Name.val().trim() == "") {
         var inputError = true;
         Name.addClass('input-error');
-        errorMsg += " Please enter your name! "; 
+        errorMsg += "Na amying bang ya rit! "; 
         response.addClass('error');
         response.html(errorMsg);            
     }
@@ -290,7 +288,7 @@ function register() {
     if (Mobile.val().trim() == "") {
         var inputError = true;
         Mobile.addClass('input-error');
-        errorMsg += " Please enter your phone number! ";
+        errorMsg += "Na phone number bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -299,7 +297,7 @@ function register() {
         var inputError = true;
         Password1.addClass('input-error');
         Password2.addClass('input-error');
-        errorMsg += " Please set up a password! ";   
+        errorMsg += "Password bang ya rit! ";   
         response.addClass('error');
         response.html(errorMsg);      
     }
@@ -307,7 +305,7 @@ function register() {
     if (DOB.val() == "") {
         var inputError = true;
         DOB.addClass('input-error');
-        errorMsg += " Please enter your date of birth! ";  
+        errorMsg += "Na shangai nhtoi bang ya rit! ";  
         response.addClass('error');
         response.html(errorMsg);        
     }
@@ -315,7 +313,7 @@ function register() {
     if (Town.val().trim() == "") {
         var inputError = true;
         Town.addClass('input-error');
-        errorMsg += " Please enter your town! ";
+        errorMsg += "Na nga ai mare bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg); 
     }
@@ -323,7 +321,7 @@ function register() {
     if (State.val().trim() == "") {
         var inputError = true;
         State.addClass('input-error');
-        errorMsg += " Please enter your state/province! ";
+        errorMsg += "State amying bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -331,7 +329,7 @@ function register() {
     if (CountryCode.val() == "") {
         var inputError = true;
         CountryCode.addClass('input-error');
-        errorMsg += " Please choose your country! ";
+        errorMsg += "Mungdan lata ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }    
@@ -344,12 +342,12 @@ function register() {
             success: function(data){
                 if (data == 0) {
                     //if no error OK is returned
-                    alert('Account created successfully! Please login to start using our platform.');
+                    alert('Account nnan atsawm sha hpaw lu sai! Login galaw na anhte platform mai lang sai!');
                     window.location.href = 'index.html';
                 } 
                 if (data == 1) {
                     //1 is returned as connection error!
-                    var error = "<span class='error'>There was a connection error! Please try again!</span>";
+                    var error = "<span class='error'>Connection hten mat ai! Bai chyam ya rit!</span>";
                     response.html(error);
                 }
             }
@@ -507,7 +505,6 @@ function preview() {
             };
         }); 
     });
-
 }
 
 //function to get tags 
@@ -532,7 +529,7 @@ function insertNewPost() {
     if (Title.val() == "") {
         $("#btn-submit").attr('disabled', 'disabled');
         Title.addClass("input-error");
-        alert('Please put a title!');
+        alert('Chyeju hte gabaw bang ya rit!');
     }
 
     else {
@@ -551,11 +548,11 @@ function insertNewPost() {
                     Toggle('new-post');
                     // reloadPosts('select_posts.php');
                     location.reload();
-                    alert('Your post has been uploaded successfully!');
+                    alert('Na na post hpe lu mara sai!');
                 }
                 else {
                     // 1 us retured if there is an error!
-                    alert ("There was a connection error! Please try again!");
+                    alert ("Connection hten mat ai! Bai chyam ya rit!");
                     reloadPosts('select_posts.php');
                 }
             }
@@ -581,7 +578,7 @@ function reloadPosts (source) {
 }
 
 function deletePost(id) {
-    var r = confirm("Are you sure to delete this post! Once deleted it cannot be recovered!");
+    var r = confirm("Ndai post hte delete galaw na sai i? Delete galaw ngut ai hpang bai nmai mu sai!");
     if (r == true) {
         $.post ('includes/delete_post.php', {
             Id: id
@@ -590,7 +587,7 @@ function deletePost(id) {
                     reloadPosts('my_posts.php');
                 }
                 else {
-                    alert('There was a connection error! Please try again!');
+                    alert("Connection hten mat ai! Bai chyam ya rit!");
                 }                
             }
         );
@@ -601,11 +598,11 @@ function checkForRemainingData () {
     var i = $("#remaining-data").html();
     if (i <= 0) {
         $("#btn-load-more").attr('disabled', 'disabled');
-        $("#btn-load-more").html('No More Data!');
+        $("#btn-load-more").html('Ndai ram sha re sai!');
     }
     else {
         $("#btn-load-more").removeAttr('disabled', 'disabled');
-        $("#btn-load-more").html('Load More');
+        $("#btn-load-more").html('Naw Yu na');
     }
 }
 
@@ -618,13 +615,13 @@ function bookmarkPost (PostsLink) {
 			
 			if (data == 0) {
 				// Zero is returned if there is no error!
-				var msg = "This post has been added to your favorite list!";
+                var msg = "Ndai post hpe nang na matsing da ai jahpan kaw bang da sai!"
 				alert(msg);
 			}
 	
 			if (data == 1) {
 				// One is returned for connection error!
-				var errorMsg = "There was a connection problem!";
+				var errorMsg = "Connection hten mat ai! Bai chyam ya rit!";
 				alert(errorMsg);
 			}
 		}
@@ -638,12 +635,12 @@ function removeBookmark (BookmarksId) {
     }, function(data){
         
         if (data == 0) {
-            var msg = 'This post has been removed from your bookmarks!';
+            var msg = 'Ndai post hpe na na matsing da ai jahpan kaw na shaw kau sai!';
             alert(msg);
         }
 
         if (data == 1) {
-            var errorMsg = 'There was a connection problem! Please try again!';
+            var errorMsg = 'Connection hten mat ai! Bai chyam ya rit!';
             alert(errorMsg);
         }
         reloadPosts('my_bookmarks.php');
@@ -656,13 +653,13 @@ function markAsSoldOut (Id) {
     }, function (data) {
 
         if (data == 0) {
-            var msg = "Post updated successfully!";
+            var msg = "Post hpe update galaw lu sai!";
             alert(msg);
             reloadPosts('my_posts.php'); 
         }
 
         if (data == 1) {
-            var errorMsg = "There was a connection error! Please try again!";
+            var errorMsg = "Connection hten mat ai! Bai chyam ya rit!";
             alert(errorMsg);
             reloadPosts('my_posts.php');
         }        
@@ -679,7 +676,7 @@ function markAsSoldOut (Id) {
 function postComment (Id, source) {
     var Comment = $("#Comment" + Id).html().trim();
     if (Comment == "") {
-        alert("There is nothing to post!");
+        alert("Post mara na hpa nnga ai!");
     }
     else {
         $.post("includes/insert_comment.php", {
@@ -691,7 +688,7 @@ function postComment (Id, source) {
                     reloadPosts (source);
                 }
                 if (data == 1) {
-                    alert('There was a connection error! Please try again!');
+                    alert('Connection hten mat ai! Bai chyam ya rit!');
                     reloadPosts (source);
                 }
             }
@@ -711,7 +708,7 @@ function insertReply (Id, source) {
                 reloadPosts (source);
             }
             if (data == 1) {
-                alert('There was a connection error! Please try again!');
+                alert('Connection hten mat ai! Bai chyam ya rit!');
                 reloadPost (source);
             }
         } 
@@ -722,7 +719,7 @@ function insertReply (Id, source) {
 
 
 function deleteMessage (Link) {
-    var r = confirm("Are you sure you want to delete this message?");
+    var r = confirm("Ndai laika hpe delete galaw na sai i?");
     if (r == true) {
        window.location.href = 'includes/delete_message.php?MessagesLink=' + Link;
     }
@@ -744,7 +741,7 @@ function replyMessage (ReceiversLink) {
                 window.location.href = 'my_inbox.html';
             }
             else {
-                alert('There was a connection error! Please try again!');
+                alert('Connection hten mat ai! Bai chyam ya rit!');
             }
     });
 }
@@ -765,9 +762,7 @@ function loadMessages (source) {
             $("#Messages-data").html(data);
             // alert(data);
     });
-
 }
-
 
 function postCommentOnePost(PostsId) {
     var Comment = $("#Comment" + PostsId).html().trim();
@@ -780,7 +775,7 @@ function postCommentOnePost(PostsId) {
                 location.reload(true);
             }
             if (data == 1) {
-                alert('There was a connection error! Please try again!');
+                alert('Connection hten mat ai! Bai chyam ya rit!');
                 location.reload(true);
             }
     });
@@ -798,7 +793,7 @@ function insertReplyOnePost (CommentsId) {
             }
 
             if (data == 1) {
-                alert('There was a connection error! Please try again!');
+                alert('Connection hten mat ai! Bai chyam ya rit!');
                 location.reload(true);
             }
     });
@@ -812,7 +807,7 @@ function deleteNotification (Link) {
                 location.reload(true);
             }
             else {
-                alert('There was a connection error! Please try again!');
+                alert('Connection hten mat ai! Bai chyam ya rit!');
                 location.reload(true);
             }
     });

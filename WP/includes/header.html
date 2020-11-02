@@ -1,3 +1,55 @@
-<header>
-    <h1><? echo $header; ?></h1>
-</header>
+<!-- wrapper -->
+<div class="wrapper">
+    <nav>
+        <div class="nav-left">
+            <div class="hamburger-menu" onclick="openMenu();">
+                <div class="hamburger-layer"></div>
+                <div class="hamburger-layer"></div>
+                <div class="hamburger-layer"></div>
+            </div>
+        </div>
+        <div class="nav-mid">
+            <div class="Username">
+                <div id="UsersName"></div>                
+            </div>
+            <div class="language">
+                <select name="language" id="languages" onchange="changeLanguage();">
+                    <option value="EN">English</option>
+                    <option value="WP" selected>Jing Hpaw</option>
+                    <option value="MM">Myanmar</option>                    
+                </select>
+            </div>
+        </div>
+        <div class="nav-right">
+            <h4 onclick="openLoginForm();">Login</h4>
+        </div>
+    </nav>
+    <!-- login-form -->
+    <div class="login-form">
+        <form id="login-form" action="login.php" method="post">
+            <ul>
+                <li>
+                    <input type="text" name="Username" id="Username">
+                </li>
+                <li>
+                    <input type="password" name="Password" id="Password">
+                </li>
+                <li>
+                    <button type="button" name="button" id="button-login" onclick="login();">Login</button>
+                </li>
+                <li class="error"></li>
+                <li style="color: black">
+                    <a href="forgot_password.html">Password malap mat ai kun?</a>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <!-- login-form -->
+    <div class="drop-menu">
+        <ul>
+            <li><button type="button" name="button" onclick="window.location.href='home.html';">Home</button></li>
+            <li><button type="button" name="button" onclick="window.location.href='aboutus.html';">Anhte a lam</button></li>
+        </ul>
+    </div>
+</div>
+<!-- end of wrapper -->

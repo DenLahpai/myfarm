@@ -17,10 +17,10 @@ if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
         $mail_header = "FROM: <".$_POST['Email'].">\r\n";
         $mail_header .= "Content-type: text/html\r\n";
         mail ('den.lahpai@icloud.com', $subject, $Message, $mail_header);
-        echo "Your message was sent successfully! Thank You!";
+        echo "Na na laika atsawm sha lu sa sai! Chyeju kaba sai!";
     }
     else {
-        echo "There was an error! Please try again!";
+        echo "Connection hten mat ai! Chyeju hte bai sa ya rit!";
     }
 }
 ?>

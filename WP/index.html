@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+    <header>
+    </header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <!-- lead-banner -->
+            <div class="lead-banner">
+                <img src="../images/lead-banner.png" alt="">
+            </div>
+            <!-- end of lead-banner -->
+            <!-- title -->
+            <div class="title">
+                <h4>Hkap Tau Ga Ai!</h4>
+            </div>
+            <!-- end of title -->
+            <section id="home-page">
+                <div class="desc">
+                    <p>
+                        Ndai project na yaw shada ai lam gaw Myen mung kaw na hkai lu hkai sha ai masha ni hte mari na masha ni hpe matut mahkai lu na matu re. Ndai platform gaw yawng na matu manu n jaw ai sha mai akyu sha shawng ai.
+                    </p>
+                </div>
+            </section>
+            <section id="suggest">
+                Anhte a platform hpe lang na matu ndai kaw <span class="link" onclick="window.location.href='register.html';">jahpan bang ga</span>.
+            </section>
+            <section id="ads"></section>
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $.get("includes/head.html", function (data){
+            $("head").prepend(data);
+        } );
+
+        $("header").load("includes/header.html");
+
+        $("#ads").load("ads.html");
+
+        $("footer").load("includes/footer.php");
+        
+    });
+</script>
+</html>

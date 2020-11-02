@@ -355,7 +355,7 @@ section .desc > p {
     text-align: left;
     font-style: italic;
     color: var(--honey-color);
-    font-size: 60%;
+    /*font-size: 60%;*/
 }
 
 .post-menu-bar {

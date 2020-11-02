@@ -7,7 +7,7 @@ function table_Users($job, $var1, $var2) {
 
     switch ($job) {
         case 'check_before_insert':
-            
+
             $query = "SELECT Id FROM Users
                 WHERE Username = :Username
             ;";
@@ -17,10 +17,10 @@ function table_Users($job, $var1, $var2) {
             break;
 
         case 'check_email':
-            // getting data from the form 
-            $query =  "SELECT Id FROM Users 
+            // getting data from the form
+            $query =  "SELECT Id FROM Users
                 WHERE Email = :Email
-            ;";   
+            ;";
             $database->query($query);
             $database->bind(':Email', $_REQUEST['Email']);
             return $rowCount = $database->rowCount();
@@ -167,19 +167,19 @@ function table_Users($job, $var1, $var2) {
             $query = "SELECT * FROM Users WHERE Email = :Email ;";
             $database->query($query);
             $database->bind(':Email', $var1);
-            return $r = $database->rowCount();    
+            return $r = $database->rowCount();
             break;
 
         case 'reset_password_by_user_email':
             #$var1 = Email;
             $Password = 'goodluck'.date('d');
-            $query = "UPDATE Users SET 
-                Password = :Password 
+            $query = "UPDATE Users SET
+                Password = :Password
                 WHERE Email = :Email
-            ;"; 
+            ;";
             $database->query($query);
             $database->bind(':Password', md5($Password));
-            $database->bind(':Email', $var1);       
+            $database->bind(':Email', $var1);
             if ($database->execute()) {
                 return $Password;
             }
@@ -354,10 +354,10 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
 
         case 'select_one_by_link':
             # $var1 = PostsLink
-            $query = "SELECT 
+            $query = "SELECT
                 Posts.Id,
-                Posts.Link, 
-                Posts.Title, 
+                Posts.Link,
+                Posts.Title,
                 Posts.Description,
                 Posts.TagsId,
                 Posts.Status AS Status,
@@ -365,10 +365,10 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 Posts.Created,
                 Posts.Updated,
                 Users.Link AS UsersLink
-                FROM Posts 
-                LEFT OUTER JOIN Users 
+                FROM Posts
+                LEFT OUTER JOIN Users
                 ON Posts.UsersId = Users.Id
-                WHERE Posts.Link = :PostsLink 
+                WHERE Posts.Link = :PostsLink
 
             ;";
             $database->query($query);
@@ -504,7 +504,7 @@ function table_Posts ($job, $var1, $var2, $sorting, $limit) {
                 Bookmarks.Status AS BookmarksStatus,
                 Bookmarks.Created AS BookmarksCreated,
                 Bookmarks.Updated AS BookmarksUpdated,
-                Posts.Id AS Id,
+                Posts.Id AS PostsId,
                 Posts.Title,
                 Posts.Link,
                 Posts.Description,
@@ -1130,7 +1130,7 @@ function table_Languages ($job, $var1, $var2) {
             $database->query($query);
             return $r = $database->resultset();
             break;
-        
+
         default:
             # code...
             break;
@@ -1251,7 +1251,7 @@ function table_Comments ($job, $var1, $var2, $sorting, $limit) {
         case 'select_for_commenters':
             # $var1 = PostsLink
             # $var2 = PostOnwer
-            $query = "SELECT DISTINCT UsersLink FROM Comments WHERE PostsLink = :PostsLink 
+            $query = "SELECT DISTINCT UsersLink FROM Comments WHERE PostsLink = :PostsLink
                 AND UsersLink != :UsersLink
             ;";
             $database->query($query);
@@ -1379,10 +1379,10 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
             #var2 = PostsLink
             $Link = uniqid('usr_nfc', true);
             $Message = "replied to your comment.";
-            $query = "INSERT INTO Users_Notifications SET 
+            $query = "INSERT INTO Users_Notifications SET
                 Link = :Link,
                 ReceiversLink = :ReceiversLink,
-                Message = :Message, 
+                Message = :Message,
                 PostsLink = :PostsLink,
                 UsersLink = :UsersLink
             ;";
@@ -1393,20 +1393,20 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
             $database->bind(':Message', $Message);
             $database->bind(':UsersLink', $_SESSION['UsersLink']);
             $database->execute();
-            break;    
+            break;
 
         case 'insert_reply_nfc_to_post_owner':
             #var1 = ReceiversLink
             #var2 = PostsLink
             $Link = uniqid('usr_nfc', true);
             $Message = " replied to a comment on your post!";
-            $query = "INSERT INTO Users_Notifications SET 
+            $query = "INSERT INTO Users_Notifications SET
                 Link = :Link,
                 ReceiversLink = :ReceiversLink,
                 Message = :Message,
                 PostsLink = :PostsLink,
                 UsersLink = :UsersLink
-            ;"; 
+            ;";
             $database->query($query);
             $database->bind(':Link', $Link);
             $database->bind(':ReceiversLink', $var1);
@@ -1431,13 +1431,13 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
             ;";
             $database->query($query);
             $database->bind(':UsersLink', $_SESSION['UsersLink']);
-            return $r = $database->rowCount();            
+            return $r = $database->rowCount();
             break;
 
         case 'select_my_notifications':
             # $var1 = UsersLink
-            $query = "SELECT * FROM Users_Notifications 
-                WHERE ReceiversLink = :UsersLink 
+            $query = "SELECT * FROM Users_Notifications
+                WHERE ReceiversLink = :UsersLink
                 AND Status != 0
                 $sorting LIMIT $limit;";
             $database->query($query);
@@ -1465,7 +1465,7 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
 
         case 'delete_one':
             #var1 = Link
-            $query = "UPDATE Users_Notifications SET 
+            $query = "UPDATE Users_Notifications SET
                 Status = 0
                 WHERE Link = :Link
             ;";
@@ -1479,7 +1479,7 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
                 //one is returned for connection error
                 echo 1;
             }
-            break;    
+            break;
 
         default:
             # code...
