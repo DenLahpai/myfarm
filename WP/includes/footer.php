@@ -5,7 +5,9 @@
 </div>
 <div class="footer-social-net">
     Find us on: <br>
-    <img src="../images/facebook-icon.png" alt="">
+    <a href='http://www.facebook.com'>
+        <img src="../images/facebook-icon.png" alt="">
+    </a>
 </div>
 <div class="legal">
     Copyright (c) <?php echo date('Y');?> Myfarm Co. Ltd.,

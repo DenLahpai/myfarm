@@ -12,6 +12,7 @@
     padding: 0;
     margin: 0;
 }
+
 body {
     background: silver;
 }
@@ -750,6 +751,11 @@ footer {
   padding: 1rem;
   background-color: #efefef;
   text-align: center;
+}
+
+.footer-social-net img {
+    width: 30px;
+    height: 30px;    
 }
 
 /* End of home page style */
