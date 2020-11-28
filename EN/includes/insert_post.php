@@ -4,8 +4,8 @@ require_once "../../functions.php";
 //Inserting data to the table post
 $link = table_Posts ('insert', NULL, NULL, NULL, NULL);
 if ($link == 1) {
-		// 1 is returned if there is a connection error
-		echo 1;
+	// 1 is returned if there is a connection error
+	echo 1;
 }
 elseif ($link != 1) {
 	if (isset($_FILES['Image']) || !empty($_FILES['Image'])) {
