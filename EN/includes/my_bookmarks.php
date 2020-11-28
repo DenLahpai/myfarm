@@ -55,7 +55,7 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 							<span onclick="Toggle('<? echo 'post-user-menu'.$row_Posts->PostsId; ?>');"><?php echo $row_Users->Username; ?></span>
 							<div id="<? echo 'post-user-menu'.$row_Posts->PostsId; ?>" class="post-user-menu">
 								<div class="post-user-menu-items">
-									<div>
+									<div onclick="window.location.href='<? echo "compose_mail.html?UsersLink=$row_Users->Link"; ?> '; ">
 										Contact <span class="symbols">&#9993;</span>
 									</div>
 									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
