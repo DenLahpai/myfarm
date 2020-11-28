@@ -136,10 +136,10 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 		<div class="post-item">
 			<div class="comment-input-items">
 				<div class="comment-input-item">
-					<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"></span>
+					<span class="textarea" id="<? echo "Comment".$row_Posts->PostsId; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->PostsId; ?>')"></span>
 				</div>
 				<div class="comment-input-item">
-					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php');">Post Comment!</button>
+					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->PostsId;?>" onclick="postComment('<? echo $row_Posts->PostsId;?>', 'select_posts.php');">Post Comment!</button>
 				</div>	
 			</div>
 		</div>
@@ -149,12 +149,12 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 			$rowCount_Comments = table_Comments ('rowCount_Comments_for_one_post',$row_Posts->Link, NULL, NULL, NULL);
 			?>	
 			<div class="view-comments">
-				<div id="<? echo "btn-view-comments".$row_Posts->Id; ?>" onclick="Toggle('<? echo "comments".$row_Posts->Id; ?>');"><? echo $rowCount_Comments; ?> Comments
+				<div id="<? echo "btn-view-comments".$row_Posts->PostsId; ?>" onclick="Toggle('<? echo "comments".$row_Posts->PostsId; ?>');"><? echo $rowCount_Comments; ?> Comments
 				</div>
 			</div>
 		</div>
 		<div class="post-item">
-			<div class="comments" id="<? echo "comments".$row_Posts->Id; ?>">
+			<div class="comments" id="<? echo "comments".$row_Posts->PostsId; ?>">
 				<?php
 				//getting data from the table Comments for this post
 				$rows_Comments = table_Comments ('select_for_one_post', $row_Posts->Link, NULL, NULL, NULL);

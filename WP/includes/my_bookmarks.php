@@ -56,10 +56,10 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 							<div id="<? echo 'post-user-menu'.$row_Posts->PostsId; ?>" class="post-user-menu">
 								<div class="post-user-menu-items">
 									<div onclick="window.location.href='<? echo "compose_mail.html?UsersLink=$row_Users->Link"; ?> '; " >
-										Contact <span class="symbols">&#9993;</span>
+										Matut na <span class="symbols">&#9993;</span>
 									</div>
 									<div onclick="window.location.href = 'view_user.php?UsersLink=<? echo $row_Users->Link; ?>'">
-										View User's Info
+										Shi a lam
 									</div>
 								</div>
 							</div>
@@ -136,28 +136,28 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 		<div class="post-item">
 			<div class="comment-input-items">
 				<div class="comment-input-item">
-					<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"></span>
+					<span class="textarea" id="<? echo "Comment".$row_Posts->PostsId; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->PostsId; ?>')"></span>
 				</div>
 				<div class="comment-input-item">
-					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php');">Post Comment!</button>
+					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->PostsId;?>" onclick="postComment('<? echo $row_Posts->PostsId;?>', 'select_posts.php');">Comment Mara na!</button>
 				</div>
 			</div>
 		</div>
 		<div class="post-item">
 			<?php
 			// getting numbers of row count for comments
-			$rowCount_Comments = table_Comments ('rowCount_Comments_for_one_post',$row_Posts->Link, NULL, NULL, NULL);
+			$rowCount_Comments = table_Comments ('rowCount_Comments_for_one_post',$row_Posts->PostsLink, NULL, NULL, NULL);
 			?>
 			<div class="view-comments">
-				<div id="<? echo "btn-view-comments".$row_Posts->Id; ?>" onclick="Toggle('<? echo "comments".$row_Posts->Id; ?>');"><? echo $rowCount_Comments; ?> Comments
+				<div id="<? echo "btn-view-comments".$row_Posts->PostsId; ?>" onclick="Toggle('<? echo "comments".$row_Posts->PostsId; ?>');"><? echo $rowCount_Comments; ?> Comment ni
 				</div>
 			</div>
 		</div>
 		<div class="post-item">
-			<div class="comments" id="<? echo "comments".$row_Posts->Id; ?>">
+			<div class="comments" id="<? echo "comments".$row_Posts->PostsId; ?>">
 				<?php
 				//getting data from the table Comments for this post
-				$rows_Comments = table_Comments ('select_for_one_post', $row_Posts->Link, NULL, NULL, NULL);
+				$rows_Comments = table_Comments ('select_for_one_post', $row_Posts->PostsLink, NULL, NULL, NULL);
 				?>
 				<?php foreach ($rows_Comments as $row_Comments): ?>
 					<div class="comments-items">
