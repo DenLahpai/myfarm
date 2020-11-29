@@ -179,7 +179,7 @@ function checkUsername () {
             else {
                 //Duplicate entry
                 $("#usernameError").addClass('error');
-                $("#usernameError").html("Username masha ni la da ai! Kaga Username lata ya rit!");
+                $("#usernameError").html("Ndai Username masha ni la da ai! Kaga Username lata ya rit!");
                 $("#btn-submit").attr("disabled", "disabled");
             }
         });
