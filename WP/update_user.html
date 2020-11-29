@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<header></header>
+	<!-- main-content -->
+	<div class="main-content">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<div class="title">
+				<h4>Ngai na lam update galaw na</h4>
+			</div>
+			<section id="update-user"></section>
+            <section id="ads"></section>
+		</div>
+		<!-- end of wrapper -->
+	</div>
+	<!-- end of main-content -->
+	<footer></footer>
+</body><script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.get("includes/head.html", function (data) {
+            $("head").prepend(data);
+        });
+
+        $("header").load("includes/header.html");
+        
+        $.get("includes/setting-menu.html", function(data) {
+            $('.main-content').before(data);
+        });
+
+        $.get("includes/update_user_form.php", function(data) {
+        	$("#update-user").html(data);
+        });
+
+        $("#ads").load("ads.html");
+
+        $("footer").load("includes/footer.php");
+
+        checkSession();
+
+        setInterval(function() {
+            checkSession();
+        }, 1800000);
+    });
+</script>
+</html>

@@ -13,7 +13,7 @@ if (isset($_POST['Old_Password']) && isset($_SESSION['UsersId'])) {
 	}
 	else {
 		// Msg 'Wrong Password' in case incorrect password is entered
-		echo 'Wrong Password';
+		echo 'Password shut taw ai!';
 	}
 }
 

@@ -385,7 +385,7 @@ function updateUserData() {
     if (Title.val() == "") {
         var inputError = true;
         Title.addClass('input-error');
-        errorMsg += 'Please choose a title! ';
+        errorMsg += ' Shayi / Shadang lata ya rit! ';
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -393,7 +393,7 @@ function updateUserData() {
     if (Name.val().trim() == "") {
         var inputError = true;
         Name.addClass('input-error');
-        errorMsg += " Please enter your name! "; 
+        errorMsg += " Na a amyin bang ya rit! "; 
         response.addClass('error');
         response.html(errorMsg);            
     }
@@ -401,7 +401,7 @@ function updateUserData() {
     if (Mobile.val().trim() == "") {
         var inputError = true;
         Mobile.addClass('input-error');
-        errorMsg += " Please enter your phone number! ";
+        errorMsg += " Phone number bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -409,7 +409,7 @@ function updateUserData() {
     if (DOB.val() == "") {
         var inputError = true;
         DOB.addClass('input-error');
-        errorMsg += " Please enter your date of birth! ";  
+        errorMsg += " Shangai nhtoi bang ya rit ";  
         response.addClass('error');
         response.html(errorMsg);        
     }
@@ -417,7 +417,7 @@ function updateUserData() {
     if (Town.val().trim() == "") {
         var inputError = true;
         Town.addClass('input-error');
-        errorMsg += " Please enter your town! ";
+        errorMsg += " Nga ai mare bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg); 
     }
@@ -425,7 +425,7 @@ function updateUserData() {
     if (State.val().trim() == "") {
         var inputError = true;
         State.addClass('input-error');
-        errorMsg += " Please enter your state/province! ";
+        errorMsg += " State / Division bang ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -433,7 +433,7 @@ function updateUserData() {
     if (CountryCode.val() == "") {
         var inputError = true;
         CountryCode.addClass('input-error');
-        errorMsg += " Please choose your country! ";
+        errorMsg += " Mungdan lata ya rit! ";
         response.addClass('error');
         response.html(errorMsg);  
     }
@@ -446,12 +446,12 @@ function updateUserData() {
             success: function(data) {
                 if (data == 0) {
                     // zero is returned if there is no errror!
-                    var msg = "<span class='green'>Your details have been updated successfully!</span>";
+                    var msg = "<span class='green'>Na na lam ni update galaw ngut sai!</span>";
                     response.html(msg);
                 }
                 if (data == 1) {
                     // 1 is returned if there is a connection error!
-                    var errorMsg = "<span class='error'>There was a connection error! Please try again!</span>";
+                    var errorMsg = "<span class='error'>Connection hte mat ai! Bai chyam ya rit!</span>";
                     response.html(errorMsg);
                 }
             },
