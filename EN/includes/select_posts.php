@@ -227,19 +227,20 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 														</span>
 														<?php echo $row_Replies->Message; ?>
 													</div>
+
 													<div style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
 														<?php echo date("d-M-y H:i", strtotime($row_Replies->Created)); ?>
 													</div>
-												</div>
-												<div class="comment-commands">
-													<div onclick="Toggle('<? echo "reply-input2".$row_Replies->Id; ?>');">
-														Reply
+													<!-- starts here -->
+													<div class="comments-item">
+														<div class="comment-commands">
+															<div onclick="Toggle('<? echo "reply-input".$row_Comments->Id; ?>');">
+																Reply
+															</div>
+														</div>
 													</div>
-													<div>
-														Report <span class="symbols">&#10071;</span>
-													</div>
-												</div>
-												<!-- end of comment-commands -->
+													<!-- ends here -->
+												</div>												
 											</div>
 										<?php endforeach ?>
 									</div>
