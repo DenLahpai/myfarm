@@ -230,7 +230,16 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 													<div style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
 														<?php echo date("d-M-y H:i", strtotime($row_Replies->Created)); ?>
 													</div>
-												</div>												
+												</div>
+												<div class="comment-commands">
+													<div onclick="Toggle('<? echo "reply-input2".$row_Replies->Id; ?>');">
+														Reply
+													</div>
+													<div>
+														Report <span class="symbols">&#10071;</span>
+													</div>
+												</div>
+												<!-- end of comment-commands -->
 											</div>
 										<?php endforeach ?>
 									</div>
