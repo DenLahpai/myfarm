@@ -737,7 +737,7 @@ function replyMessage (ReceiversLink) {
         ReceiversLink: ReceiversLink
         }, function (data) {
             if (data == 0) {
-                alert('Your message was successfully sent!');
+                alert('Na na laika lu sa dat sai!');
                 window.location.href = 'my_inbox.html';
             }
             else {
