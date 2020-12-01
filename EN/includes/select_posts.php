@@ -130,7 +130,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 				<div class="post-item">
 					<div class="comment-input-items">
 						<div class="comment-input-item">
-							<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"></span>
+							<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')";>Write your comments...</span>
 						</div>
 						<div class="comment-input-item">
 							<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php');">Post Comment!</button>
@@ -200,7 +200,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 									</div>
 									<div class="reply" id="<? echo "reply-input".$row_Comments->Id;?>">
 										<div>
-											<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"><? echo "@". $row_Users->Username." | "; ?></span>
+											<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"></span>
 										</div>
 										<div>
 											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'select_posts.php');">Post Reply!</button>
@@ -236,6 +236,9 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 														<div class="comment-commands">
 															<div onclick="Toggle('<? echo "reply-input".$row_Comments->Id; ?>');">
 																Reply
+															</div>
+															<div>
+																Report <span class="symbols">&#10071;</span>
 															</div>
 														</div>
 													</div>

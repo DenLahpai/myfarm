@@ -718,27 +718,6 @@ function insertReply (Id, source) {
     );
 }
 
-function insertReply2 (Id, source) {
-    var Reply = $("#Reply2"+ Id).html().trim();
-    $.post ("includes/insert_reply.php", {
-            Message: Reply,
-            CommentsId: Id
-        }, function (data) {
-                
-            if (data == 0) {
-                reloadPosts (source);
-            }
-            if (data == 1) {
-                alert('There was a connection error! Please try again!');
-                reloadPost (source);
-            }
-        } 
-    );
-}
-
-
-
-
 
 //                      ********************* End of fucntions for comments *********************
 

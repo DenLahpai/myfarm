@@ -36,8 +36,8 @@ function clearSearch () {
 }
 
 function checkComment (Id) {
-	var comment = $("#Comment" + Id).html();
 	$("#btn-comment" + Id).css("display", "block");	
+	$("#Comment" + Id).html("");
 }
 
 function checkReply (Id) {
