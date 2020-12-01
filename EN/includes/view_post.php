@@ -124,7 +124,7 @@ else {
 	<div class="post-item">
 		<div class="comment-input-items">
 			<div class="comment-input-item">
-				<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"></span>
+				<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')">Write your comments...</span>
 			</div>
 			<div class="comment-input-item">
 				<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id; ?>');">Post Comment!</button>
