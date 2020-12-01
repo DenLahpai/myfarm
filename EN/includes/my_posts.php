@@ -128,7 +128,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 					<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')"></span>
 				</div>
 				<div class="comment-input-item">
-					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php');">Post Comment!</button>
+					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>');">Post Comment!</button>
 				</div>	
 			</div>
 		</div>
@@ -198,7 +198,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 									<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"><? echo "@". $row_Users->Username." | "; ?></span>
 								</div>
 								<div>
-									<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'select_posts.php');">Post Reply!</button>
+									<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>');">Post Reply!</button>
 								</div>
 							</div>
 							<!-- replies -->
@@ -225,6 +225,28 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 											<div style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
 												<?php echo date("d-M-y H:i", strtotime($row_Replies->Created)); ?>
 											</div>
+											<!-- starts here -->
+											<div class="comments-item">
+												<div class="comment-commands">
+													<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
+														Reply
+													</div>
+													<div>
+														Report <span class="symbols">&#10071;</span>
+													</div>															
+												</div>
+												<div class="reply" id="<? echo 're-reply-input'.$row_Replies->Id; ?>">
+													<div>
+														<span class="textarea" id="<? echo 'Re-Reply'.$row_Replies->Id; ?>" role="textbox" contenteditable onclick=""><? echo "@".$row_Users->Username." | "; ?>
+														</span>
+													</div>
+													<div>
+														<!-- <button onclick="alert('<? echo $row_Replies->Id; ?>');">Test</button> -->
+														<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>');">Post Reply!</button>
+													</div>
+												</div>														
+											</div>
+											<!-- ends here -->
 										</div>												
 									</div>
 								<?php endforeach ?>
