@@ -719,7 +719,7 @@ function insertReply (Id) {
 }
 
 function insertReReply (RepliesId, CommentsId) {
-    var Reply = $("#Re-Reply" + RepliesId).html();
+    var Reply = $("#Re-Reply" + RepliesId).html().trim();
     $.post("includes/insert_reply.php", {
         Message: Reply, 
         CommentsId: CommentsId
@@ -786,7 +786,7 @@ function loadMessages (source) {
 
 }
 
-
+/*
 function postCommentOnePost(PostsId) {
     var Comment = $("#Comment" + PostsId).html().trim();
     
@@ -821,6 +821,7 @@ function insertReplyOnePost (CommentsId) {
             }
     });
 }
+*/
 
 function deleteNotification (Link) {
     $.post('includes/delete_notification.php', {

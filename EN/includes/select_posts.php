@@ -227,7 +227,6 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 														</span>
 														<?php echo $row_Replies->Message; ?>
 													</div>
-
 													<div style="font-style: italic; font-size: 0.6em; color: var(--leaf-color); text-align: right;">
 														<?php echo date("d-M-y H:i", strtotime($row_Replies->Created)); ?>
 													</div>
@@ -250,8 +249,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 																<!-- <button onclick="alert('<? echo $row_Replies->Id; ?>');">Test</button> -->
 																<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>');">Post Reply!</button>
 															</div>
-														</div>
-														
+														</div>														
 													</div>
 													<!-- ends here -->
 												</div>												
