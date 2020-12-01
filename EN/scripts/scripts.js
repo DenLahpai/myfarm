@@ -676,7 +676,7 @@ function markAsSoldOut (Id) {
 
 //                      ********************* Function for comments *********************
 
-function postComment (Id, source) {
+function postComment (Id) {
     var Comment = $("#Comment" + Id).html().trim();
     if (Comment == "") {
         alert("There is nothing to post!");
@@ -688,11 +688,11 @@ function postComment (Id, source) {
             }, function (data) {
                 
                 if(data == 0) {
-                    reloadPosts (source);
+                    location.reload(true);
                 }
                 if (data == 1) {
                     alert('There was a connection error! Please try again!');
-                    reloadPosts (source);
+                    location.reload(true);
                 }
             }
         
@@ -700,7 +700,7 @@ function postComment (Id, source) {
     }
 }
 
-function insertReply (Id, source) {
+function insertReply (Id) {
     var Reply = $("#Reply"+ Id).html().trim();
     $.post ("includes/insert_reply.php", {
             Message: Reply,
@@ -708,13 +708,30 @@ function insertReply (Id, source) {
         }, function (data) {
                 
             if (data == 0) {
-                reloadPosts (source);
+                location.reload(true);
             }
             if (data == 1) {
                 alert('There was a connection error! Please try again!');
-                reloadPost (source);
+                location.reload(true);
             }
         } 
+    );
+}
+
+function insertReReply (RepliesId, CommentsId) {
+    var Reply = $("#Re-Reply" + RepliesId).html();
+    $.post("includes/insert_reply.php", {
+        Message: Reply, 
+        CommentsId: CommentsId
+        }, function (data) {
+            if (data == 0) {
+                location.reload(true);
+            }
+            if (data == 1) {
+                alert('There was a connection error! Please try agian!');
+                location.reload(true);
+            } 
+        }   
     );
 }
 
