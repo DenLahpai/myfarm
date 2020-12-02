@@ -12,6 +12,7 @@
             <div class="title">
                 <h4>Posts</h4>
             </div>
+            <section id="modal-area"></section>
             <section id="sub-menu">
                 <!-- sub-menu -->
                 <div class="sub-menu">
@@ -107,7 +108,9 @@ $(document).ready(function () {
 
     $.get("includes/setting-menu.html", function(data) {
         $('.main-content').before(data);
-    });       
+    });
+    
+    $("#modal-area").load("report_form.html");
 
     reloadPosts('select_posts.php');
 

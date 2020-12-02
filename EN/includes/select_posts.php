@@ -29,6 +29,8 @@ else {
 	$rowCount = table_Posts ('rowCount', NULL, NULL, NULL, NULL);
 }
 $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
+
+// TODO Open modal, connect with reports buttons , insert_report.php 
 ?>
 <!-- grid-container -->
 <div class="grid-container">

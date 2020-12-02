@@ -67,3 +67,8 @@ function markNotificationAsRead(Link) {
 		}
 	});
 }
+
+/* functions to open and close modals */
+function closeModal (modal) {
+	$("#" + modal).hide();
+}
