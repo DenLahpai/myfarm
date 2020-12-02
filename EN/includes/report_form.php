@@ -1,6 +1,5 @@
-
 <!-- modal report form -->
-<div class='modal' id="report_form_modal" onclick="closeModal('report_form_modal');">
+<div class='modal' id="report_form_modal">
     <!-- modal-header  -->
     <div class="modal-header">
         <span onclick="closeModal('report_form_modal');">X</span>
@@ -26,6 +25,7 @@
             </div>
             <div class="report-form-input">
                 <span id="SendersRemark" role="textbox" contenteditable onclick="this.innerHTML='';">Tell us why you are reporting this post or comment...</span>
+                <input type="" name="report-link" id="report-link">
             </div>
             <div class="report-form-button">
                 <button type="button">Submit</button>

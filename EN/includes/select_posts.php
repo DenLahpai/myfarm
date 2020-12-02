@@ -59,7 +59,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 								</div>
 							</div>
 						</div>
-						<div class="btn-post-											menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->Id; ?>')">&#9776;</div>
+						<div class="btn-post-menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->Id; ?>')">&#9776;</div>
 					</div>
 				</div>
 				<div id="<? echo 'post-menu-items'.$row_Posts->Id; ?>" class="post-menu-items">
@@ -67,8 +67,8 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 						<div onclick="bookmarkPost('<? echo $row_Posts->Link; ?>');">
 							Bookmark <span class="symbols">&#9873;</span>
 						</div>
-						<div>
-							Report <span class="symbols">&#10071;</span>
+						<div onclick="openReportForm('<? echo $row_Posts->Link ?>');">
+							Report <span class="symbols">&#10071;</span>							
 						</div>
 					</div>
 				</div>

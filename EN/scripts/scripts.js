@@ -856,3 +856,18 @@ function deleteNotification (Link) {
             }
     });
 }
+
+
+//function to open report form modal
+function openReportForm (link) {
+    $("#report-link").val(link);
+    $("#report_form_modal").show();
+    // alert(link);
+}
+
+function outsideClickModal (e) {
+    var modal = document.getElementById('report_form_modal');
+    if(e.target == modal) {
+        modal.style.display = 'none';
+    }
+}

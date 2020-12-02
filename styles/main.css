@@ -384,6 +384,7 @@ section .desc > p {
     display: none;
     position: relative;
     text-align: left;
+    cursor: pointer;
 }
 
 .post-menu-item {
@@ -905,8 +906,8 @@ textarea {
 .report-form-button button {
     width: 60%;
     padding: 12px;
-    border-radius: 12px;
-    background: var(--wood-color);
-    color: white;
+    /* border-radius: 12px; */
+    /* background: var(--wood-color); */
+    /* color: white; */
     font-weight: bold;
 }
