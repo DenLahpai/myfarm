@@ -128,7 +128,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 					<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')">Write your comments...</span>
 				</div>
 				<div class="comment-input-item">
-					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>',  'my_posts.php');">Post Comment!</button>
+					<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>',  'my_posts.php'); reloadPosts('my_posts.php');">Post Comment!</button>
 				</div>	
 			</div>
 		</div>
@@ -198,7 +198,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 									<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"><? echo "@". $row_Users->Username." | "; ?></span>
 								</div>
 								<div>
-									<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'my_posts.php');">Post Reply!</button>
+									<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'my_posts.php'); reloadPosts('my_posts.php');">Post Reply!</button>
 								</div>
 							</div>
 							<!-- replies -->

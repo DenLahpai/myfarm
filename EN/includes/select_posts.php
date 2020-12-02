@@ -42,7 +42,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 							//getting data from the table Users
 							$rows_Users = table_Users ('select_one', $row_Posts->UsersId, NULL);
 							foreach ($rows_Users as $row_Users) {
-								# code...
+								# code...											
 							}
 							?>
 							<span onclick="Toggle('<? echo 'post-user-menu'.$row_Posts->Id; ?>');"><?php echo $row_Users->Username; ?></span>
@@ -57,7 +57,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 								</div>
 							</div>
 						</div>
-						<div class="btn-post-menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->Id; ?>')">&#9776;</div>
+						<div class="btn-post-											menu" onclick="Toggle('<? echo "post-menu-items".$row_Posts->Id; ?>')">&#9776;</div>
 					</div>
 				</div>
 				<div id="<? echo 'post-menu-items'.$row_Posts->Id; ?>" class="post-menu-items">
@@ -133,7 +133,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 							<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')";>Write your comments...</span>
 						</div>
 						<div class="comment-input-item">
-							<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php');">Post Comment!</button>
+							<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'select_posts.php'); reloadPosts('select_posts.php');">Post Comment!</button>
 						</div>	
 					</div>
 				</div>
@@ -203,7 +203,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 											<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"></span>
 										</div>
 										<div>
-											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'select_posts.php');">Post Reply!</button>
+											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'select_posts.php'); reloadPosts('select_posts.php');">Post Reply!</button>
 										</div>
 									</div>
 									<!-- replies -->
@@ -247,7 +247,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 															</div>
 															<div>
 																<!-- <button onclick="alert('<? echo $row_Replies->Id; ?>');">Test</button> -->
-																<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'select_posts.php');">Post Reply!</button>
+																<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'select_posts.php'); reloadPosts('select_posts.php');">Post Reply!</button>
 															</div>
 														</div>														
 													</div>

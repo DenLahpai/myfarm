@@ -688,11 +688,11 @@ function postComment (Id, source) {
             }, function (data) {
                 
                 if(data == 0) {
-                    reloadPosts(source);
+                   //reloadPosts(source);
                 }
                 if (data == 1) {
                     alert('There was a connection error! Please try again!');
-                    reloadPosts(source);
+                    //reloadPosts(source);
                 }
             }
         
