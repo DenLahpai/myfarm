@@ -242,7 +242,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 													</div>
 													<div>
 														<!-- <button onclick="alert('<? echo $row_Replies->Id; ?>');">Test</button> -->
-														<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'my_posts.php');">Post Reply!</button>
+														<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'my_posts.php'); reloadPosts('my_posts.php');">Post Reply!</button>
 													</div>
 												</div>														
 											</div>
