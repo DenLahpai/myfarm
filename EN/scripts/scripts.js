@@ -676,7 +676,7 @@ function markAsSoldOut (Id) {
 
 //                      ********************* Function for comments *********************
 
-function postComment (Id) {
+function postComment (Id, source) {
     var Comment = $("#Comment" + Id).html().trim();
     if (Comment == "") {
         alert("There is nothing to post!");
@@ -688,11 +688,11 @@ function postComment (Id) {
             }, function (data) {
                 
                 if(data == 0) {
-                    location.reload(true);
+                    reloadPosts(source);
                 }
                 if (data == 1) {
                     alert('There was a connection error! Please try again!');
-                    location.reload(true);
+                    reloadPosts(source);
                 }
             }
         
@@ -700,7 +700,7 @@ function postComment (Id) {
     }
 }
 
-function insertReply (Id) {
+function insertReply (Id, source) {
     var Reply = $("#Reply"+ Id).html().trim();
     $.post ("includes/insert_reply.php", {
             Message: Reply,
@@ -708,28 +708,28 @@ function insertReply (Id) {
         }, function (data) {
                 
             if (data == 0) {
-                location.reload(true);
+                reloadPosts(source);
             }
             if (data == 1) {
                 alert('There was a connection error! Please try again!');
-                location.reload(true);
+                reloadPosts(source);
             }
         } 
     );
 }
 
-function insertReReply (RepliesId, CommentsId) {
+function insertReReply (RepliesId, CommentsId, source) {
     var Reply = $("#Re-Reply" + RepliesId).html().trim();
     $.post("includes/insert_reply.php", {
         Message: Reply, 
         CommentsId: CommentsId
         }, function (data) {
             if (data == 0) {
-                location.reload(true);
+                reloadPosts(source);
             }
             if (data == 1) {
                 alert('There was a connection error! Please try agian!');
-                location.reload(true);
+                reloadPosts(source);
             } 
         }   
     );
