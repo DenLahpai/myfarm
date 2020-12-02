@@ -871,3 +871,20 @@ function outsideClickModal (e) {
         modal.style.display = 'none';
     }
 }
+
+
+
+/* function to process report */
+function processReport() {
+    var ReportedItem = $("#report-link").val();
+    var SendersRemark = $("#SendersRemark").html().trim();
+	$.post('includes/processing_report.php', {
+        ReportedItem: ReportedItem,
+        SendersRemark: SendersRemark
+		}, function (data) {
+            alert(data);
+            //TODO
+        }
+	
+	);
+}
