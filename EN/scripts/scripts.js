@@ -580,6 +580,26 @@ function reloadPosts (source) {
     );
 }
 
+// function reloadUser_Posts (UsersLink) {
+//     var sorting = $("#sorting").val();
+//     var search = $("#search").val().trim();
+//     var limit = $("#limit").val();
+//     var UsersLink = UsersLink;
+//     checkForRemainingData ();
+
+//     $.post ('includes/' + 'user_posts.php', {
+//         sorting: sorting,
+//         search: search,
+//         limit: limit,
+//         UsersLink: UsersLink
+//         }, function (data) {
+//             $("#posts-data").html(data);
+//         }
+    
+    
+//     );
+// }
+
 function deletePost(id) {
     var r = confirm("Are you sure to delete this post! Once deleted it cannot be recovered!");
     if (r == true) {

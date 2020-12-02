@@ -31,7 +31,7 @@ else {
 
 if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST['UsersLink'] != "") {
 	
-	$UsersLink = $_REQUEST['UsersLink'];
+	// $UsersLink = $_REQUEST['UsersLink'];
 	// getting UsersId
     $rows_Users = table_Users ('select_one_by_link', $_REQUEST['UsersLink'], NULL);
     foreach ($rows_Users as $row_Users) {
@@ -142,7 +142,8 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
 							<span class="textarea" id="<? echo "Comment".$row_Posts->Id; ?>" role="textbox" contenteditable onclick="checkComment('<? echo $row_Posts->Id; ?>')";>Write your comments...</span>
 						</div>
 						<div class="comment-input-item">
-							<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', <? echo 'user_posts.php?UsersLink='.$UsersLink; ?>);">Post Comment!</button>
+							<button type="button" class="btn-comment" id="<? echo "btn-comment".$row_Posts->Id;?>" onclick="postComment('<? echo $row_Posts->Id;?>', 'user_posts.php'); location.reload(true);">Post Comment!</button>
+							
 						</div>	
 					</div>
 				</div>
@@ -212,7 +213,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
 											<span class="textarea" id="<? echo "Reply".$row_Comments->Id; ?>" role="textbox" contenteditable onclick="checkReply('<? echo $row_Comments->Id; ?>');"></span>
 										</div>
 										<div>
-											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'user_posts.php');">Post Reply!</button>
+											<button class="btn-comment" id="<? echo "btn-reply".$row_Comments->Id; ?>" onclick="insertReply('<? echo $row_Comments->Id ;?>', 'user_posts.php'); location.reload(true);">Post Reply!</button>
 										</div>
 									</div>
 									<!-- replies -->
@@ -256,7 +257,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
 															</div>
 															<div>
 																<!-- <button onclick="alert('<? echo $row_Replies->Id; ?>');">Test</button> -->
-																<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'user_posts.php');">Post Reply!</button>
+																<button class="btn-comment" style="display: block;" onclick="insertReReply('<? echo $row_Replies->Id; ?>', '<? echo $row_Comments->Id ;?>', 'user_posts.php'); location.reload(true);">Post Reply!</button>
 															</div>
 														</div>														
 													</div>
