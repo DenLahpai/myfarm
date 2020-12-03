@@ -30,7 +30,6 @@ else {
 }
 $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 
-// TODO Open modal, connect with reports buttons , insert_report.php 
 ?>
 <!-- grid-container -->
 <div class="grid-container">
@@ -196,7 +195,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 											}
 											?>
 										</div>
-										<div>
+										<div onclick="openReportForm('<? echo $row_Comments->Link; ?>');">
 											Report <span class="symbols">&#10071;</span>
 										</div>
 									</div>
@@ -238,7 +237,7 @@ $rows_Posts = table_Posts ($job, NULL, NULL, $sorting, $limit);
 															<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
 																Reply
 															</div>
-															<div>
+															<div onclick="openReportForm('<? echo $row_Replies->Link; ?>')">
 																Report <span class="symbols">&#10071;</span>
 															</div>															
 														</div>
