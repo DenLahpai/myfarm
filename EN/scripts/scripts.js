@@ -882,8 +882,17 @@ function processReport() {
         ReportedItem: ReportedItem,
         SendersRemark: SendersRemark
 		}, function (data) {
-            alert(data);
-            //TODO
+            
+            if (data == 0) {
+                var msg = 'Thank you for reporting to us! We will take necessary actions.';
+                alert(msg);
+                closeModal ("report_form_modal");
+            }
+
+            if (data == 1) {
+                var msg = 'There was a connection error! Please try again!';
+                alert(msg);
+            }
         }
 	
 	);

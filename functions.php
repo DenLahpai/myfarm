@@ -1487,5 +1487,39 @@ function table_Users_Notifications ($job, $var1, $var2, $sorting, $limit) {
     }
 }
 
+// functions to use data from the table Reports
+function table_Reports ($job, $var1, $var2, $sorting, $limit) {
+
+    $database = new Database();
+
+    switch ($job) {
+        case 'insert':
+        // $var1 = UsersLink
+       
+        $query = "INSERT INTO Reports SET 
+            SendersLink = :SendersLink,
+            ReportedItem = :ReportedItem, 
+            SendersRemark = :SendersRemark,
+            AdminsRemark = :AdminsRemark
+        ;";
+        $database->query($query);
+        $database->bind(':SendersLink', $var1);
+        $database->bind(':ReportedItem', trim($_REQUEST['ReportedItem']));
+        $database->bind(':SendersRemark', trim($_REQUEST['SendersRemark']));
+        $database->bind(':AdminsRemark', 'Please check!');
+        if ($database->execute()) {
+            // zero is returned for no error!
+            echo 0;
+        }
+        else {
+            //one is returned for connection error!
+            echo 1;
+        }
+        break;
+    }
+}
+
+
+
 
 ?>
