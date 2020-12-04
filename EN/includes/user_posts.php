@@ -77,7 +77,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
                     <div onclick="bookmarkPost('<? echo $row_Posts->Link; ?>');">
                         Bookmark <span class="symbols">&#9873;</span>
                     </div>							
-                    <div>
+		    <div onclick="openReportForm('<? echo $row_Posts->Link; ?>');">
                         Report <span class="symbols">&#10071;</span>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
 											}
 											?>
 										</div>
-										<div>
+										<div onclick="openReportForm('<? echo $row_Comments->Link ?>');" >
 											Report <span class="symbols">&#10071;</span>
 										</div>
 									</div>
@@ -246,7 +246,7 @@ if (isset($_REQUEST['UsersLink']) || !empty($_REQUEST['UsersLink']) || $_REQUEST
 															<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
 																Reply
 															</div>
-															<div>
+															<div onclick="openReportForm('<? echo $row_Replies->Link; ?>')">
 																Report <span class="symbols">&#10071;</span>
 															</div>															
 														</div>
