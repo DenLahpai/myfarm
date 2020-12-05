@@ -40,7 +40,7 @@ else {
 					</div>
 				</div>
 			</div>
-			<div class="btn_post-menu" onclick="Toggle('post-menu-items')">
+			<div class="btn-post-menu" onclick="Toggle('post-menu-items')">
 				&#9776	
 			</div>
 		</div>
@@ -50,7 +50,7 @@ else {
 			<div onclick="bookmarkPost('<? echo $row_Posts->Link; ?>')">
 				Bookmark <span class="symbols">&#9873</span>
 			</div>
-			<div>
+			<div onclick="openReportForm('<? echo $row_Posts->Link; ?>')">
 				Report <span class="symbols">&#10071</span>
 			</div>
 		</div>
@@ -188,7 +188,7 @@ else {
 								}
 								?>
 							</div>
-							<div>
+							<div onclick="openReportForm ('<? echo $row_Comments->Link; ?>');">
 								Report <span class="symbols">&#10071;</span>
 							</div>
 						</div>
@@ -230,7 +230,7 @@ else {
 												<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
 													Reply
 												</div>
-												<div>
+												<div onclick="openReportForm ('<? echo $row_Replies->Link; ?>')">
 													Report <span class="symbols">&#10071;</span>
 												</div>															
 											</div>

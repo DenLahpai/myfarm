@@ -9,11 +9,12 @@
 	<div class="main-content">
 		<!-- wrapper -->
 		<div class="wrapper">
-            <section id="search-bar">
+            <section id="modal-area"></section>
+            <!-- <section id="search-bar">
                 <input type="hidden" id="search" name="">
                 <input type="hidden" id="sorting" name="">
                 <input type="hidden" id="limit" name="">
-            </section>
+            </section> -->
 			<section id="posts-data"></section>
             <section id="ads"></section>
 		</div>
@@ -37,6 +38,10 @@ $(document).ready(function () {
     $.get("includes/setting-menu.html", function(data) {
         $('.main-content').before(data);
     });
+
+    $("#modal-area").load("includes/report_form.php");
+
+    window.addEventListener('click', outsideClickModal);
 
     $.get("includes/my_notifications.php", function(data) {
     	$('#nfc-data').html(data);
