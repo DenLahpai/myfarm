@@ -10,6 +10,7 @@
         <!-- wrapper -->
         <div class="wrapper">
             <div class="title"></div>
+            <section id="modal-area"></section>
             <!-- sub-menu -->
             <div class="sub-menu">
                 <!-- sub-menu-items -->
@@ -69,6 +70,10 @@ $(document).ready(function () {
     $.get("includes/setting-menu.html", function(data) {
         $('.main-content').before(data);
     });
+
+    $("#modal-area").load("includes/report_form.php");
+
+    window.addEventListener('click', outsideClickModal);
     
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -96,7 +101,7 @@ $(document).ready(function () {
         UsersLink: UsersLink,
         fetch_data: 'Username'
         }, function(data){
-            $(".title").html("<h4>Posts by " + data + "</h4>");
+            $(".title").html("<h4>" + data + " na post ni</h4>");
         }
     );
 
