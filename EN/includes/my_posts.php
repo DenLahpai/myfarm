@@ -189,7 +189,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 									}
 									?>
 								</div>
-								<div>
+								<div onclick="openReportForm ('<? echo $row_Comments->Link; ?>')">
 									Report <span class="symbols">&#10071;</span>
 								</div>
 							</div>
@@ -231,7 +231,7 @@ $rows_Posts = table_Posts ($job, $_SESSION['UsersId'], NULL, $sorting, $limit);
 													<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
 														Reply
 													</div>
-													<div>
+													<div onclick="openReportForm ('<? echo $row_Replies->Link; ?>')">
 														Report <span class="symbols">&#10071;</span>
 													</div>															
 												</div>
