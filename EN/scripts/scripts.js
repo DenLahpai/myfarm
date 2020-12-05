@@ -857,7 +857,6 @@ function deleteNotification (Link) {
     });
 }
 
-
 //function to open report form modal
 function openReportForm (link) {
     $("#report-link").val(link);
@@ -871,8 +870,6 @@ function outsideClickModal (e) {
         modal.style.display = 'none';
     }
 }
-
-
 
 /* function to process report */
 function processReport() {

@@ -812,3 +812,41 @@ function deleteNotification (Link) {
             }
     });
 }
+
+//function to open report form modal
+function openReportForm (link) {
+    $("#report-link").val(link);
+    $("#report_form_modal").show();
+    // alert(link);
+}
+
+function outsideClickModal (e) {
+    var modal = document.getElementById('report_form_modal');
+    if(e.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+/* function to process report */
+function processReport() {
+    var ReportedItem = $("#report-link").val();
+    var SendersRemark = $("#SendersRemark").html().trim();
+	$.post('includes/processing_report.php', {
+        ReportedItem: ReportedItem,
+        SendersRemark: SendersRemark
+		}, function (data) {
+            
+            if (data == 0) {
+                var msg = 'Anhte hpe ndai hku report galaw ai majaw chyeju kaba sai! Anhte ra ai hku lajang mat na.';
+                alert(msg);
+                closeModal ("report_form_modal");
+            }
+
+            if (data == 1) {
+                var msg = 'Connection hten mat ai! Bai chyam ya rit!';
+                alert(msg);
+            }
+        }
+	
+	);
+}
