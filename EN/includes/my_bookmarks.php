@@ -72,7 +72,7 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 						<div onclick="removeBookmark('<? echo $row_Posts->BookmarksId; ?>');">
 							Remove Bookmark 
 						</div>			
-						<div>
+						<div onclick="openReportForm ('<? echo $row_Posts->Link; ?>');">
 							Report <span class="symbols">&#10071;</span>
 						</div>
 					</div>
@@ -200,7 +200,7 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 									}
 									?>
 								</div>
-								<div>
+								<div onclick="openReportForm('<? echo $row_Comments->Link; ?>')">
 									Report <span class="symbols">&#10071;</span>
 								</div>
 							</div>
@@ -242,7 +242,7 @@ $rows_Posts = table_Posts ($job, $row_Users->Link, NULL, $sorting, $limit);
 													<div onclick="Toggle('<? echo "re-reply-input".$row_Replies->Id; ?>');">
 														Reply
 													</div>
-													<div>
+													<div onclick="openReportForm ('<? echo $row_Replies->Link; ?>');">
 														Report <span class="symbols">&#10071;</span>
 													</div>															
 												</div>
