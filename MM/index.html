@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Welcome</title>
+</head>
+<body>
+    <header>
+    </header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <!-- lead-banner -->
+            <div class="lead-banner">
+                <img src="../images/lead-banner.png" alt="">
+            </div>
+            <!-- end of lead-banner -->
+            <!-- title -->
+            <div class="title">
+                <h4>Welcome</h4>
+            </div>
+            <!-- end of title -->
+            <section id="home-page">
+                <div class="desc">
+                    <p></p>
+                </div>
+            </section>
+            <section id="suggest">
+                Please <span class="link" onclick="window.location.href='register.html';">register</span> to start using our platform.
+            </section>
+            <section id="ads"></section>
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $.get("includes/head.html", function (data){
+            $("head").prepend(data);
+        } );
+
+        getMyanmarContents ('index_titleh4.html', '.title h4');
+        getMyanmarContents ('index_desc0.html', '.desc p');
+        
+
+        $("header").load("includes/header.html");
+
+        $("#ads").load("ads.html");
+
+        $("footer").load("includes/footer.php");       
+        
+    });
+</script>
+</html>

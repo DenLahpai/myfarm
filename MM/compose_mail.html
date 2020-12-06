@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Compose Mail</title>
+</head>
+<body>
+	<header></header>
+	<!-- main-content -->
+	<div class="main-content">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<div class="title">
+				<h4>Compose Mail</h4>
+			</div>
+			<section id="new-mail">
+				<div class="new-mail-form">
+					<form id="new-mail-form">
+						<div>
+							To:
+							<input type="hidden" id="ReceiversLink" name="ReceiversLink" value="">
+							<span id="recipient" style="font-style: italic;"></span> 
+						</div>
+						<div>
+							Subject:
+							<input type="text" name="Subject" id="Subject" placeholder="Subject:">
+						</div>
+						<div>
+							<textarea id="Message" name="Message"></textarea>
+						</div>
+						<div>
+							<button type="button" class="btn-submit" id="btn-submit">Send</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+		<!-- end of wrapper -->
+	</div>
+	<!-- end of main-content -->
+	<footer></footer>	
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });       
+
+    $("footer").load("includes/footer.php");
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const UsersLink = urlParams.get('UsersLink');
+
+    $.post('includes/users_data.php', {
+    	UsersLink: UsersLink,
+    	fetch_data: 'Username'
+    }, function (data) {
+    	$("#recipient").html(data);    	
+    });
+
+    $("#ReceiversLink").val(UsersLink);
+
+    $("#btn-submit").on('click', function () {
+
+    	if ($("#Subject").val() == "") {
+    		alert("The subject field cannot be empty!");
+    	}
+    	else {
+    		$.ajax ({
+	    		url: "includes/sending_mail.php",
+	    		type: "POST", 
+	    		data: $("#new-mail-form").serialize(),
+	    		success: function (data) {
+	    			if (data == 0) {
+	    				// zero is sent for no error!
+	    				window.location.href = 'home.html';
+	    				alert('Your email has been sent!');
+	    			}
+	    			else {
+	    				alert('There was a connection error! Please try again!');
+	    			}
+	    		}
+	    	});
+    	}    	
+    });
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>
+</html>

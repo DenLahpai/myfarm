@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Registration</title>
+</head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <!-- title -->
+            <div class="title">
+                <h4>Registration</h4>
+            </div>
+            <!-- end of title -->
+            <section id="registration">
+                <!-- desc -->
+                <div class="desc">
+                    <p>
+                        Please register to have an account with us to use our platform. It's absolutely free.
+                    </p>
+                </div>
+                <!-- end of desc -->
+                <!-- registration-form -->
+                <div class="registration-form">
+                    <form id="registration-form" action="register.php" method="POST">
+                        <ul>
+                            <li>
+                                <input type="text" name="Username" id="Username1" placeholder="Choose a Username" onblur="checkUsername();">
+                                <br>
+                                <span id="usernameError"></span>
+                            </li>
+                            <li>
+                                <input type="password" name="Password1" id="Password1" placeholder="Choose password">
+                            </li>
+                            <li>
+                                <input type="password" name="Password2" id="Password2" placeholder="Re-type your password" onblur="checkPasswords();">
+                            </li>
+                            <li id="passwordStatus">
+
+                            </li>
+                            <li>
+                                <select name="Title" id="Title">
+                                    <option value="">Select Title</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                </select>
+                            </li>
+                            <li>
+                                <input type="text" name="Name" id="Name" placeholder="Your Name">
+                            </li>
+                            <li>
+                                <input type="text" name="Mobile" id="Mobile" placeholder="Mobile Number">
+                            </li>
+                            <li>
+                                <input type="email" name="Email" id="Email" placeholder="Email@email.com" onblur="validateEmail(this.value);  checkEmail(this.value);">
+                                <br>
+                                <span id="emailStatus"></span>
+                            </li>                         
+                            <li>Date of Birth:
+                            <br>
+                                <input type="date" name="DOB" id="DOB">
+                            </li>
+                            <li>
+                                <textarea rows="8" name="Address" id="Address" placeholder="Address"></textarea>
+                            </li>
+                            <li>
+                                <input type="text" name="Town" id="Town" placeholder="Town">
+                            </li>
+                            <li>
+                                <input type="text" name="State" id="State" placeholder="State/Division">
+                            </li>
+                            <li>
+                                <select name="CountryCode" id="CountryCode"></select>
+                            </li>
+                            <li>
+                                Choose your default language
+                                <br>
+                                <select name="LanguagesId" id="LanguagesId"></select>
+                            </li>
+                            <li id="response1"></li>
+                            <li>
+                                <button type="button" name="button" id="btn-submit" onclick="register();">Submit</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <!-- end of registration-form -->
+            </section>
+            <section id="ads"></section>
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main-content -->
+    <footer></footer>
+</body>
+<script src="../scripts/jQuery.js" charset="utf-8"></script>
+<script src="../scripts/main.js" charset="utf-8"></script>
+<script src="scripts/scripts.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $('document').ready(function () {
+
+        $.get("includes/head.html", function (data) {
+            $("head").prepend(data);
+        });
+
+        $("header").load("includes/header.html");
+
+        $("#ads").load("ads.html");
+        
+        $('footer').load('includes/footer.php');
+
+        $.post("includes/select_languages.php", {selected: '2'}, function (data) {
+            $("#LanguagesId").prepend(data);
+        });
+
+        $.post("includes/select_countries.php", function (data) {
+            $("#CountryCode").prepend(data);
+        });
+    });
+</script>
+</html>

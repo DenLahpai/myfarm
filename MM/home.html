@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Home Page</title>    
+</head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="title">
+                <h4>Posts</h4>
+            </div>
+            <section id="modal-area"></section>
+            <section id="sub-menu">
+                <!-- sub-menu -->
+                <div class="sub-menu">
+                    <!-- sub-menu-items -->
+                    <div class="sub-menu-items">
+                        <div class="sub-menu-item" onclick="Toggle('new-post');">
+                            New Post
+                        </div>
+                        <div>
+                            <select name="sorting" id="sorting" onchange="reloadPosts('select_posts.php');">
+                                <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
+                                <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
+                                <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
+                                <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="hidden" id="limit" value="6">
+                        </div>                   
+                    </div>
+                    <!-- end of sub-menu-items -->
+                </div>
+                <!-- end of sub-menu -->
+            </section>
+            <section id="new-post">
+                <div class="post-form">
+                    <form id="post-form" method="post" action="includes/insert_post.php" enctype="multipart/form-data">
+                        <div>
+                            <input type="text" name="Title" id="Title" placeholder="Title" required style="width: 90%;" onchange="checkOneField('Title');">
+                        </div>
+                        <div class="image_preview">
+                            <img id="image_preview"/>
+                        </div>
+                        <div>
+                            <textarea name="Description" id="Description" placeholder="Description..."></textarea>
+                        </div>
+                        <!-- post-form-commands -->
+                        <div class="post-form-commands">
+                            <div>
+                                <label for="Image">Upload Image</label>
+                                <input style="display: none" type="file" name="Image" id="Image" onchange="imagePreview(this);">
+                            </div>
+                            <div>
+                                <select name="TagsId" id="TagsId">
+                                    <option value="0">Tags</option>
+                                </select>
+                            </div>    
+                            <div>
+                               <button type="button" id="btn-submit" name="btn-submit" onclick="insertNewPost();" disabled="disabled">Post</button>
+                            </div>                        
+                        </div>
+                        <!-- end of post-form-commands -->
+                    </form>
+                </div> 
+            </section>
+            <section id="search-bar">
+                <!-- search-bar -->
+                <div class="search-bar">
+                    <!-- search-bar-items -->
+                    <div class="search-bar-items">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                        <button type="button" class="btn-search" id="btn-search" onclick="reloadPosts('select_posts.php');">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear" onclick="clearSearch(); reloadPosts('select_posts.php');">Clear</button>
+                    </div>
+                    <!-- end of search-bar-items -->
+                </div>
+                <!-- end of search-bar -->               
+            </section>    
+            <section id="posts-data"></section>
+            <section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="increaseLimit(); reloadPosts('select_posts.php');">Show More</button>
+                </div>
+            </section> 
+            <section id="ads"></section>           
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main-content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });
+    
+    $("#modal-area").load("includes/report_form.php");
+
+    window.addEventListener('click', outsideClickModal);
+
+    reloadPosts('select_posts.php');
+
+    $("#ads").load("ads.html");
+
+    $("footer").load("includes/footer.php");    
+
+    getTags(0);
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Contact Us</title>
+</head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper  -->
+        <div class="wrapper">
+            <!-- lead-banner -->
+            <div class="lead-banner">
+                <img src="../images/lead-banner.png" alt="">
+            </div>
+            <!-- end of lead-banner  -->
+            <!-- title -->
+            <div class="title">
+                <h4>Contact Us</h4>
+            </div>
+            <!-- end of title -->
+            <section id="contactus">
+                <div class="desc">
+                    <div class="contact-form">
+                        <form id="contact-form" action="contactus.php" method="post">
+                            <ul>
+                                <li>
+                                    Please let us know your experiences. We love to hear your feedback.
+                                </li>
+                                <li>
+                                    <input type="text" name="Name" id="Name" placeholder="Your Name">
+                                </li>
+                                <li>
+                                    <input type="text" name="Email" id="Email" placeholder="Email">
+                                </li>
+                                <li>
+                                    <textarea name="Message" id="Message" rows="8" cols="80" placeholder="Your message..."></textarea>
+                                </li>
+                                <li>
+                                    <button type="button" name="button" id="button-submit" onclick="sendContactPageData();">Send</button>
+                                </li>
+                                <li class="error"></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section id="ads"></section>
+        </div>
+        <!-- end of wrapper  -->
+    </div>
+    <!-- end of main-content -->
+    <footer></footer>
+</body>
+<script src="../scripts/jQuery.js" charset="utf-8"></script>
+<script src="scripts/scripts.js" charset="utf-8"></script>
+<script src="../scripts/main.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $.get("includes/head.html", function (data) {
+            $('head').prepend(data);
+        });
+
+        $('header').load('includes/header.html');
+
+        $('#ads').load('ads.html');
+        
+        $('footer').load('includes/footer.php');
+    });
+</script>
+</html>

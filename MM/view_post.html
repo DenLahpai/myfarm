@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<title>View Post</title>
+</head>
+<body>
+	<header></header>
+	<!-- main-content -->
+	<div class="main-content">
+		<!-- wrapper -->
+		<div class="wrapper">
+            <section id="modal-area"></section>
+            <!-- <section id="search-bar">
+                <input type="hidden" id="search" name="">
+                <input type="hidden" id="sorting" name="">
+                <input type="hidden" id="limit" name="">
+            </section> -->
+			<section id="posts-data"></section>
+            <section id="ads"></section>
+		</div>
+		<!-- end of wrapper -->
+	</div>
+	<!-- end of main-content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });
+
+    $("#modal-area").load("includes/report_form.php");
+
+    window.addEventListener('click', outsideClickModal);
+
+    $.get("includes/my_notifications.php", function(data) {
+    	$('#nfc-data').html(data);
+    });
+
+    $("#ads").load("ads.html");
+
+    $("footer").load("includes/footer.php");    
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const PostsLink = urlParams.get('PostsLink');
+
+    $.post ('includes/view_post.php', {
+        PostsLink: PostsLink
+        }, function (data){
+            $('#posts-data').html(data);
+    });
+
+    $("#btn-comment").on('click', function () {
+        alert('click');
+    });
+
+     
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>
+</html>

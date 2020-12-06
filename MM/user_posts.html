@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Posts</title>
+</head>
+<body>
+    <header></header>
+    <!-- main-content -->
+    <div class="main-content">
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="title"></div>
+            <section id="modal-area"></section>
+            <!-- sub-menu -->
+            <div class="sub-menu">
+                <!-- sub-menu-items -->
+                <div class="sub-menu-items">
+                    <div>
+                        <select name="sorting" id="sorting" onchange="">
+                            <option value="ORDER BY Created DESC">Newest to Oldest Post</option>
+                            <option value="ORDER BY Created ASC">Oldest to Newest Post</option>
+                            <option value="ORDER BY Updated DESC">Newest to Oldest Update</option>
+                            <option value="ORDER BY Updated ASC">Oldest to Newest Update</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="hidden" id="limit" value="6">
+                    </div>                   
+                </div>
+                <!-- end of sub-menu-items -->
+            </div>
+            <!-- end of sub-menu -->
+            <section id="search-bar">
+                <!-- search-bar -->
+                <div class="search-bar">
+                    <!-- search-bar-items -->
+                    <div class="search-bar-items">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                        <button type="button" class="btn-search" id="btn-search">Search</button>
+                        <button type="button" class="btn-search" id="btn-clear">Clear</button>
+                    </div>
+                    <!-- end of search-bar-items -->
+                </div>
+                <!-- end of search-bar -->               
+            </section>                
+            <section id="posts-data"></section>   
+            <section id="load-more">
+                <div>
+                    <button type="button" id="btn-load-more" onclick="">Load More</button>
+                </div>
+            </section>
+            <section id="ads"></section>         
+        </div>
+        <!-- end of wrapper -->
+    </div>
+    <!-- end of main-content -->
+    <footer></footer>
+</body>
+<script type="text/javascript" src="../scripts/jQuery.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $.get("includes/head.html", function (data) {
+        $('head').prepend(data);
+    });
+
+    $("header").load("includes/header.html");
+
+    $.get("includes/setting-menu.html", function(data) {
+        $('.main-content').before(data);
+    });
+
+    $("#modal-area").load("includes/report_form.php");
+
+    window.addEventListener('click', outsideClickModal);
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const UsersLink = urlParams.get('UsersLink');
+
+    $("#sorting").on('change', function () {
+        reloadPosts('user_posts.php?UsersLink=' + UsersLink);
+    });
+
+    $("#btn-load-more").on('click', function(){
+        increaseLimit(); 
+        reloadPosts('user_posts.php?UsersLink=' + UsersLink);
+    });
+
+    $("#btn-search").on('click', function() {
+        reloadPosts('user_posts.php?UsersLink=' + UsersLink);
+    });
+
+    $("#btn-clear").on('click', function() {
+        clearSearch();
+        reloadPosts('user_posts.php?UsersLink=' + UsersLink);
+    });   
+    
+    $.post("includes/users_data.php", {
+        UsersLink: UsersLink,
+        fetch_data: 'Username'
+        }, function(data){
+            $(".title").html("<h4>Posts by " + data + "</h4>");
+        }
+    );
+
+    $.post("includes/user_posts.php", {
+            UsersLink: UsersLink
+        }, function(data) {
+            $("#posts-data").html(data);
+        }
+    );   
+
+    $("#ads").load("ads.html");
+
+    $("footer").load("includes/footer.php");
+
+    checkSession();
+
+    setInterval(function() {
+        checkSession();
+    }, 1800000);
+});
+</script>    
+</html>
