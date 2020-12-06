@@ -25,7 +25,7 @@
             </div>
             <div class="report-form-input">
                 <span id="SendersRemark" role="textbox" contenteditable onclick="this.innerHTML='';">Tell us why you are reporting this post or comment...</span>
-                <input type="" name="report-link" id="report-link">
+                <input type="hidden" name="report-link" id="report-link">
             </div>
             <div class="report-form-button">
                 <button type="button" onclick="processReport();">Submit</button>
