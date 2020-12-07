@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <title>About</title>
+    <title>About us</title>
 </head>
 <body>
     <header></header>    
@@ -22,8 +22,7 @@
             <section id="aboutus">
                 <!-- desc -->
                 <div class="desc">
-                    <p>
-                        mmFarm is a project of Link In Myanmar Co., Ltd. Our purpose is to create a community for farmers to meet their consumers from all over the country.
+                    <p>                        
                     </p>
                 </div>
                 <!-- end of desc -->
@@ -44,6 +43,9 @@
         $.get("includes/head.html", function (data) {
             $("head").prepend(data);
         });
+
+        getMyanmarContents('aboutus_descp.html', '.desc p');
+        getMyanmarContents('aboutus_titleh4.html', '.title h4');
 
         $("header").load("includes/header.html");
 
