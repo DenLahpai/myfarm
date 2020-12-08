@@ -1,5 +1,5 @@
 <?php
-require_once "../../functions.php";
+require_once "../functions.php";
 if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
     $database = new Database();
     $query = "INSERT INTO Messages2Admin SET
@@ -16,11 +16,11 @@ if (isset($_POST['Name'], $_POST['Email'], $_POST['Message'])) {
         $message = trim($_POST['Message']);
         $mail_header = "FROM: <".$_POST['Email'].">\r\n";
         $mail_header .= "Content-type: text/html\r\n";
-        mail ('den.lahpai@icloud.com', $subject, $Message, $mail_header);
-        echo "Your message was sent successfully! Thank You!";
+        mail ('den.lahpai@icloud.com', $subject, $message, $mail_header);
+        echo "လုပ်ဆောင်မှူ အောင်မြင်ပါတယ်! ကျေးဇူး အထူးတင် ရှိပါတယ်!";
     }
     else {
-        echo "There was an error! Please try again!";
+        echo "ဆက်သွယ်မှူ ယာယီ ပြတ်တောက် သွားပါတယ်! နောက်တစ်ခေါက် ပြန်လည်လုပ်ဆောင် ပေးပါ!";
     }
 }
 ?>

@@ -16,31 +16,14 @@
             <!-- end of lead-banner  -->
             <!-- title -->
             <div class="title">
-                <h4>Contact Us</h4>
+                <h4></h4>
             </div>
             <!-- end of title -->
             <section id="contactus">
                 <div class="desc">
                     <div class="contact-form">
                         <form id="contact-form" action="contactus.php" method="post">
-                            <ul>
-                                <li>
-                                    Please let us know your experiences. We love to hear your feedback.
-                                </li>
-                                <li>
-                                    <input type="text" name="Name" id="Name" placeholder="Your Name">
-                                </li>
-                                <li>
-                                    <input type="text" name="Email" id="Email" placeholder="Email">
-                                </li>
-                                <li>
-                                    <textarea name="Message" id="Message" rows="8" cols="80" placeholder="Your message..."></textarea>
-                                </li>
-                                <li>
-                                    <button type="button" name="button" id="button-submit" onclick="sendContactPageData();">Send</button>
-                                </li>
-                                <li class="error"></li>
-                            </ul>
+                            
                         </form>
                     </div>
                 </div>
@@ -61,6 +44,9 @@
         $.get("includes/head.html", function (data) {
             $('head').prepend(data);
         });
+
+        getMyanmarContents('contactus_titleh4.html', '.title h4');
+        getMyanmarContents('contactus_contact-form.html', '#contact-form' );
 
         $('header').load('includes/header.html');
 

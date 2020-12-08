@@ -95,17 +95,17 @@ function sendContactPageData() {
     if (Name.val() == "" || Name.val() == null) {
         Name.addClass('input-error');
         var inputError = true;
-        var errorMsg = "Please enter your name! ";
+        var errorMsg = "သင့်နာမည် ဖြည့်ပေးပါ! ";
     }
     if (Email.val() == "" || Email.val() == null) {
         Email.addClass('input-error');
         var inputError = true;
 
         if (errorMsg) {
-            errorMsg += "Please enter your email! ";
+            errorMsg += "သင့်အီးမေးလ် ဖြည့်ပေးပါ! ";
         }
         else {
-            errorMsg = "Please enter your email! ";
+            errorMsg = "သင့်အီးမေးလ် ဖြည့်ပေးပါ! ";
         }
     }
     if (Message.val() == "" || Message.val() == null) {
@@ -113,10 +113,10 @@ function sendContactPageData() {
         var inputError = true;
 
         if (errorMsg) {
-            errorMsg += "Your message cannot be blank!";
+            errorMsg += "သင့် အကြံ ပြုလို သော အကြောင်းအရာ  ဖြည့်ပေးပါ!";
         }
         else {
-            errorMsg = "Your message cannot be blank!";
+            errorMsg = "သင့် အကြံ ပြုလို သော အကြောင်းအရာ  ဖြည့်ပေးပါ!!";
         }
     }
 
